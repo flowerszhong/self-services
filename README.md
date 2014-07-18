@@ -1,4 +1,4 @@
-self-services
-=============
+students-info-collection
+========================
 
-Students online self-service system
+students-info-collection
