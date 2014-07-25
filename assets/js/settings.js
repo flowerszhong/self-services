@@ -17,6 +17,7 @@ $(function () {
 		$("#setting-table").find('.lbl').show().end().find('.editing').prop('disabled',true).hide();
 		$(this).hide();
 		$("#change-major-setting").show();
+		$("label.error").hide();
 	});
 
 

@@ -1,10 +1,13 @@
 <?php
 include 'dbc.php';
-session_start($_COOKIE['PHPSESSID']);
+
+// session_start($_COOKIE['PHPSESSID']);
+session_start();
 
 $err = array();
+$msg = array();
 
-if (isset($_SESSION['user_id'])) {
+if (isset($_SESSION['student_id'])) {
     header("Location: myaccount.php");
     die();
 }

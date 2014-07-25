@@ -25,7 +25,7 @@ if (isset($get['user']) && !empty($get['activ_code']) && !empty($get['user']) &&
         $err[] = "账号不存在或激活码失效";
         // $err[] = "Sorry no such account exists or activation code invalid.";
         header("Location: activate.php?msg=$msg");
-        exit();
+        // exit();
     }
     
     if (empty($err)) {
@@ -34,7 +34,7 @@ if (isset($get['user']) && !empty($get['activ_code']) && !empty($get['user']) &&
                          md5_id='$user' AND activation_code = '$activ' ") or die(mysql_error());
         $msg[] = "Thank you. 您的账号已经激活";
         header("Location: activate.php?done=1");
-        exit();
+        // exit();
     }
 }
 ?>
@@ -44,11 +44,12 @@ if (isset($get['user']) && !empty($get['activ_code']) && !empty($get['user']) &&
 include 'includes/head.php';
 if ($get['done']) {
 ?>
-
-<h4 class="title">您的账号已经激活</h4>
-<p>你可点此登录<a href="login.php">点此</a></p>
+<div class="container">
+    <h4 class="title">您的账号已经激活</h4>
+    <p>你可点此登录<a href="index.php">点此</a></p>
+</div>
 
 <?php
-    include 'includes/footer.php';
 }
+include 'includes/footer.php';
 ?>

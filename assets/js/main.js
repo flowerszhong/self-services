@@ -21,4 +21,37 @@ $(function () {
 		$(this).hide();
 		$("#change-major-setting").show();
 	});
+
+	$(".link-submit").click(function () {
+		$("#login-form").submit();
+		return false;
+	});
+
+
+	$("#link-save-setting").click(function () {
+		$("#setting-form").submit();
+		return false;
+	});
+
+
+	$("#actForm").validate();
+
+
+	// net-account-table
+	$("#net-account-table tr").find("td:first").addClass("reg-th");
+
+
+	//reset password
+	$("#reset-form").validate();
+	$("#reset-form input").addClass("form-control");
+	$("#reset-form input[type='text']").addClass("reg-input");
+	$("#reset-form tr").find("td:first").addClass("reg-th");
+
+	// validate function
+	function isStudentId (id) {
+		if(id.length == 8){
+			return true;
+		}
+	}
+
 });

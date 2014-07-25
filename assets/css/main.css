@@ -65,45 +65,104 @@ a{
 
 body{
 	margin: 0;
-	padding:50px 5px 0 5px;
+	/*padding:50px 5px 0 5px;*/
 	font-size: 14px;
 	font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;
-	min-height: 900px;
+	background-color: #FAFAFA;
+}
+
+.container{
+	width:960px;
+	margin: 0 auto;
 }
 
 /* top nav bar */
 
+.color-bar{
+	border-top: 10px solid #B86365;
+	background-color: #191919;
+	height: 36px;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
 .navbar{
 	color: #fff;
-	height: 51px;
-	line-height: 20px;
+	height: 100px;
+	line-height: 80px;
 	margin-bottom: 20px;
-	min-height: 50px;
 
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	right: 0px;
-	
-	background-color: #222;
 	border-width: 0 0 1px;
 	border-color: #080808;
+
+	color: #666666;
+	background-color: #202020;
 
 	-webkit-transform: translate3d(0,0,0);
 	-o-transform: translate3d(0,0,0);
 	transform: translate3d(0,0,0);
 }
 
+.navbar-header{
+	padding-top:25px;
+}
+
 .navbar-brand {
-	float: left;
-	height: 50px;
-	padding: 15px 15px;
-	font-size: 18px;
-	line-height: 20px;
+	font-size: 24px;
+	line-height: 30px;
 	color: #fff;
 	font-family:  "Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,MingLiu;
 }
 
+.navbar h1,.navbar h2{
+	margin: 0;
+	line-height: 20px;
+	padding: 0;
+}
+
+#header-logo{
+	float: left;
+	width:200px;
+	height: 40px;
+}
+
+#topnav{
+	float:right;
+	padding-top: 5px;
+}
+
+#topnav li{
+	margin: 0;
+	float:right;
+	list-style: none;
+	padding: 0 10px 0 10px;
+
+}
+
+#topnav li a{
+	color: #FFF;
+	display: block;
+}
+
+#topnav li.active a,#topnav li:hover a{
+	color: #FBF8CD;
+}
+
+
+#topnav li span {
+	display: block;
+	margin: 5px 0 0 0;
+	padding: 0;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	text-transform: lowercase;
+	color: #666666;
+	background-color: #202020;
+	font-weight: normal;
+	line-height: normal;
+}
 
 .title{
 	margin:5px 0 5px 0;
@@ -119,8 +178,45 @@ body{
 	font-size: 18px;
 }
 
+
+
+.alert{
+	padding: 10px 20px 20px;
+	margin-bottom: 20px;
+	text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+	background-color: #fcf8e3;
+	border: 1px solid #fbeed5;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.alert h3{
+	font-size: 20px;
+	line-height: 30px;
+	margin-bottom: 10px;
+	font-family: "Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,MingLiu;
+}
+
+.alert p{
+	margin-bottom: 5px;
+}
+
+.alert-success {
+	color: #468847;
+	background-color: #dff0d8;
+	border-color: #d6e9c6;
+}
+
 .guides{
 	padding-bottom: 10px;
+	margin: 0;
+	padding: 10px;
+}
+
+.guides li{
+	margin: 0;
+	list-style: none;
 }
 
 li{
@@ -141,9 +237,6 @@ li{
 }
 
 .form-signin {
-	max-width: 330px;
-	padding: 15px;
-	margin: 0 auto;
 	text-align: left;
 }
 
@@ -153,9 +246,14 @@ li{
 	margin-bottom: 10px;
 }
 
+.form-signin label{
+	color: #333;
+}
+
+
 
 .form-control {
-	display: block;
+	/*display: block;*/
 	padding: 6px 12px;
 	font-size: 14px;
 	line-height: 1.42857143;
@@ -169,6 +267,10 @@ li{
 	-webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
 	-o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.form-signin .form-control{
+	display: block;
 }
 
 .login-box .form-control{
@@ -195,19 +297,39 @@ li{
 	text-align: left;
 }
 
-.btn-submit{
+.login-input{
+	width:300px;
+	margin-bottom: 10px;
 	margin-top: 10px;
 }
 
+.login-util{
+	width:300px;
+}
+
+.login-util .pull-left{
+	width:60px;
+}
+
+.forgot-pwd{
+	float: right;
+}
+
+.btn-submit{
+	display: none;
+}
+
+.btn-register{
+	margin-left: 10px;
+}
 
 
 /* Sidebar navigation */
 
 
 .sidebar {
-	position: fixed;
-	top: 51px;
-	bottom: 0;
+	position: absolute;
+	top: 140px;
 	left: 0;
 	z-index: 1000;
 	display: block;
@@ -257,6 +379,8 @@ padding: 10px 15px;
 	margin-left: 160px;
 	+margin-left: 180px;
 	padding: 5px;
+	height: 400px;
+	min-height: 400px;
 }
 
 
@@ -312,8 +436,58 @@ padding: 10px 15px;
 
 
 
+/*register module*/
+
+#regForm table{
+	border: 0 none;
+}
+
+.reg-input{
+	width:300px;
+}
+
+.reg-th{
+	text-align: right;
+	padding-right: 10px;
+	font-weight: bold;
+}
+
+b.required{
+	color: #CC0000;
+}
+
+.net-row{
+	display: none;
+}
+
+#net-id-input{
+	width:100px;
+}
 
 
+/*active*/
+.active-panel{
+	height:300px;
+}
+
+
+/*footer*/
+.footer{
+	height: 100px;
+	margin-top: 40px;
+	padding-top: 20px;
+	color: #666;
+	background-color: #333;
+
+}
+
+.footer .copyright{
+	float: left;
+}
+
+.footer .support-by{
+	float:right;
+}
 
 
 

@@ -2,35 +2,36 @@
 $err = array();
 
 if ($_POST['doRegister'] == 'Register') {
-    /******************* Filtering/Sanitizing Input *****************************
-    This code filters harmful script code and escapes data of all POST data
-    from the user submitted form.
-    *****************************************************************/
+
     foreach ($_POST as $key => $value) {
         $data[$key] = filter($value);
     }
     
+    // Validate Student Id
+    if(!isset($data['student_id'])){
+        $err[] = "错误 - 请输入学号";
+    }else{
+        $student_id = $data['student_id'];
+    }
+
+    if(!isStudentId($data['student_id'])){
+        $err[] = "错误 - 请输入正确的学号.";
+    }
     
     // Validate User Name
     if (!isUserName($data['user_name'])) {
         $err[] = "错误 - 不合法的用户名.";
-        //header("Location: register.php?msg=$err");
-        //exit();
     }
     
     // Validate Email
     if (!isEmail($data['usr_email'])) {
         $err[] = "错误 - 不合法的邮箱地址.";
-        //header("Location: register.php?msg=$err");
-        //exit();
     }
     // Check User Passwords
     if (!checkPwd($data['pwd'], $data['pwd2'])) {
         $err[] = "错误 - 两次输入的密码不匹配";
-        //header("Location: register.php?msg=$err");
-        //exit();
     }
-    
+
     $user_ip = $_SERVER['REMOTE_ADDR'];
     
     // stores sha1 of password
@@ -53,34 +54,77 @@ if ($_POST['doRegister'] == 'Register') {
     queries the database and if it has any existing email it throws user email already exists
     *******************************************************************/
     
-    $sql_select   = "select count(*) as total from students where user_email='$usr_email' OR student_id='$data[student_id]'";
+    $sql_select   = "select count(*) as total from students where user_email='$user_email' OR student_id='$data[student_id]'";
     $rs_duplicate = mysql_query($sql_select);
-    $row          = mysql_fetch_row($rs_duplicate);
-    $total        = $row['total'];
-    
-    
+    $row          = mysql_fetch_array($rs_duplicate);
+    $total        = intval($row['total']);
     
     if ($total > 0) {
         $err[] = "错误 - 你已经注册过";
-        //header("Location: register.php?msg=$err");
-        //exit();
     }
+
+    if($data['net_id']){
+        $net_id = 'fsVPDNhb' . $data['net_id'] .'@fsnhedu.v.gd';
+        $sql_select_2013 = "select * from students2013 where net_id='$net_id'";
+        $result_2013 = mysql_query($sql_select_2013);
+        $row_2013 = mysql_fetch_array($result_2013);
+    }
+
     /***************************************************************************/
     if (empty($err)) {
         $datenow    = get_Datetime_Now();
         $sql_insert = "INSERT into `students`
                 (`student_id`,`user_name`,`user_email`,`pwd`,`tel`,`reg_date`,`log_ip`,`activation_code`,`department`,`major`,`sub_major`,`grade`,`class`,`user_level`)
                 VALUES
-                ('$data[student_id]','$user_name','$usr_email','$sha1pass','$data[tel]','$datenow','$user_ip','$activ_code','$data[department]','$data[major]','$data[sub_major]','$data[grade]','$data[class]',1)
+                ('$student_id','$user_name','$usr_email','$sha1pass','$data[tel]','$datenow','$user_ip','$activ_code','$data[department]','$data[major]','$data[sub_major]','$data[grade]','$data[class]',1)
                 ";
         
-        
-        mysql_query($sql_insert, $link) or die("insert data failed:" . mysql_error());
+        $insert1 = mysql_query($sql_insert, $link) or die("insert data failed:" . mysql_error());
         
         $user_id = mysql_insert_id();
         $md5_id  = md5($user_id);
+
+        mysql_query("START TRANSACTION");
+
+        if (isset($row_2013) and (intval($data['grade'])==2013)) {
+            $net_pwd = $row_2013["net_pwd"];
+            $fee = $row_2013['fee'];
+            $start_date = $row_2013['pay_date'];
+            $end_date = $row_2013['expire_date'];
+            $used = 1;
+            $sql_insert_accounts = "INSERT into accounts 
+                                    (`net_id`,`net_pwd`,`student_id`,`user_id`,`used`)
+                                    VALUES
+                                    ('$net_id','$net_pwd','$data[student_id]','$user_id',$used)
+                                    ";
+            $insert2 = mysql_query($sql_insert_accounts) or die("insert accounts data failed: ". mysql_error());
+            $sql_insert_consume ="INSERT into consume
+                                  (`user_id`,`student_id`,`fee`,`start_date`,`end_date`)
+                                  VALUES
+                                  ($user_id,'$student_id','$fee','$start_date','$end_date')
+                                  ";
+            $insert3 = mysql_query($sql_insert_consume) or die("insert consume data failed: ". mysql_error());
+
+            $sql_update_student = "update students 
+                                    set net_id='$net_id',
+                                        net_pwd='$net_pwd',
+                                        expire_date='$end_date' 
+                                    where student_id='$student_id'";
+            $update4 = mysql_query($sql_update_student);
+
+        }else{
+            $update4 = true;
+            $insert2 = true;
+            $insert3 = true;
+        }
         
-        mysql_query("update students set md5_id='$md5_id' where student_id='$data[student_id]'");
+        $update5 = mysql_query("update students set md5_id='$md5_id' where student_id='$student_id'") or die("update md5_id error");
+
+        if($insert1 and $insert2 and $insert3 and $update4 and $update5){
+            mysql_query("COMMIT");
+        }else{
+            mysql_query("ROLLBACK");
+        }
         
         if ($user_registration) {
             $a_link = "
@@ -92,42 +136,21 @@ if ($_POST['doRegister'] == 'Register') {
         }
         
         $message = "<p>hi $user_name,感谢你使用上网自助服务！</p>
-    <ul>
-        <li>姓名: $user_name</li>
-        <li>邮箱: $usr_email </li>
-        <li>密码: $data[pwd]</li>
-    </ul>
+                    <ul>
+                        <li>姓名: $user_name</li>
+                        <li>邮箱: $usr_email </li>
+                        <li>密码: $data[pwd]</li>
+                    </ul>
 
-    $a_link
+                    $a_link
+                    ";
 
-    <p>Thank You</p>
-
-    <p>______________________________________________________</p>
-    该邮件为系统自动发现，请不要回复。<br/>
-    THIS IS AN AUTOMATED RESPONSE. <br/>
-    ***DO NOT RESPOND TO THIS EMAIL****<br/>
-    ";
-        
-        
-        require("smtp/smtp.php");
-        ########################################## 
-        $smtpserver     = "smtp.163.com"; //SMTP服务器 
-        $smtpserverport = 25; //SMTP服务器端口 
-        $smtpusermail   = "srxhzyh@163.com"; //SMTP服务器的用户邮箱 
-        $smtpemailto    = $usr_email; //发送给谁 
-        $smtpuser       = "srxhzyh"; //SMTP服务器的用户帐号 
-        $smtppass       = "3961908"; //SMTP服务器的用户密码 
-        $mailsubject    = "请激活您的账号"; //邮件主题 
-        $mailbody       = $message; //邮件内容 
-        $mailtype       = "HTML"; //邮件格式（HTML/TXT）,TXT为文本邮件 
-        ########################################## 
-        
-        $smtp        = new smtp($smtpserver, $smtpserverport, true, $smtpuser, $smtppass); //这里面的一个true是表示使用身份验证,否则不使用身份验证. 
-        $smtp->debug = false; //是否显示发送的调试信息 
-        $smtpOK      = $smtp->sendmail($smtpemailto, $smtpusermail, $mailsubject, $mailbody, $mailtype);
+        $subject = "请激活您的账号";
+        $smtpOK = sendEmail($subject, $message, $usr_email);
         
         header("Location: thankyou.php");
         exit();
     }
 }
+
 ?>

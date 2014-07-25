@@ -198,10 +198,65 @@ $(function() {
 
 		$subMajor.empty().append(subMajorOptions);
 
-	})
+	});
 
 
+	$("#grade").change(function () {
+		var $hint = $("#net-id-hint");
+		if(this.value == 2013){
+			$(".net-row").show();
+			var username = $("#user_name").val();
+			var username = "何寿鸿";
+			if(username){
+				$.ajax({
+					url:"query-source.php",
+					data:{
+						"cmd":"source",
+						"name": username
+					},
+					dataType :"json",
+					type:"GET"
+				}).done(function (data) {
+					console.log(data);
+					if(data){
+						var netId = data['net_id'];
+						console.log(netId);
+						$hint.text(netId);
+					}
+				});
+				
+			}
 
+		}else{
+			$('.net-row').hide();
+			$hint.empty();
+		}
+	});
+
+
+	$("#regForm input").addClass("form-control");
+
+	$("#regForm input[type='text']").addClass("reg-input");
+
+	$("#regForm tr").find("td:first").addClass("reg-th");
+
+	$("#regForm").validate({
+        rules:{
+        	'student_id' : {
+        		required:true,
+        		isStudentId :true
+        	}
+        }
+    });
+
+
+    $("#setting-form").validate();
+
+    $("#setting-form input").addClass("form-control");
+
+	$("#setting-form input[type='text']").addClass("reg-input");
+
+	$("#setting-form tr").find("td:first").addClass("reg-th");
 
 
 

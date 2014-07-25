@@ -6,15 +6,14 @@
 </head>
 <body>
 
-</body>
-</html>
+
 
 <?php 
 include 'dbc.php';
 session_start();
 if(!checkAdmin()) {
-header("Location: login.php");
-exit();
+	header("Location: login.php");
+	exit();
 }
 
 $ret = $_SERVER['HTTP_REFERER'];
@@ -48,6 +47,15 @@ if($get['cmd'] == 'associate'){
 	// }
 
 }
+
+if($get['cmd']=='source'){
+	$name = $get['name'];
+	$sql_select_by_name = "select * from students2013 by user_name=$name";
+	echo $sql_select_by_name;
+	return $sql_select_by_name;
+}
+
+
 
 function associateNetIDs($ids)
 {
@@ -263,3 +271,8 @@ echo "no";
 
 
 ?>
+
+
+
+</body>
+</html>

@@ -7,30 +7,24 @@ $msg = array();
 
 if($_POST['doUpdate'])  
 {
+  $rs_pwd = mysql_query("select pwd from students where id='$_SESSION[user_id]'");
+  $rs_pwd_row = mysql_fetch_array($rs_pwd);
+  $old = $rs_pwd_row['pwd'];
+  $old_salt = substr($old,0,9);
 
-
-$rs_pwd = $db->query("select pwd from students where id='$_SESSION[user_id]'");
-$rs_pwd_row = $rs_pwd->fetch();
-$old = $rs_pwd_row['pwd'];
-$old_salt = substr($old,0,9);
-
-//check for old password in md5 format
-	if($old === PwdHash($_POST['pwd_old'],$old_salt))
-	{
-  	$newsha1 = PwdHash($_POST['pwd_new']);
-  	$db->exec("update students set pwd='$newsha1' where id='$_SESSION[user_id]'");
-  	$msg[] = "你的账号已经更新";
-  	//header("Location: mysettings.php?msg=Your new password is updated");
-	} else
-	{
-	 $err[] = "你输入的旧密码不正确";
-	 //header("Location: mysettings.php?msg=Your old password is invalid");
-	}
+  //check for old password in md5 format
+  	if($old === PwdHash($_POST['pwd_old'],$old_salt))
+  	{
+    	$newsha1 = PwdHash($_POST['pwd_new']);
+    	mysql_query("update students set pwd='$newsha1' where id='$_SESSION[user_id]'");
+    	$msg[] = "你的账号已经更新";
+  	} else {
+  	 $err[] = "你输入的旧密码不正确";
+  	}
 
 }
 
 include 'includes/head.php';
-include 'includes/sidebar.php';
 ?>
       <div class="main">
     

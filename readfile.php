@@ -21,14 +21,7 @@ while (!feof($file))
   	$rowdata = explode(",", fgets($file));
   	$tel = $rowdata[2];
   	$user_name = $rowdata[1];
-  	$major_origin = $rowdata[3];
-  	$calss = $rowdata[5];
-  	$major_tmp = preg_split('/[0-9]+/',$major_origin);
-  	$major = $major_tmp[0];
-
-  	if(preg_match('/[0-9]+/', $major_origin,$matchs)){
-  		$class = $matchs[0] . "班";
-  	}
+  	$major = $rowdata[3];
 
     $net_id = $rowdata[6];
     $net_pwd = $rowdata[7];
@@ -36,18 +29,15 @@ while (!feof($file))
     $fee = $rowdata[8];
 
     $last_pay_date = $rowdata[9];
-    $expire_date = $rowdata[10];
-
-    $consumer_record = $fee . '<br>' . $last_pay_date . '<br>' . $expire_date;
-
+    $expire_date = trim($rowdata[10]);
 
   	$grade = 13;
 
 
-  	$sql = "INSERT INTO students (user_name, tel,grade,major,class,net_id,net_pwd,fee,last_pay_date,expire_date,consumer_record) VALUES 
-  	('$user_name','$tel','$grade','$major','$class','$net_id','$net_pwd','$fee','$last_pay_date','$expire_date','$consumer_record')";  
+  	$sql = "INSERT INTO students2013 (name, tel,grade,major,class,net_id,net_pwd,fee,pay_date,expire_date) VALUES 
+  	('$user_name','$tel','$grade','$major','$class','$net_id','$net_pwd','$fee','$last_pay_date','$expire_date')";  
   	echo $sql;
-  	$db->exec($sql) or die(mysql_error());
+  	mysql_query($sql) or die(mysql_error());
   }
 fclose($file);
 

@@ -8,14 +8,16 @@
 
 Note: If you use cpanel, the name will be like account_database
 *************************************************************/
-
+//for local
 define("DB_HOST", "localhost"); // set database host
 define("DB_USER", "root"); // set database user
 define("DB_PASS", "root"); // set database password
 define("DB_NAME", "school_db"); // set database name
+
+
 declare (encoding = 'UTF-8');
 
-error_reporting(E_ALL);
+// error_reporting(E_ALL);
 
 
 $link = mysql_connect(DB_HOST, DB_USER, DB_PASS) or die("Couldn't make connection.");
@@ -60,22 +62,22 @@ function page_protect()
     global $db;
     
     /* Secure against Session Hijacking by checking user agent */
-    if (isset($_SESSION['HTTP_USER_AGENT'])) {
-        if ($_SESSION['HTTP_USER_AGENT'] != md5($_SERVER['HTTP_USER_AGENT'])) {
-            logout();
-            exit;
-        }
-    }
+    // if (isset($_SESSION['HTTP_USER_AGENT'])) {
+    //     if ($_SESSION['HTTP_USER_AGENT'] != md5($_SERVER['HTTP_USER_AGENT'])) {
+    //         logout();
+    //         exit;
+    //     }
+    // }
     
     // before we allow sessions, we need to check authentication key - ckey and ctime stored in database
     
     /* If session not set, check for cookies set by Remember me */
-    if (!isset($_SESSION['user_id']) && !isset($_SESSION['user_name'])) {
-        if (isset($_COOKIE['user_id']) && isset($_COOKIE['user_key'])) {
+    if (!isset($_SESSION['student_id']) && !isset($_SESSION['student_name'])) {
+        if (isset($_COOKIE['student_id']) && isset($_COOKIE['user_key'])) {
             /* we double check cookie expiry time against stored in database */
             
-            $cookie_user_id = filter($_COOKIE['user_id']);
-            $rs_ctime = mysql_query("select 'ckey','ctime' from 'students' where 'student_id' ='$cookie_user_id'") or die(sqliteerror());
+            $cookie_student_id = filter($_COOKIE['student_id']);
+            $rs_ctime = mysql_query("select 'ckey','ctime' from 'students' where 'student_id' ='$cookie_user_id'") or die(mysql_error());
             
             list($ckey, $ctime) = mysql_fetch_row($rs_ctime);
             
@@ -83,18 +85,16 @@ function page_protect()
             
             // coookie expiry
             if ((time() - $ctime) > 60 * 60 * 24 * COOKIE_TIME_OUT) {
-                
                 logout();
             }
-            /* Security check with untrusted cookies - dont trust value stored in cookie. 		
+            /* Security check with untrusted cookies - dont trust value stored in cookie.       
             /* We also do authentication check of the 'ckey' stored in cookie matches that stored in database during login*/
             
-            if (!empty($ckey) && is_numeric($_COOKIE['user_id']) && isUserID($_COOKIE['user_name']) && $_COOKIE['user_key'] == sha1($ckey)) {
+            if (!empty($ckey) && is_numeric($_COOKIE['user_id']) && isUserName($_COOKIE['student_name']) && $_COOKIE['user_key'] == sha1($ckey)) {
                 session_regenerate_id(); //against session fixation attacks.
                 
-                $_SESSION['user_id']         = $_COOKIE['user_id'];
-                $_SESSION['user_name']       = $_COOKIE['user_name'];
-                /* query user level from database instead of storing in cookies */
+                $_SESSION['student_id']         = $_COOKIE['student_id'];
+                $_SESSION['student_name']       = $_COOKIE['student_name'];
                 $rs_userlevel                = mysql_query("select user_level from students where id='$_SESSION[user_id]'");
                 $user_level_row              = mysql_fetch_row($rs_userlevel);
                 $user_level                  = $user_level_row['user_level'];
@@ -106,10 +106,15 @@ function page_protect()
             }
             
         } else {
-            header("Location: login.php");
+            header("Location: index.php");
             exit();
         }
     }
+
+    // else{
+    //     header("Location: myaccount.php");
+    //     exit();
+    // }
 }
 
 
@@ -169,12 +174,10 @@ function isUserID($username)
     }
 }
 
-
 function get_Datetime_Now()
 {
-    $tz_object = new DateTimeZone('Brazil/East');
-    //date_default_timezone_set('Brazil/East');
-    
+    $tz_object = new DateTimeZone('Asia/Shanghai');
+
     $datetime = new DateTime();
     $datetime->setTimezone($tz_object);
     return $datetime->format('Y\-m\-d');
@@ -183,6 +186,13 @@ function get_Datetime_Now()
 function isUserName($username)
 {
     return true;
+}
+function isStudentId($id)
+{   
+    if(is_numeric($id) && strlen($id) == 8){
+        return true;
+    }
+    return false;
 }
 
 function isURL($url)
@@ -244,7 +254,6 @@ function GenKey($length = 7)
         
         
         $char = substr($possible, mt_rand(0, strlen($possible) - 1), 1);
-        、；
         
         if (!strstr($password, $char)) {
             $password .= $char;
@@ -266,14 +275,14 @@ function logout()
     session_start();
     // var_dump($db);
     
-    $sess_user_id = strip_tags(mysql_real_escape_string($_SESSION['user_id']));
-    $cook_user_id = strip_tags(mysql_real_escape_string($_COOKIE['user_id']));
+    $sess_user_id = strip_tags(mysql_real_escape_string($_SESSION['student_id']));
+    $cook_user_id = strip_tags(mysql_real_escape_string($_COOKIE['student_id']));
     
     if (isset($sess_user_id) || isset($cook_user_id)) {
         // echo $sess_user_id;
         // echo $cook_user_id;
         // $sql_clear = "update students set 'ckey'= '', 'ctime'= '' where 'student_id'='$sess_user_id' OR 'student_id' = '$cook_user_id'";
-        $sql_update    = "UPDATE students SET ckey= '', ctime= '' where id='$sess_user_id' OR id = '$cook_user_id'";
+        $sql_update = "UPDATE students SET ckey= '', ctime=0 where id='$sess_user_id' OR id = '$cook_user_id'";
         // $sql_clear = "update 'students' set 'ckey'= '', 'ctime'= '' where 'student_id'='$sess_user_id'";
         // echo $sql_clear;
         $update_result = mysql_query($sql_update) or die(mysql_error());
@@ -281,16 +290,17 @@ function logout()
     }
     
     /************ Delete the sessions****************/
+    unset($_SESSION['student_id']);
+    unset($_SESSION['student_name']);
     unset($_SESSION['user_id']);
-    unset($_SESSION['user_name']);
     unset($_SESSION['user_level']);
     unset($_SESSION['HTTP_USER_AGENT']);
     session_unset();
     session_destroy();
     
     /* Delete the cookies*******************/
-    setcookie("user_id", '', time() - 60 * 60 * 24 * COOKIE_TIME_OUT, "/");
-    setcookie("user_name", '', time() - 60 * 60 * 24 * COOKIE_TIME_OUT, "/");
+    setcookie("student_id", '', time() - 60 * 60 * 24 * COOKIE_TIME_OUT, "/");
+    setcookie("student_name", '', time() - 60 * 60 * 24 * COOKIE_TIME_OUT, "/");
     setcookie("user_key", '', time() - 60 * 60 * 24 * COOKIE_TIME_OUT, "/");
     
     header("Location: index.php");
@@ -373,14 +383,21 @@ function getUserName()
 
 function sendEmail($subject, $message, $email)
 {
+    $message .= "
+    <p>Administrator</p>
+      <p>______________________________________________________</p>
+      该邮件为系统自动发现，请不要回复。<br/>
+      THIS IS AN AUTOMATED RESPONSE. <br/>
+      ***DO NOT RESPOND TO THIS EMAIL****<br/>
+      ";
     require("smtp/smtp.php");
     ########################################## 
     $smtpserver     = "smtp.163.com"; //SMTP服务器 
     $smtpserverport = 25; //SMTP服务器端口 
-    $smtpusermail   = "srxhzyh@163.com"; //SMTP服务器的用户邮箱 
+    $smtpusermail   = "no_reply_gdepc@163.com"; //SMTP服务器的用户邮箱 
     $smtpemailto    = $email; //发送给谁 
-    $smtpuser       = "srxhzyh"; //SMTP服务器的用户帐号 
-    $smtppass       = "3961908"; //SMTP服务器的用户密码 
+    $smtpuser       = "no_reply_gdepc"; //SMTP服务器的用户帐号 
+    $smtppass       = "flowerszhong"; //SMTP服务器的用户密码 
     $mailsubject    = $subject; //邮件主题 
     $mailbody       = $message; //邮件内容 
     $mailtype       = "HTML"; //邮件格式（HTML/TXT）,TXT为文本邮件 

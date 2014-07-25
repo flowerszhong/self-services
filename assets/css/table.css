@@ -20,7 +20,12 @@
 	
 	th {padding-top:22px; text-shadow: 1px 1px 1px #fff; background:#e8eaeb;}
 	
-	td {border-top:1px solid #e0e0e0; border-right:1px solid #e0e0e0;}
+	td {
+		padding:10px;
+		border-top:1px solid #e0e0e0; border-right:1px solid #e0e0e0;
+		vertical-align: middle!important;
+		height: 36px;
+	}
 	
 	tr.odd-row td {background:#f6f6f6;}
 	
