@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.5.34)
 # Database: school_db
-# Generation Time: 2014-07-18 09:20:23 +0000
+# Generation Time: 2014-07-26 14:18:58 +0000
 # ************************************************************
 
 
@@ -40,15 +40,38 @@ LOCK TABLES `accounts` WRITE;
 
 INSERT INTO `accounts` (`id`, `net_id`, `net_pwd`, `student_id`, `user_id`, `used`)
 VALUES
-	(1,'001','0001',11,11,0),
-	(2,'0001','0001',NULL,NULL,0),
-	(3,'444','444',NULL,NULL,0),
-	(4,'555','555',NULL,NULL,0),
-	(5,'0001','0001',NULL,NULL,0),
-	(6,'000666','0001',NULL,NULL,0),
-	(7,'000688','0001',NULL,NULL,0);
+	(16,'fsVPDNhb001636@fsnhedu.v.gd','77654579',66,44,1),
+	(17,'fsVPDNhb001636@fsnhedu.v.gd','77654579',66,45,1),
+	(18,'fsVPDNhb001660@fsnhedu.v.gd','77654633',20140102,55,1);
 
 /*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table admin
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `admin`;
+
+CREATE TABLE `admin` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `user_id` int(100) DEFAULT NULL,
+  `user_email` varchar(200) DEFAULT NULL,
+  `pwd` varchar(300) DEFAULT NULL,
+  `ctime` int(100) DEFAULT NULL,
+  `ckey` varchar(100) DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `admin` WRITE;
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+
+INSERT INTO `admin` (`id`, `name`, `user_id`, `user_email`, `pwd`, `ctime`, `ckey`)
+VALUES
+	(1,'flowerszhong',111,NULL,'2ad0912e453e99ac251e73ad833a43c616c35f44621a6e17a',1406367616,'r84qdcu');
+
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
@@ -67,6 +90,17 @@ CREATE TABLE `consume` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `consume` WRITE;
+/*!40000 ALTER TABLE `consume` DISABLE KEYS */;
+
+INSERT INTO `consume` (`id`, `user_id`, `student_id`, `fee`, `start_date`, `end_date`)
+VALUES
+	(8,44,66,300,'2013-10-01 00:00:00','2014-09-30 00:00:00'),
+	(9,45,66,300,'2013-10-01 00:00:00','2014-09-30 00:00:00'),
+	(10,55,20140102,300,'2013-10-01 00:00:00','2014-09-30 00:00:00');
+
+/*!40000 ALTER TABLE `consume` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table students
@@ -82,7 +116,7 @@ CREATE TABLE `students` (
   `pwd` varchar(220) DEFAULT NULL,
   `md5_id` varchar(200) DEFAULT NULL,
   `user_level` int(2) DEFAULT NULL,
-  `tel` int(16) DEFAULT NULL,
+  `tel` varchar(20) DEFAULT NULL,
   `department` varchar(40) DEFAULT NULL,
   `major` varchar(40) DEFAULT NULL,
   `sub_major` varchar(50) DEFAULT NULL,
@@ -94,9 +128,10 @@ CREATE TABLE `students` (
   `activation_code` int(11) DEFAULT NULL,
   `banned` tinyint(1) DEFAULT '0',
   `ckey` varchar(100) DEFAULT NULL,
-  `ctime` datetime DEFAULT NULL,
+  `ctime` int(60) DEFAULT NULL,
   `net_id` varchar(400) DEFAULT NULL,
   `net_pwd` varchar(40) DEFAULT NULL,
+  `start_date` datetime DEFAULT NULL,
   `expire_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -104,9 +139,11 @@ CREATE TABLE `students` (
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
 
-INSERT INTO `students` (`id`, `student_id`, `user_name`, `user_email`, `pwd`, `md5_id`, `user_level`, `tel`, `department`, `major`, `sub_major`, `grade`, `class`, `log_ip`, `approved`, `reg_date`, `activation_code`, `banned`, `ckey`, `ctime`, `net_id`, `net_pwd`, `expire_date`)
+INSERT INTO `students` (`id`, `student_id`, `user_name`, `user_email`, `pwd`, `md5_id`, `user_level`, `tel`, `department`, `major`, `sub_major`, `grade`, `class`, `log_ip`, `approved`, `reg_date`, `activation_code`, `banned`, `ckey`, `ctime`, `net_id`, `net_pwd`, `start_date`, `expire_date`)
 VALUES
-	(4,44444,'mzhong','flowerszhong@hotmail.com','f8e0d2aa2445697379a54355cc8369535397e597e1f3c9514','a87ff679a2f3e71d9181a67b7542122c',5,1111111111,'环境工程与土木工程系','环境监测与治理技术','污染场地修复技术',2014,4,'10.1.19.157',1,'2014-07-16 00:00:00',1129,0,'','0000-00-00 00:00:00',NULL,NULL,NULL);
+	(53,20140901,'方大同','flowerszhong@hotmail.com','463a727c189ffda6af4cb1d8440a43cb3b3a73984dd8c9270','d82c8d1619ad8176d665453cfb2e55f0',1,'18676730824','机电工程系','机电设备维修与管理','机电设备维修与管理',2014,2,'192.168.22.150',1,'2014-07-25 00:00:00',9342,0,'2tszkm0',1406293226,NULL,NULL,NULL,NULL),
+	(54,20140902,'周杰伦','flowerszhong@gmail.com','16fc06768858ec0a9a2029992a520adafa295ad4423bee3bf','a684eceee76fc522773286a895bc8436',1,'18676730824','循环经济与低碳经济系','资源环境与城市管理','资源综合利用技术',2014,10,'192.168.22.150',1,'2014-07-25 00:00:00',6852,0,'',0,NULL,NULL,NULL,NULL),
+	(55,20140102,'钟颖怡','shhzjl@163.com','19bde97d68782b022bbbaacc6c4de1d02d59817b4112e0438','b53b3a3d6ab90ce0268229151c9bde11',1,'','环境工程与土木工程系','给排水工程技术','',2013,6,'192.168.22.150',1,'2014-07-26 00:00:00',9483,0,'',0,'fsVPDNhb001660@fsnhedu.v.gd','11',NULL,'2014-09-30 00:00:00');
 
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
