@@ -11,9 +11,18 @@
             echo "自助上网服务-广东环境保护工程职业学院";
             } ?></title>
 
-    <link href="assets/css/btn.css" rel="stylesheet" type='text/css' media='all' />
-    <link href="assets/css/table.css" rel="stylesheet" type='text/css' media='all' />
-    <link href="assets/css/main.css" rel="stylesheet" type='text/css' media='all' />
+
+    <link href="<?php echo SITE_ROOT ?>/assets/css/btn.css" rel="stylesheet" type='text/css' media='all' />
+
+    <?php 
+        if(isset($_SESSION['admin_id'])){ ?>
+    <link href="<?php echo SITE_ROOT ?>/assets/lib/jquery-ui.min.css" rel="stylesheet" type='text/css' media='all' />
+
+    <?php }
+     ?>
+
+    <link href="<?php echo SITE_ROOT ?>/assets/css/table.css" rel="stylesheet" type='text/css' media='all' />
+    <link href="<?php echo SITE_ROOT ?>/assets/css/main.css" rel="stylesheet" type='text/css' media='all' />
 
 
 </head>

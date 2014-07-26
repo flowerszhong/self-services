@@ -84,10 +84,9 @@ include 'includes/errors.php';
                 <tr class="net-row">
                     <td></td>
                     <td>
-                    <p>你好2013级的同学，请输入你的上网账号。</p>
-                    <div id="net-id-hint">
-                        
-                    </div>
+                        <div class="alert" id="net-id-hint">
+                            请填写你的上网账号
+                        </div>
                     </td>
                 </tr>
 

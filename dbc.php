@@ -14,10 +14,15 @@ define("DB_USER", "root"); // set database user
 define("DB_PASS", "root"); // set database password
 define("DB_NAME", "school_db"); // set database name
 
-
 declare (encoding = 'UTF-8');
 
 // error_reporting(E_ALL);
+
+
+
+define("SERVER_HOST", $_SERVER['HTTP_HOST']);
+define("SITE_DIR", '/self-services');
+define('SITE_ROOT', "http://" . SERVER_HOST . SITE_DIR);
 
 
 $link = mysql_connect(DB_HOST, DB_USER, DB_PASS) or die("Couldn't make connection.");
@@ -62,12 +67,12 @@ function page_protect()
     global $db;
     
     /* Secure against Session Hijacking by checking user agent */
-    // if (isset($_SESSION['HTTP_USER_AGENT'])) {
-    //     if ($_SESSION['HTTP_USER_AGENT'] != md5($_SERVER['HTTP_USER_AGENT'])) {
-    //         logout();
-    //         exit;
-    //     }
-    // }
+    if (isset($_SESSION['HTTP_USER_AGENT'])) {
+        if ($_SESSION['HTTP_USER_AGENT'] != md5($_SERVER['HTTP_USER_AGENT'])) {
+            logout();
+            exit;
+        }
+    }
     
     // before we allow sessions, we need to check authentication key - ckey and ctime stored in database
     
@@ -117,6 +122,64 @@ function page_protect()
     // }
 }
 
+
+function admin_page_protect()
+{
+    session_start();
+    
+    global $db;
+    
+    /* Secure against Session Hijacking by checking user agent */
+    if (isset($_SESSION['HTTP_USER_AGENT'])) {
+        if ($_SESSION['HTTP_USER_AGENT'] != md5($_SERVER['HTTP_USER_AGENT'])) {
+            logout();
+            exit;
+        }
+    }
+    
+    // before we allow sessions, we need to check authentication key - ckey and ctime stored in database
+    
+    /* If session not set, check for cookies set by Remember me */
+    if (!isset($_SESSION['admin_id']) && !isset($_SESSION['admin_name'])) {
+        if (isset($_COOKIE['admin_id']) && isset($_COOKIE['admin_key'])) {
+            /* we double check cookie expiry time against stored in database */
+            
+            $admin_id = filter($_COOKIE['admin_id']);
+            $rs_ctime = mysql_query("select 'ckey','ctime' from 'students' where 'id' ='$admin_id'") or die(mysql_error());
+            
+            list($ckey, $ctime) = mysql_fetch_row($rs_ctime);
+            
+            // var_dump($ckey);
+            
+            // coookie expiry
+            if ((time() - $ctime) > 60 * 60 * 24 * COOKIE_TIME_OUT) {
+                logout();
+            }
+            /* Security check with untrusted cookies - dont trust value stored in cookie.       
+            /* We also do authentication check of the 'ckey' stored in cookie matches that stored in database during login*/
+            
+            if (!empty($ckey) && is_numeric($_COOKIE['admin_id']) && isAdminName($_COOKIE['admin_name']) && $_COOKIE['admin_key'] == sha1($ckey)) {
+                session_regenerate_id(); //against session fixation attacks.
+                
+                $_SESSION['admin_id']         = $_COOKIE['admin_id'];
+                $_SESSION['admin_name']       = $_COOKIE['admin_name'];
+                $_SESSION['HTTP_USER_AGENT'] = md5($_SERVER['HTTP_USER_AGENT']);
+                
+            } else {
+                admin_logout();
+            }
+            
+        } else {
+            header("Location: index.php");
+            exit();
+        }
+    }
+
+    // else{
+    //     header("Location: myaccount.php");
+    //     exit();
+    // }
+}
 
 
 function filter($data)
@@ -183,10 +246,25 @@ function get_Datetime_Now()
     return $datetime->format('Y\-m\-d');
 }
 
+function format_date($date,$format_str="Y-m-d")
+{
+    $d = strtotime($date);
+    return date($format_str,$d);
+}
+
 function isUserName($username)
 {
     return true;
 }
+
+function isAdminName($adminName)
+{
+    if(strlen($adminName) >8){
+        return true;
+    }
+    return false;
+}
+
 function isStudentId($id)
 {   
     if(is_numeric($id) && strlen($id) == 8){
@@ -302,6 +380,35 @@ function logout()
     setcookie("student_id", '', time() - 60 * 60 * 24 * COOKIE_TIME_OUT, "/");
     setcookie("student_name", '', time() - 60 * 60 * 24 * COOKIE_TIME_OUT, "/");
     setcookie("user_key", '', time() - 60 * 60 * 24 * COOKIE_TIME_OUT, "/");
+    
+    header("Location: index.php");
+}
+
+function admin_logout()
+{
+    global $db;
+    session_start();
+    
+    $sess_admin_id = strip_tags(mysql_real_escape_string($_SESSION['admin_id']));
+    $cook_admin_id = strip_tags(mysql_real_escape_string($_COOKIE['admin_id']));
+    
+    if (isset($sess_admin_id) || isset($cook_admin_id)) {
+        $sql_update = "UPDATE admin SET ckey= '', ctime=0 where id='$sess_user_id' OR id = '$cook_user_id'";
+        $update_result = mysql_query($sql_update) or die(mysql_error());
+        
+    }
+    
+    /************ Delete the sessions****************/
+    unset($_SESSION['admin_id']);
+    unset($_SESSION['admin_name']);
+    unset($_SESSION['HTTP_USER_AGENT']);
+    session_unset();
+    session_destroy();
+    
+    /* Delete the cookies*******************/
+    setcookie("admin_id", '', time() - 60 * 60 * 24 * COOKIE_TIME_OUT, "/");
+    setcookie("admin_name", '', time() - 60 * 60 * 24 * COOKIE_TIME_OUT, "/");
+    setcookie("admin_key", '', time() - 60 * 60 * 24 * COOKIE_TIME_OUT, "/");
     
     header("Location: index.php");
 }

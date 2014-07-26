@@ -47,6 +47,25 @@ $(function () {
 	$("#reset-form input[type='text']").addClass("reg-input");
 	$("#reset-form tr").find("td:first").addClass("reg-th");
 
+
+	$("#btn-check-pwd").click(function () {
+		$("#label-net-pwd").slideDown();
+	});
+
+
+
+	$("#login-form").validate({
+        rules:{
+        	'student_id' : {
+        		required:true,
+        		isStudentId :true
+        	}
+        }
+    });
+
+
+
+
 	// validate function
 	function isStudentId (id) {
 		if(id.length == 8){

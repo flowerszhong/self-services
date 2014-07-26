@@ -5,8 +5,13 @@ page_protect();
 $err = array();
 $msg = array();
  
-$rs_settings = mysql_query("select * from students where student_id='$_SESSION[student_id]'") or die(mysql_error()); 
+$rs_settings = mysql_query("select * from students where id='$_SESSION[user_id]'") or die(mysql_error()); 
 $row_settings = mysql_fetch_array($rs_settings);
+
+
+$rows_consume = mysql_query("select * from consume where user_id='$_SESSION[user_id]'") or die("查询缴费记录失败");
+$consume_num = mysql_num_rows($rows_consume);
+
 
 if($_POST['doUpdate'])  
 {
@@ -40,7 +45,7 @@ include 'includes/errors.php';
 				<td>
 					<?php if($row_settings['net_id']){ ?>
 
-					<input name="student_id" type="text" id="student_id" value="<? echo $row_settings['net_id']; ?>" disabled></td>
+					<input name="student_id" type="text" id="student_id" value="<? echo $row_settings['net_id']; ?>" class="form-control reg-input" disabled></td>
 					<?php  } else{?>
 					你尚未分配上网账号
 					<?php } ?>
@@ -49,26 +54,61 @@ include 'includes/errors.php';
 				<td>账号密码</td>
 				<td>
 				<?php if($row_settings['net_id']){ ?>
-					<button class="btn">查看账号密码</button>
-					<label for=""><?php echo $row_settings['net_pwd']; ?></label>
+					<button class="btn btn-info" id="btn-check-pwd">查看账号密码</button>
+					<span for="" id="label-net-pwd"><?php echo $row_settings['net_pwd']; ?>
+            <label class="hint">（如果密码与你使用密码不符合，请以你现在使用的密码为准，并通知信息中心更新）</label>
+          </span>
+          
 				<?php } ?>
 				</td>
 			</tr>
 			<tr>
 				<td>账号过期时间</td>
 				<td>
-					<label for=""><?php echo $row_settings['expire_date']; ?></label>
+					<label for=""><?php echo format_date($row_settings['expire_date']); ?></label>
 				</td>
 			</tr>
 
 			
 		</table>
 
-
+  <?php 
+  if ($consume_num > 0) { ?>
+    
+ 
 	<h3 class="title">你的缴费记录</h3>
+  <table>
+    <tr>
+      <td>缴费金额</td>
+      <td>开始时间</td>
+      <td>截止时间</td>
+    </tr>
+    <?php 
+
+    while ($consume_row = mysql_fetch_array($rows_consume)) { ?>
+     
+    
+    <tr>
+      <td>
+        <?php echo $consume_row['fee']; ?> 
+      </td>
+      <td>
+        <?php echo format_date($consume_row['start_date']); ?>
+      </td>
+      <td>
+        <?php echo format_date($consume_row['end_date']); ?>
+      </td>
+    </tr>
+
+   <?php }
+     ?>
+  </table>
+
+   <?php }
+   ?>
 	
 
-	<h3 class="title">修改密码</h3>
+	<h3 class="title">修改网站登录密码<b class="hint">(非上网账号密码)</b></h3>
         <div class="table-responsive">
         <form name="resetForm" id="reset-form" method="post" action="info.php">
           <table class="table table-striped">
@@ -97,12 +137,6 @@ include 'includes/errors.php';
 
 
 	</div>
-
-
-
-
-
-<script src="assets/js/settings.js"></script>
 
 
 <?php 

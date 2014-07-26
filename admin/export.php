@@ -1,12 +1,12 @@
 <?php
-include 'dbc.php';
+include '../dbc.php';
 require_once 'array-to-excel.php'; 
    
-page_protect();
+admin_page_protect();
 
 $page_title = "数据导出";
-include 'includes/head.php';
-include 'includes/sidebar.php';
+include '../includes/head.php';
+include '../includes/sidebar.php';
 
 if (isset($_POST['export1'])) {
     // 在使用的时候,调用getExcel方法，并传入相应的参数即可,例如：
@@ -50,6 +50,5 @@ if (isset($_POST['export1'])) {
 
  <?php
 
-$footer_scripts = array("assets/js/settings.js","assets/js/main.js");
-include 'includes/footer.php';
+include '../includes/footer.php';
 ?>

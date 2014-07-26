@@ -1,10 +1,10 @@
 <?php 
-include 'dbc.php';
-page_protect();
+include '../dbc.php';
+admin_page_protect();
 
 $page_title = "数据导出";
-include 'includes/head.php';
-include 'includes/sidebar.php';
+include '../includes/head.php';
+include '../includes/sidebar.php';
 
 
 $err = array();
@@ -187,7 +187,7 @@ if ($_POST['submit'] == 'Submit') {
 
  <?php 
 $footer_scripts = array("assets/js/settings.js","assets/js/register.js","assets/js/main.js");
-include 'includes/footer.php';
+include '../includes/footer.php';
 ?>
 
 

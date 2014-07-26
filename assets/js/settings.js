@@ -21,5 +21,30 @@ $(function () {
 	});
 
 
+	$("#state-form").validate();
+
+	if($.fn.datepicker){
+		$(".input-start-date").datepicker({
+	        dateFormat: 'yy-mm-dd',
+	        changeMonth: true,
+	        changeYear: true,
+	        showButtonPanel: true,
+	        onClose: function (selectedDate) {
+	            $(".input-end-date").datepicker("option", "minDate", selectedDate);
+	        }
+	    });
+	    $(".input-end-date").datepicker({
+	        dateFormat: 'yy-mm-dd',
+	        changeMonth: true,
+	        changeYear: true,
+	        showButtonPanel: true,
+	        onClose: function (selectedDate) {
+	            $(".input-start-date").datepicker("option", "maxDate", selectedDate);
+	        }
+	    });
+	}
+	
+
+
 
 });

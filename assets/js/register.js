@@ -206,7 +206,8 @@ $(function() {
 		if(this.value == 2013){
 			$(".net-row").show();
 			var username = $("#user_name").val();
-			var username = "何寿鸿";
+			var hintText = "";
+			// var username = "何寿鸿";
 			if(username){
 				$.ajax({
 					url:"query-source.php",
@@ -221,7 +222,8 @@ $(function() {
 					if(data){
 						var netId = data['net_id'];
 						console.log(netId);
-						$hint.text(netId);
+						hintText = "Hi " + username + " 同学，你的上网账号有可能是：" + netId;
+						$hint.text(hintText);
 					}
 				});
 				
@@ -257,16 +259,5 @@ $(function() {
 	$("#setting-form input[type='text']").addClass("reg-input");
 
 	$("#setting-form tr").find("td:first").addClass("reg-th");
-
-
-
-
-
-
-	// $.validator.addMethod("username", function(value, element) {
-	//     return this.optional(element) || /^[a-z0-9\_]+$/i.test(value);
-	// }, "Username must contain only letters, numbers, or underscore.");
-
-	// $("#regForm").validate();
 
 });

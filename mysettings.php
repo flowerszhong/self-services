@@ -31,7 +31,6 @@ if(sizeof($_POST)>0)
 
 	if($data['tel']){
 		$sql_tel_update = "UPDATE students SET `tel` = '$data[tel]' WHERE id='$_SESSION[user_id]'";
-		echo $sql_tel_update;
 		mysql_query($sql_tel_update) or die(mysql_error());
 	}
 
