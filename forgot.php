@@ -71,7 +71,7 @@ include 'includes/errors.php';
      
         <form action="forgot.php" method="post" name="actForm" id="actForm" >
               <label>请输入注册邮箱：</label>
-              <input name="user_email" type="text" class="required email form-control reg-input"></td>
+              <input name="user_email" type="text" class="required email form-control custom-input"></td>
               <input name="doReset" type="submit" class="btn btn-success" id="doLogin3" value="重置密码">
         </form>
     </tr>

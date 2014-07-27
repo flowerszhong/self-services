@@ -2,26 +2,89 @@
 include '../dbc.php';
 admin_page_protect();
 
-ini_set('max_execution_time', 1000);
-
-// filter GET values
-foreach($_GET as $key => $value) {
-	$get[$key] = filter($value);
-}
-
 // filter POST values
 foreach($_POST as $key => $value) {
 	$post[$key] = filter($value);
 }
 
-$sql_select = "select count(id) from students2013";
+
+
+$sql = "select * from students ";
+
+$sql_select = "select count(id) from students";
+
+
+
+$condition = array();
+if(!empty($_POST['grade'])){
+  // $condition['grade'] = $_POST['grade'];
+  $condition[] = "grade = ". $_POST['grade'];
+
+}
+
+if(!empty($_POST['department'])){
+  // $condition['department'] = $_POST['department'];
+  // $condition[] = "department = ". $_POST['department'];
+  $condition[] = "department ='$_POST[department]'";
+
+}
+
+if(!empty($_POST['major'])){
+  // $condition['major'] = $_POST['major'];
+  $condition[] = "major ='$_POST[major]'";
+
+
+}
+
+if(!empty($_POST['sub_major'])){
+  // $condition['sub_major'] = $_POST['sub_major'];
+  $condition[] = "sub_major ='$_POST[sub_major]'";
+
+
+}
+
+if(!empty($_POST['class'])){
+  // $condition['class'] = $_POST['class'];
+  $condition[] = "class = ". $_POST['class'];
+
+}
+
+if(!empty($_POST['student_id'])){
+  // $condition['student_id'] = $_POST['student_id'];
+  $condition[] = "student_id = ". $_POST['student_id'];
+
+}
+
+if(!empty($_POST['user_name'])){
+  // $condition['user_name'] = $_POST['user_name'];
+  $condition[] = "user_name ='$_POST[user_name]'";
+
+
+}
+
+if(!empty($_POST['user_email'])){
+  // $condition['user_email'] = $_POST['user_email'];
+  $condition[] = "user_email ='$_POST[user_email]'";
+
+}
+
+if(!empty($condition)){
+  $sql .= " where ".implode(" and ", $condition);
+  $sql_select .= " where ".implode(" and ", $condition);
+}
+
 $query = mysql_query($sql_select);
 
 $row = mysql_fetch_row($query);
 
 $rows = $row[0];
 
-$page_rows = 20;
+$page_rows = 10;
+
+if(isset($_POST['page_limit'])){
+  $page_rows = $_POST['page_limit'];
+}
+
 
 $last = ceil($rows/$page_rows);
 
@@ -43,12 +106,15 @@ if($pagenum < 1){
 
 $limit = 'LIMIT '. ($pagenum - 1) * $page_rows . ',' . $page_rows;
 
+$sql .= " ". $limit;
 
-$sql = "select * from students2013 ". $limit;
+
+
+// echo json_encode($sql);
+// exit();
 $query = mysql_query($sql);
 
-$textline1 = "Testimonials (<b>$rows</b>)";
-$textline2 = "Page <b>$pagenum</b> of <b>$last</b>";
+$page_state = "第<b>$pagenum</b>/ <b>$last</b>页";
 
 $paginationCtrls = '';
 if($last != 1){
@@ -57,20 +123,20 @@ if($last != 1){
     $paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$previous.'">上一页</a> &nbsp; &nbsp; ';
     for($i = $pagenum-4; $i < $pagenum; $i++){
       if($i > 0){
-            $paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$i.'">'.$i.'</a> &nbsp; ';
+            $paginationCtrls .= '<a href="#'.$i.'">'.$i.'</a> &nbsp; ';
       }
       }
     }
   $paginationCtrls .= ''.$pagenum.' &nbsp; ';
   for($i = $pagenum+1; $i <= $last; $i++){
-    $paginationCtrls .= '<a href="'.$_SERVER['PHP_SELF'].'?pn='.$i.'">'.$i.'</a> &nbsp; ';
+    $paginationCtrls .= '<a href="#'.$i.'">'.$i.'</a> &nbsp; ';
     if($i >= $pagenum+4){
       break;
     }
   }
     if ($pagenum != $last) {
         $next = $pagenum + 1;
-        $paginationCtrls .= ' &nbsp; &nbsp; <a href="'.$_SERVER['PHP_SELF'].'?pn='.$next.'">下一页</a> ';
+        $paginationCtrls .= ' &nbsp; &nbsp; <a href="#'.$next.'">下一页</a> ';
     }
 }
 
@@ -84,16 +150,12 @@ $output = array(
       "state" => "ok",
       "rows" => $rrows,
       "controls" => $paginationCtrls,
-      "text1" => $textline1,
-      "text2" => $textline2
+      "pageState" => $page_state
   );
 
 echo json_encode($output);
 
 exit();
-
-
-
 
 
 ?>

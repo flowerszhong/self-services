@@ -45,7 +45,7 @@ include 'includes/errors.php';
 				<td>
 					<?php if($row_settings['net_id']){ ?>
 
-					<input name="student_id" type="text" id="student_id" value="<? echo $row_settings['net_id']; ?>" class="form-control reg-input" disabled></td>
+					<input name="student_id" type="text" id="student_id" value="<? echo $row_settings['net_id']; ?>" class="form-control custom-input" disabled></td>
 					<?php  } else{?>
 					你尚未分配上网账号
 					<?php } ?>

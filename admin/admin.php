@@ -21,40 +21,40 @@ admin_page_protect();
   <tr>
     <td></td>
     <td>
-      <input type="radio" value="0" checked id="search-type" /> 查找单人
+      <b>按学号|姓名|邮箱查找</b>
     </td>
   </tr>
     <tr>
-      <td width="80" class="reg-th">
+      <td width="80" class="th">
         学号
       </td>
       <td>
-        <input type="text" value="" class="form-control" />
+        <input type="text" value="" class="form-control" id="student_id" />
       </td>
     </tr>
     <tr>
-      <td class="reg-th">
+      <td class="th">
         姓名
       </td>
       <td>
-        <input type="text" value="" class="form-control" />
+        <input type="text" value="" class="form-control" id="user_name" />
       
       </td>
     </tr>
 
     <tr>
-      <td class="reg-th">
+      <td class="th">
         邮箱
       </td>
       <td>
-        <input type="text" value="" class="form-control" />
+        <input type="text" value="" class="form-control" id="user_email" />
       
       </td>
     </tr>
     <tr>
       <td></td>
       <td>
-        <input type="button" class="btn btn-success" value="查询" />
+        <input type="button" class="btn btn-success" id="btn-search-one" value="查询" />
       </td>
     </tr>
   </table>
@@ -63,11 +63,11 @@ admin_page_protect();
   <tr>
     <td></td>
     <td>
-      <input type="radio" value="0" id="search-type" /> 查找多人
+      <b>按年级|系别|班级查找</b>
     </td>
   </tr>
     <tr>
-      <td width="80" class="reg-th">
+      <td width="80" class="th">
         年级
       </td>
       <td>
@@ -86,7 +86,7 @@ admin_page_protect();
       </td>
     </tr>
     <tr>
-      <td class="reg-th">
+      <td class="th">
         系
       </td>
       <td>
@@ -100,7 +100,7 @@ admin_page_protect();
     </tr>
 
     <tr>
-      <td class="reg-th">
+      <td class="th">
         专业
       </td>
       <td>
@@ -114,7 +114,7 @@ admin_page_protect();
     </tr>
 
     <tr>
-      <td class="reg-th">
+      <td class="th">
         专业方向
       </td>
       <td>
@@ -129,7 +129,7 @@ admin_page_protect();
     </tr>
 
     <tr>
-      <td class="reg-th">
+      <td class="th">
         班级
       </td>
       <td>
@@ -162,15 +162,22 @@ admin_page_protect();
 
 
 <br>
-      <div class="toolbar">
-         显示：
+      <div class="">
+        <span id="page-state">
+          
+        </span>
+
+        
          <select id="row-limit">
            <option value="10">10</option>
            <option value="20">20</option>
            <option value="50">50</option>
            <option value="100">100</option>
-           <option value='0'>全部</option>
-         </select>页
+         </select>行/页
+      </div>
+
+      <div class="toolbar">
+       
 
 
           <input name="checkall" type="submit" id="checkall" value="全选">
@@ -179,6 +186,9 @@ admin_page_protect();
           <input name="doDelete" type="submit" id="doDelete" value="删除">
           <input name="doAllocation" type="submit" id="doAllocation" value="关联上网账号">
       </div>
+
+
+       
 
         <table>
         <thead>
@@ -213,7 +223,7 @@ admin_page_protect();
 
 <?php 
 
-$footer_scripts = array("assets/js/settings.js","assets/js/register.js","assets/js/admin.js");
+$footer_scripts = array("assets/js/settings.js","assets/lib/jquery.tmpl.min.js","assets/js/register.js","assets/js/admin.js");
 
 include '../includes/footer.php'  
 

@@ -454,11 +454,11 @@ padding: 10px 15px;
 	margin: 5px;
 }
 
-.reg-input{
+.custom-input{
 	width:300px;
 }
 
-.reg-th{
+.th{
 	text-align: right;
 	padding-right: 10px;
 	font-weight: bold;

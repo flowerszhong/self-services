@@ -8,89 +8,91 @@ include '../includes/sidebar.php';
 
 
 $err = array();
+$msg = array();
 
-if ($_POST['add'])
+
+foreach($_POST as $key => $value) {
+	$data[$key] = filter($value); // post variables are filtered
+}
+
+$sql_select_account = "select count(net_id) as count from accounts";
+$sql_result = mysql_query($sql_select_account);
+$all = mysql_fetch_array($sql_result);
+
+$current_date = date("Y-m-d");
+$first_date = date("Y-m-01",strtotime($current_date));
+
+$sql_select_expire = "select net_id as count from students where expire_date<$first_date";
+$sql_result1 = mysql_query($sql_select_expire);
+$expire_num = mysql_num_rows($sql_result1);
+
+function addAccount($net_id,$net_pwd,$err)
 {
-
-	foreach($_POST as $key => $value) {
-		$data[$key] = filter($value); // post variables are filtered
-	}
-
-	if($data['account_id'] && $data['account_pwd']){
-		$sql_insert = "insert into `accounts` (`net_id`,`net_pwd`,`used`) VALUES ('$data[account_id]','$data[account_pwd]','0')";
+	$sql_check_exist = "select count(id) as count from accounts where net_id='$net_id'";
+	$check_query = mysql_query($sql_check_exist);
+	$check_result = mysql_fetch_array($check_query);
+	if($check_result['count'] > 0){
+		$err[] = "该账号已经存在于数据中，请不在重复添加";
+	}else{
+		$current_date = date("Y-m-d");
+		$sql_insert = "insert into `accounts` (`net_id`,`net_pwd`,`used`,`import_date`) VALUES ('$net_id','$net_pwd','0','$current_date')";
 		mysql_query($sql_insert) or die(mysql_error());
 	}
 }
 
 
-if ($_POST['submit'] == 'Submit') {
-    
-    foreach ($_POST as $key => $value) {
-        $data[$key] = filter($value); // post variables are filtered
-    }
+if ($_POST['add'])
+{
+	if($data['net_id'] && $data['net_pwd']){
+		addAccount($data['net_id'],$data['net_pwd'],$err);
+	}
+}
 
-    require_once dirname(__FILE__) . '/PHPExcel/Classes/PHPExcel/IOFactory.php';
+if (isset($_POST['import'])) {
 
+    $filetype = $_FILES["file"]["type"];
 
-    if ($_FILES["file"]["error"] > 0) {
-        echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
-    } else {
-        echo "Upload: " . $_FILES["file"]["name"] . "<br />";
-        echo "Type: " . $_FILES["file"]["type"] . "<br />";
-        echo "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br />";
-        echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br />";
-        
-        // if (file_exists("upload/" . $_FILES["file"]["name"])) {
-        //     echo $_FILES["file"]["name"] . " already exists. ";
-        // } else {
-            move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $_FILES["file"]["name"]);
-            echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
-        // }
-    }
+	if (($filetype == "application/xls")|| ($filetype == "application/octet-stream")) {
+	    if ($_FILES["file"]["error"] > 0) {
+	        echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
+	    } else {
 
-    $reader = PHPExcel_IOFactory::createReader('Excel5'); //设置以Excel5格式(Excel97-2003工作簿)
-    $PHPExcel = $reader->load("upload/" . $_FILES['file']["name"]); // 载入excel文件
-    $sheet = $PHPExcel->getSheet(0); // 读取第一個工作表
-    sleep(2);
-    $highestRow = $sheet->getHighestRow(); // 取得总行数
-    $highestColumm = $sheet->getHighestColumn(); // 取得总列数
-
-    var_dump($highestColumm);
-     
-    /** 循环读取每个单元格的数据 */
-    for ($row = 1; $row <= $highestRow; $row++){//行数是以第1行开始
-        for ($column = 'A'; $column <= $highestColumm; $column++) {//列数是以A列开始
-            $dataset[] = $sheet->getCell($column.$row)->getValue();
-            echo $column.$row.":".$sheet->getCell($column.$row)->getValue()."<br />";
-        }
-    }
+	        // if (file_exists("upload/" . $_FILES["file"]["name"])) {
+	        //     echo $_FILES["file"]["name"] . " already exists. ";
+	        // } else {
+	            move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $_FILES["file"]["name"]);
+	            // echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
+	        // }
 
 
+    		require_once dirname(__FILE__) . '/PHPExcel/Classes/PHPExcel/IOFactory.php';
 
-	// if ((($_FILES["file"]["type"] == "image/gif") || ($_FILES["file"]["type"] == "image/jpeg") || ($_FILES["file"]["type"] == "image/pjpeg"))) {
-	//     if ($_FILES["file"]["error"] > 0) {
-	//         echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
-	//     } else {
-	//         echo "Upload: " . $_FILES["file"]["name"] . "<br />";
-	//         echo "Type: " . $_FILES["file"]["type"] . "<br />";
-	//         echo "Size: " . ($_FILES["file"]["size"] / 1024) . " Kb<br />";
-	//         echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br />";
-	        
-	//         if (file_exists("upload/" . $_FILES["file"]["name"])) {
-	//             echo $_FILES["file"]["name"] . " already exists. ";
-	//         } else {
-	//             move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $_FILES["file"]["name"]);
-	//             echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
-	//         }
-	//     }
-	// } else {
-	//     echo "Invalid file";
-	// }
+	        $reader = PHPExcel_IOFactory::createReader('Excel5'); //设置以Excel5格式(Excel97-2003工作簿)
+	        $PHPExcel = $reader->load("upload/" . $_FILES['file']["name"]); // 载入excel文件
+	        $sheet = $PHPExcel->getSheet(0); // 读取第一個工作表
+	        $highestRow = $sheet->getHighestRow(); // 取得总行数
+	        $highestColumm = "B"; // 取得总列数
+	        // $highestColumm = $sheet->getHighestColumn(); // 取得总列数
+
+	        /** 循环读取每个单元格的数据 */
+	        for ($row = 1; $row <= $highestRow; $row++){//行数是以第1行开始
+	        	$net_id = $sheet->getCell("A".$row)->getValue();
+	        	$net_pwd = $sheet->getCell("B".$row)->getValue();
+	        	addAccount($net_id,$net_pwd,$err);
+	            // for ($column = 'A'; $column <= $highestColumm; $column++) {//列数是以A列开始
+	            //     $dataset[] = $sheet->getCell($column.$row)->getValue();
+	            //     echo $column.$row.":".$sheet->getCell($column.$row)->getValue()."<br />";
+	            // }
+	        }
+	    }
+	} else {
+	    echo "Invalid file";
+	}
 
 }
 
 
-
+include "../includes/errors.php";
 
  ?>
 
@@ -98,14 +100,44 @@ if ($_POST['submit'] == 'Submit') {
 	<h3 class="title">统计</h3>
 	<table>
 		<tr>
-			<td>可用上网账号总数</td>
+			<td width="250">可用上网账号总数</td>
+			<td>
+				<?php echo $all['count']; ?>
+			</td>
 		</tr>
 		<tr>
-			<td>本月将过期账号总数</td>
-			<td>下载过期账号数据</td>
+			<td>本月已过期账号总数
+			<br>
+			<label class="hint">
+				早于( <?php echo $first_date; ?> )的账号总数
+			</label>
+			</td>
+			<td>
+				<?php echo $expire_num; ?>
+			</td>
 		</tr>
+		<!-- <tr>
+			<td>
+			<input type="button" value="生成过期账号表" class="btn btn-danger" id="btn-expire-report" />
+			</td>
+			<td></td>
+		</tr> -->
 	</table>
 
+	<h3 class="title">导入上网账号
+	<label class="hint"><a href="download/上网账号表.xls" target="_blank">样本文件下载</a></label>
+	</h3>
+	<div>
+		<form action="net-accounts.php" method="post" enctype="multipart/form-data">
+			<input type="file" name="file" id="file" /> 
+			<br />
+			<input type="submit" name="import" class="btn btn-success" value="导入" />
+		</form>
+	</div>
+
+
+
+	<h3 class="title">上网账号列表</h3>
 	<table>
 	<tr>
 		<td>上网账号</td>
@@ -114,7 +146,7 @@ if ($_POST['submit'] == 'Submit') {
 	</tr>		
 	<?php 
 
-		$sql_select = "select * from `accounts` ORDER BY id DESC limit 50";
+		$sql_select = "select * from `accounts` ORDER BY id DESC limit 10";
 		$rows_result = mysql_query($sql_select) or die(mysql_error());
 	?>
 
@@ -140,26 +172,27 @@ if ($_POST['submit'] == 'Submit') {
 	</table>
 
 
+
 	<h3 class="title">添加账号</h3>
 	<div>
-		<form action="net-accounts.php" method="post">
+		<form action="net-accounts.php" method="post" id="add-form">
 		<table>
 		<tr>
 			<td>账号</td>
 			<td>
-				<input type="text" name="account_id" value=""/>
-
+				<input type="text" name="net_id" value="" class="form-control custom-input required" />
 			</td>
 		</tr>
 		<tr>
 			<td>密码</td>
 			<td>
-				<input type="text" name="account_pwd" value=""/>
+				<input type="text" name="net_pwd" value="" class="form-control custom-input required"/>
 			</td>
 		</tr>
 		<tr>
-			<td colspan="2">
-				<input type="submit" value="提交" name="add"/>
+			<td></td>
+			<td>
+				<input type="submit" value="提交" name="add" class="btn btn-success"/>
 			</td>
 		</tr>
 		</table>
@@ -168,25 +201,17 @@ if ($_POST['submit'] == 'Submit') {
 	</div>
 
 
-	<h3 class="title">导入上网账号</h3>
-	<div>
-		<form action="net-accounts.php" method="post" enctype="multipart/form-data">
-			<label for="file">Filename:</label>
-			<input type="file" name="file" id="file" /> 
-			<br />
-			<input type="submit" name="submit" value="Submit" />
-		</form>
-	</div>
+	
 
 
-	<h3 class="title">导出上网账号表</h3>
-	<input type="button" value="export" id="export" />
+	<!-- <h3 class="title">导出上网账号表</h3>
+	<input type="button" value="导出" class="btn btn-success" id="export" /> -->
 	
 
 </div>
 
  <?php 
-$footer_scripts = array("assets/js/settings.js","assets/js/register.js","assets/js/main.js");
+$footer_scripts = array("assets/js/settings.js","assets/js/register.js");
 include '../includes/footer.php';
 ?>
 

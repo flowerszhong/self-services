@@ -38,14 +38,14 @@ $(function () {
 
 
 	// net-account-table
-	$("#net-account-table tr").find("td:first").addClass("reg-th");
+	$("#net-account-table tr").find("td:first").addClass("th");
 
 
 	//reset password
 	$("#reset-form").validate();
 	$("#reset-form input").addClass("form-control");
-	$("#reset-form input[type='text']").addClass("reg-input");
-	$("#reset-form tr").find("td:first").addClass("reg-th");
+	$("#reset-form input[type='text']").addClass("custom-input");
+	$("#reset-form tr").find("td:first").addClass("th");
 
 
 	$("#btn-check-pwd").click(function () {
@@ -62,6 +62,8 @@ $(function () {
         	}
         }
     });
+
+    $("#add-form").validate();
 
 
 

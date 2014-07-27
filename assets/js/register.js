@@ -238,9 +238,9 @@ $(function() {
 
 	$("#regForm input").addClass("form-control");
 
-	$("#regForm input[type='text']").addClass("reg-input");
+	$("#regForm input[type='text']").addClass("custom-input");
 
-	$("#regForm tr").find("td:first").addClass("reg-th");
+	$("#regForm tr").find("td:first").addClass("th");
 
 	$("#regForm").validate({
         rules:{
@@ -256,8 +256,8 @@ $(function() {
 
     $("#setting-form input").addClass("form-control");
 
-	$("#setting-form input[type='text']").addClass("reg-input");
+	$("#setting-form input[type='text']").addClass("custom-input");
 
-	$("#setting-form tr").find("td:first").addClass("reg-th");
+	$("#setting-form tr").find("td:first").addClass("th");
 
 });

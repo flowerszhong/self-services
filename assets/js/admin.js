@@ -40,21 +40,34 @@ var $studentsList = $("#students-list"),
         'major' : $major.val(),
         'sub_major' : $subMajor.val(),
         'class' : $classes.val(),
-        dataType: "json"
+        'page_limit': $recordLimitSelect.val()
     }
 
     return param;
 
   }
 
-  function loadData () {
-  	$searchBtn.prop('disabled','true');
-  	$studentsList.prepend("<tr class='loading'><td colspan='11'>Loading...</td></tr>");
-  	var param = getParam();
-  	
+  function getOneParams () {
+    var $recordLimitSelect = $('#row-limit'),
+        $user_email = $('#user_email'),
+        $student_id = $("#student_id"),
+        $user_name = $("#user_name");
+
+    return {
+      'student_id' : $student_id.val(),
+      'user_email' : $user_email.val(),
+      'user_name' : $user_name.val(),
+      'page_limit' : $recordLimitSelect.val()
+    }
   }
 
-  $("#row-limit,#grade").change(loadData);
+
+
+  $("#row-limit").change(function () {
+    GLOBAL_SEARCH_PARAM['page_limit'] = this.value;
+    GLOBAL_SEARCH_PARAM['pn'] = 1;
+    loadData();
+  });
 
   $studentsList.on('click','.associate-btn',function () {
     var relid = $(this).attr('relid');
@@ -106,25 +119,76 @@ var $studentsList = $("#students-list"),
 
   $("#btn-search-many").click(function () {
     GLOBAL_SEARCH_PARAM = getManyParams();
+    loadData();
+  });
 
-    console.log(GLOBAL_SEARCH_PARAM);
+  $("#btn-search-one").click(function () {
+    GLOBAL_SEARCH_PARAM = getOneParams();
+    loadData();
+  });
 
-    // $.post("search.php",GLOBAL_SEARCH_PARAM,function (data) {
-    //     console.log(typeof data)
-    //     console.log(data);
-    // });
 
+  function loadData () {
+    $studentsList.prepend("<tr class='loading'><td colspan='11'>Loading...</td></tr>");
 
     $.ajax({
           type: "POST",
           url: "search.php",
           data: GLOBAL_SEARCH_PARAM,
           success: function  (data) {
-              console.log(data);
+            console.log(data);
+            if(data && data.state =="ok"){
+              showSearchResult(data);
+            }
           },
           dataType: "json"
         });
+  }
+
+
+
+  $("#page-controls").on("click","a",function (e) {
+    e.preventDefault();
+    var hash = this.href.split('#')[1];
+    GLOBAL_SEARCH_PARAM['pn'] = hash;
+    loadData();
   });
+
+
+
+  function showSearchResult (data) {
+    console.log(data);
+
+    $studentsList.remove(".loading");
+    $("#page-controls").empty().append(data.controls);
+    $("#page-state").empty().append(data.pageState);
+
+    var markup = ["<tr>",
+          "<td>${id}</td>",
+          "<td>${student_id}</td>",
+          "<td>${user_name}</td>",
+          "<td>${user_email}</td>",
+          "<td>${grade}</td>",
+          "<td>${department}</td>",
+          "<td>${major}</td>",
+          "<td>${sub_major}</td>",
+          "<td>${$item.getClass()}</td>",
+          "<td>${approved}</td>",
+          "<td>${approved}</td>",
+          "</tr>"].join('');
+
+    /* Compile the markup as a named template */
+    $.template( "studentTMPL", markup );
+
+    /* Render the template with the movies data and insert
+       the rendered HTML under the "movieList" element */
+    $studentsList.empty().append($.tmpl( "studentTMPL", data.rows,{
+      getClass : function (data) {
+        return this.data['class'] + "班";
+      }
+    }));
+
+  }
 
 
 

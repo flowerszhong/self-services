@@ -1,5 +1,6 @@
 <?php
 $err = array();
+$msg = array();
 
 if ($_POST['doRegister'] == 'Register') {
 
@@ -92,12 +93,26 @@ if ($_POST['doRegister'] == 'Register') {
             $start_date = $row_2013['pay_date'];
             $end_date = $row_2013['expire_date'];
             $used = 1;
-            $sql_insert_accounts = "INSERT into accounts 
-                                    (`net_id`,`net_pwd`,`student_id`,`user_id`,`used`)
-                                    VALUES
-                                    ('$net_id','$net_pwd','$data[student_id]','$user_id',$used)
-                                    ";
-            $insert2 = mysql_query($sql_insert_accounts) or die("insert accounts data failed: ". mysql_error());
+
+            //TODO: 检查上网账号是否已经存在
+
+            $sql_account_exist = "select * accounts where net_id='$net_id'";
+            $exist = mysql_query($sql_account_exist);
+            $exist_num = mysql_num_rows($exist);
+
+            if($exist_num > 0){
+                $insert2 = true;
+                $msg[] = "你的网络账号(NET ID)已经被其它账号关联";
+            }else{
+
+                $sql_insert_accounts = "INSERT into accounts 
+                                        (`net_id`,`net_pwd`,`student_id`,`user_id`,`used`)
+                                        VALUES
+                                        ('$net_id','$net_pwd','$data[student_id]','$user_id',$used)
+                                        ";
+                $insert2 = mysql_query($sql_insert_accounts) or die("insert accounts data failed: ". mysql_error());
+            }
+
             $sql_insert_consume ="INSERT into consume
                                   (`user_id`,`student_id`,`fee`,`start_date`,`end_date`)
                                   VALUES
