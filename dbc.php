@@ -14,15 +14,22 @@ define("DB_USER", "root"); // set database user
 define("DB_PASS", "root"); // set database password
 define("DB_NAME", "school_db"); // set database name
 
+
+
 declare (encoding = 'UTF-8');
 
 // error_reporting(E_ALL);
 
 
-
+//for local
 define("SERVER_HOST", $_SERVER['HTTP_HOST']);
 define("SITE_DIR", '/self-services');
 define('SITE_ROOT', "http://" . SERVER_HOST . SITE_DIR);
+
+//for live
+// define("SERVER_HOST", $_SERVER['HTTP_HOST']);
+// define("SITE_DIR", '');
+// define('SITE_ROOT', "http://" . SERVER_HOST . SITE_DIR);
 
 
 $link = mysql_connect(DB_HOST, DB_USER, DB_PASS) or die("Couldn't make connection.");

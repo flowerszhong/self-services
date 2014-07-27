@@ -51,8 +51,7 @@ if ($_POST['add'])
 if (isset($_POST['import'])) {
 
     $filetype = $_FILES["file"]["type"];
-
-	if (($filetype == "application/xls")|| ($filetype == "application/octet-stream")) {
+	if (($filetype == "application/xls")|| ($filetype == "application/octet-stream") ||($filetype == "application/vnd.ms-excel")) {
 	    if ($_FILES["file"]["error"] > 0) {
 	        echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
 	    } else {
@@ -60,30 +59,37 @@ if (isset($_POST['import'])) {
 	        // if (file_exists("upload/" . $_FILES["file"]["name"])) {
 	        //     echo $_FILES["file"]["name"] . " already exists. ";
 	        // } else {
-	            move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $_FILES["file"]["name"]);
+	            // move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $_FILES["file"]["name"]);
 	            // echo "Stored in: " . "upload/" . $_FILES["file"]["name"];
 	        // }
 
+	         $filename =iconv('UTF-8', 'GB2312', $_FILES["file"]["name"]);
+	         // $filename = $_FILES["file"]["name"];
+	         if(move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $filename)){
+     	    		require_once dirname(__FILE__) . '/PHPExcel/Classes/PHPExcel/IOFactory.php';
+     		        $reader = PHPExcel_IOFactory::createReader('Excel5'); //设置以Excel5格式(Excel97-2003工作簿)
+     		        $PHPExcel = $reader->load("upload/" . $filename); // 载入excel文件
+     		        $sheet = $PHPExcel->getSheet(0); // 读取第一個工作表
+     		        $highestRow = $sheet->getHighestRow(); // 取得总行数
+     		        $highestColumm = "B"; // 取得总列数
+     		        // $highestColumm = $sheet->getHighestColumn(); // 取得总列数
 
-    		require_once dirname(__FILE__) . '/PHPExcel/Classes/PHPExcel/IOFactory.php';
+     		        /** 循环读取每个单元格的数据 */
+     		        for ($row = 1; $row <= $highestRow; $row++){//行数是以第1行开始
+     		        	$net_id = $sheet->getCell("A".$row)->getValue();
+     		        	$net_pwd = $sheet->getCell("B".$row)->getValue();
+     		        	addAccount($net_id,$net_pwd,$err);
+     		            // for ($column = 'A'; $column <= $highestColumm; $column++) {//列数是以A列开始
+     		            //     $dataset[] = $sheet->getCell($column.$row)->getValue();
+     		            //     echo $column.$row.":".$sheet->getCell($column.$row)->getValue()."<br />";
+     		            // }
+     		        }
+	         }else{
+	         	$err[] = "错误 - 上传文件失败";
+	         }
 
-	        $reader = PHPExcel_IOFactory::createReader('Excel5'); //设置以Excel5格式(Excel97-2003工作簿)
-	        $PHPExcel = $reader->load("upload/" . $_FILES['file']["name"]); // 载入excel文件
-	        $sheet = $PHPExcel->getSheet(0); // 读取第一個工作表
-	        $highestRow = $sheet->getHighestRow(); // 取得总行数
-	        $highestColumm = "B"; // 取得总列数
-	        // $highestColumm = $sheet->getHighestColumn(); // 取得总列数
 
-	        /** 循环读取每个单元格的数据 */
-	        for ($row = 1; $row <= $highestRow; $row++){//行数是以第1行开始
-	        	$net_id = $sheet->getCell("A".$row)->getValue();
-	        	$net_pwd = $sheet->getCell("B".$row)->getValue();
-	        	addAccount($net_id,$net_pwd,$err);
-	            // for ($column = 'A'; $column <= $highestColumm; $column++) {//列数是以A列开始
-	            //     $dataset[] = $sheet->getCell($column.$row)->getValue();
-	            //     echo $column.$row.":".$sheet->getCell($column.$row)->getValue()."<br />";
-	            // }
-	        }
+    		
 	    }
 	} else {
 	    echo "Invalid file";

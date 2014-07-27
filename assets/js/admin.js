@@ -76,7 +76,7 @@ var $studentsList = $("#students-list"),
       cmd:"associate",
       id : relid
     },function (data) {
-      console.log(data);
+      // console.log(data);
     })
   });
 
@@ -136,7 +136,6 @@ var $studentsList = $("#students-list"),
           url: "search.php",
           data: GLOBAL_SEARCH_PARAM,
           success: function  (data) {
-            console.log(data);
             if(data && data.state =="ok"){
               showSearchResult(data);
             }
@@ -157,7 +156,6 @@ var $studentsList = $("#students-list"),
 
 
   function showSearchResult (data) {
-    console.log(data);
 
     $studentsList.remove(".loading");
     $("#page-controls").empty().append(data.controls);

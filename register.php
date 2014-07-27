@@ -10,7 +10,7 @@ include 'includes/errors.php';
             <table>
 
             <tr>
-                <td>
+                <td width="160">
                     <b class="required"> * </b>
                     学号
                     </td>
