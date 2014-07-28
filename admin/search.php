@@ -106,7 +106,9 @@ if($pagenum < 1){
 
 $limit = 'LIMIT '. ($pagenum - 1) * $page_rows . ',' . $page_rows;
 
-$sql .= " ". $limit;
+$order_by = "ORDER BY reg_date DESC";
+
+$sql .= " ". $order_by . " " .$limit;
 
 
 
@@ -114,7 +116,7 @@ $sql .= " ". $limit;
 // exit();
 $query = mysql_query($sql);
 
-$page_state = "第<b>$pagenum</b>/ <b>$last</b>页";
+$page_state = "第<b>$pagenum</b>/ <b>$last</b>页,共 $rows 行";
 
 $paginationCtrls = '';
 if($last != 1){

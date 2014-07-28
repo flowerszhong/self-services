@@ -68,6 +68,6 @@ $current_count = mysql_fetch_array($current_month_rows);
 </div>
 
 <?php 
-$footer_scripts = array("assets/lib/jquery-ui.min.js","assets/js/settings.js");
+$footer_scripts = array("assets/lib/jquery-ui.min.js");
 include '../includes/footer.php'  
 ?>

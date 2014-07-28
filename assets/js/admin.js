@@ -27,11 +27,11 @@ var $studentsList = $("#students-list"),
   function getManyParams () {
 
     var $recordLimitSelect = $('#row-limit'),
-        $grade = $("#grade"),
+        $grade = $("#grade-select"),
         $department = $("#department"),
         $major = $("#major"),
         $subMajor = $("#sub-major"),
-        $classes = $('#class-list');
+        $classes = $('#class');
 
 
     var param ={
@@ -39,7 +39,7 @@ var $studentsList = $("#students-list"),
         'department': $department.val(),
         'major' : $major.val(),
         'sub_major' : $subMajor.val(),
-        'class' : $classes.val(),
+        'class' : $classes.val() ? parseInt($classes.val()):"",
         'page_limit': $recordLimitSelect.val()
     }
 
@@ -162,17 +162,16 @@ var $studentsList = $("#students-list"),
     $("#page-state").empty().append(data.pageState);
 
     var markup = ["<tr>",
-          "<td>${id}</td>",
+          "<td><input type='checkbox' value='${id}' class='record-check' /></td>",
           "<td>${student_id}</td>",
-          "<td>${user_name}</td>",
+          "<td><a href='edit.php?id=${id}' target='blank'>${user_name}</a></td>",
           "<td>${user_email}</td>",
           "<td>${grade}</td>",
           "<td>${department}</td>",
           "<td>${major}</td>",
           "<td>${sub_major}</td>",
           "<td>${$item.getClass()}</td>",
-          "<td>${approved}</td>",
-          "<td>${approved}</td>",
+          "<td>${$item.checkAssoicate()}</td>",
           "</tr>"].join('');
 
     /* Compile the markup as a named template */
@@ -183,6 +182,13 @@ var $studentsList = $("#students-list"),
     $studentsList.empty().append($.tmpl( "studentTMPL", data.rows,{
       getClass : function (data) {
         return this.data['class'] + "班";
+      },
+      checkAssoicate : function () {
+        if(this.data['net_id'] && this.data['net_pwd']){
+          return "是";
+        }else{
+          return "否";
+        }
       }
     }));
 

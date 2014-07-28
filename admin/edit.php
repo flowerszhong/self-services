@@ -2,11 +2,21 @@
 /********************** MYSETTINGS.PHP**************************
 This updates user settings and password
 ************************************************************/
-include 'dbc.php';
-page_protect();
+include '../dbc.php';
+admin_page_protect();
 
 $err = array();
 $msg = array();
+
+
+if(!empty($_GET['id'])){
+	$id = $_GET['id'];
+	
+}else{
+	header("Content-type:text/html;charset=utf-8");
+	echo "不存在该用户，请检查该用户ID";
+	die();
+}
 
 if(sizeof($_POST)>0)  
 {
@@ -18,50 +28,49 @@ if(sizeof($_POST)>0)
 	// var_dump($_POST);
 
 	if($data['user_name']){
-		echo "string";
-		$sql_update = "UPDATE students SET `user_name` = '$data[user_name]' WHERE id='$_SESSION[user_id]'";
+		$sql_update = "UPDATE students SET `user_name` = '$data[user_name]' WHERE id='$id'";
 		mysql_query($sql_update) or die(mysql_error());
 	}
 
 	if($data['student_id']){
-		$sql_update = "UPDATE students SET `student_id` = '$data[student_id]' WHERE id='$_SESSION[user_id]'";
+		$sql_update = "UPDATE students SET `student_id` = '$data[student_id]' WHERE id='$id'";
 		mysql_query($sql_update) or die(mysql_error());
 	}
 
 
 	if($data['tel']){
-		$sql_tel_update = "UPDATE students SET `tel` = '$data[tel]' WHERE id='$_SESSION[user_id]'";
+		$sql_tel_update = "UPDATE students SET `tel` = '$data[tel]' WHERE id='$id'";
 		mysql_query($sql_tel_update) or die(mysql_error());
 	}
 
 	if($data['user_email']){
-		$sql_update = "UPDATE students SET `user_email` = '$data[user_email]' WHERE id='$_SESSION[user_id]'";
+		$sql_update = "UPDATE students SET `user_email` = '$data[user_email]' WHERE id='$id'";
 		mysql_query($sql_update) or die(mysql_error());
 	}
 
 	if($data['grade']){
-		$sql_update = "UPDATE students SET `grade` = '$data[grade]' WHERE id='$_SESSION[user_id]'";
+		$sql_update = "UPDATE students SET `grade` = '$data[grade]' WHERE id='$id'";
 		mysql_query($sql_update) or die(mysql_error());
 	}
 
 	if($data['department']){
-		$sql_update = "UPDATE students SET `department` = '$data[department]',`major` = '$data[major]',`sub_major` = '$data[sub_major]' WHERE id='$_SESSION[user_id]'";
+		$sql_update = "UPDATE students SET `department` = '$data[department]',`major` = '$data[major]',`sub_major` = '$data[sub_major]' WHERE id='$id'";
 		mysql_query($sql_update) or die(mysql_error());
 	}
 
 	if($data['major']){
-		$sql_update = "UPDATE students SET `major` = '$data[major]',`sub_major` = '$data[sub_major]'  WHERE id='$_SESSION[user_id]'";
+		$sql_update = "UPDATE students SET `major` = '$data[major]',`sub_major` = '$data[sub_major]'  WHERE id='$id'";
 		mysql_query($sql_update) or die(mysql_error());
 	}
 
 	if($data['sub_major']){
-		$sql_update = "UPDATE students SET `sub_major` = '$data[sub_major]' WHERE id='$_SESSION[user_id]'";
+		$sql_update = "UPDATE students SET `sub_major` = '$data[sub_major]' WHERE id='$id'";
 		mysql_query($sql_update) or die(mysql_error());
 	}
 
 
 	if($data['class']){
-		$sql_update = "UPDATE students SET `class` = '$data[class]' WHERE id='$_SESSION[user_id]'";
+		$sql_update = "UPDATE students SET `class` = '$data[class]' WHERE id='$id'";
 		mysql_query($sql_update) or die(mysql_error());
 	}
 
@@ -69,51 +78,38 @@ if(sizeof($_POST)>0)
 	$msg[] = "人个资料更新成功";
 	 }
  
-$rs_settings = mysql_query("select * from students where id='$_SESSION[user_id]'") or die(mysql_error()); 
+$rs_settings = mysql_query("select * from students where id='$id'") or die(mysql_error()); 
 $row_settings = mysql_fetch_array($rs_settings);
-include 'includes/head.php';
-include 'includes/errors.php';
+
+
+
+$page_title = '编辑学生信息';
+include '../includes/head.php';
+include '../includes/errors.php';
+include '../includes/sidebar.php';
  ?>
-<div class="container">
+<div class="main">
 
-	<h3 class="title">人个档案</h3>
-
-	<p>你可以修改部分个人信息。</p>
-	<br>
-	<form action="mysettings.php" method="post" name="settingForm" id="setting-form">
+	<h3 class="title">编辑学生信息</h3>
+	<form action="edit.php?id=<?php echo $id; ?>" method="post" name="settingForm" id="setting-form">
 		<table id="setting-table">
 			<tr>
 				<td>学号</td>
 				<td>
-					<input name="student_id" type="text" id="student_id" class="required" value="<? echo $row_settings['student_id']; ?>" 
-
-					<?php if(!empty($row_settings['student_id'])){
-						echo "disabled";
-						} ?>
-					></td>
+					<input name="student_id" type="text" id="student_id" class="required" value="<? echo $row_settings['student_id']; ?>" /> 
+				</td>
 			</tr>
 
 			<tr>
 				<td>姓名</td>
 				<td>
-					<input name="user_name" type="text" value="<? echo $row_settings['user_name']; ?>" 
-					<?php if(!empty($row_settings['user_name'])){
-						echo "disabled";
-						} ?>
-
-					></td>
+					<input name="user_name" type="text" value="<? echo $row_settings['user_name']; ?>" ></td>
 			</tr>
 
 			<tr>
 				<td>邮箱</td>
 				<td>
-					<input name="user_email" type="text" class="email" value="<? echo $row_settings['user_email']; ?>" 
-
-					<?php if(!empty($row_settings['user_email'])){
-											echo "disabled";
-											} ?>
-
-					></td>
+					<input name="user_email" type="text" class="email" value="<? echo $row_settings['user_email']; ?>" ></td>
 			</tr>
 
 			<tr>
@@ -123,11 +119,32 @@ include 'includes/errors.php';
 			</tr>
 
 			<tr>
+				<td colspan="2"></td>
+			</tr>
+
+			<tr>
+				<td>上网账号</td>
+				<td>
+					<input name="net_id" type="text" value="<? echo $row_settings['net_id']; ?>" ></td>
+				</td>
+			</tr>
+
+			<tr>
+				<td>密码</td>
+				<td>
+					<input name="net_pwd" type="text" value="<? echo $row_settings['net_pwd']; ?>" ></td>
+				</td>
+			</tr>
+
+			<tr>
+				<td colspan="2"></td>
+			</tr>
+
+			<tr>
 				<td>专业设置</td>
 				<td>
-				<input type="button" value="点击修改" id="change-major-setting">
-				<input type="button" value="取消修改" id="cancel-setting-btn">
-
+					<input type="button" value="点击修改" id="change-major-setting">
+					<input type="button" value="取消修改" id="cancel-setting-btn">
 				</td>
 			</tr>
 			<tr>
@@ -217,7 +234,9 @@ include 'includes/errors.php';
 
 <?php 
 
-include 'includes/footer.php'; ?>
+$footer_scripts = array("assets/lib/jquery.validate.js","assets/lib/jquery.validate.ext.js","assets/js/register.js","assets/js/settings.js");
+
+include '../includes/footer.php'; ?>
 
 
 

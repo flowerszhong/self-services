@@ -79,6 +79,5 @@ include 'includes/errors.php';
 </div>
 
 <?php 
-$footer_scripts = array("assets/lib/jquery.validate.js","assets/lib/jquery.validate.ext.js");
 include 'includes/footer.php';
  ?>

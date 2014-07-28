@@ -73,7 +73,7 @@ include 'includes/errors.php';
                         年级
                     </td>
                     <td>
-                        <select name="grade" id="grade">
+                        <select name="grade" id="reg-grade">
                             <option value="2013">2013</option>
                             <option value="2014" selected>2014</option>
                         </select>
@@ -169,8 +169,6 @@ include 'includes/errors.php';
    
 
 <?php 
-
-$footer_scripts = array("assets/js/register.js");
 
 include 'includes/footer.php'  
 

@@ -35,7 +35,7 @@
             <div class="navbar-header">
                 <div id="header-logo">
                      <h1>
-                        <a class="navbar-brand" href="index.php">上网自助服务</a>
+                        <a class="navbar-brand" href="<?php echo SITE_ROOT ?>/index.php">上网自助服务</a>
                     </h1>
                     <h2>广东环境保护工程职业学院</h2>
                 </div>
@@ -49,7 +49,7 @@
                     <li><a href="mysettings.php">个人资料</a><span>Profiles</span></li>
                   <?php } ?>
                     <li><a href="#">使用需知</a><span>Notices</span></li>
-                    <li><a href="index.php">首页</a><span>Home</span></li>
+                    <li><a href="<?php echo SITE_ROOT ?>/index.php">首页</a><span>Home</span></li>
                   </ul>
                 </div>
               </div>

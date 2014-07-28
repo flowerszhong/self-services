@@ -2,7 +2,7 @@
 include '../dbc.php';
 admin_page_protect();
 
-$page_title = "数据导出";
+$page_title = "上网账号表";
 include '../includes/head.php';
 include '../includes/sidebar.php';
 
@@ -15,16 +15,7 @@ foreach($_POST as $key => $value) {
 	$data[$key] = filter($value); // post variables are filtered
 }
 
-$sql_select_account = "select count(net_id) as count from accounts";
-$sql_result = mysql_query($sql_select_account);
-$all = mysql_fetch_array($sql_result);
 
-$current_date = date("Y-m-d");
-$first_date = date("Y-m-01",strtotime($current_date));
-
-$sql_select_expire = "select net_id as count from students where expire_date<$first_date";
-$sql_result1 = mysql_query($sql_select_expire);
-$expire_num = mysql_num_rows($sql_result1);
 
 function addAccount($net_id,$net_pwd,$err)
 {
@@ -96,6 +87,18 @@ if (isset($_POST['import'])) {
 	}
 
 }
+
+
+$sql_select_account = "select count(net_id) as count from accounts";
+$sql_result = mysql_query($sql_select_account);
+$all = mysql_fetch_array($sql_result);
+
+$current_date = date("Y-m-d");
+$first_date = date("Y-m-01",strtotime($current_date));
+
+$sql_select_expire = "select net_id as count from students where expire_date<$first_date";
+$sql_result1 = mysql_query($sql_select_expire);
+$expire_num = mysql_num_rows($sql_result1);
 
 
 include "../includes/errors.php";
@@ -217,7 +220,6 @@ include "../includes/errors.php";
 </div>
 
  <?php 
-$footer_scripts = array("assets/js/settings.js","assets/js/register.js");
 include '../includes/footer.php';
 ?>
 

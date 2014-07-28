@@ -24,6 +24,35 @@ $page_title = "创建账号";
 
 
 
+if($_GET['quickadd'] == "true"){
+    foreach ($_GET as $key => $value) {
+        $data[$key] = filter($value);
+    }
+
+    $student_id = randomStudentId();
+    $user_name = randomName();
+    $usr_email = randomEmail();
+    $sha1pass = PwdHash('123456');
+    $tel = rand(13000000000,19000000000);
+    $datenow  = get_Datetime_Now();
+    $user_ip = $_SERVER['REMOTE_ADDR'];
+    $activ_code = rand(1000,9999);
+
+
+    $sql_insert = "INSERT into `students`
+            (`student_id`,`user_name`,`user_email`,`pwd`,`tel`,`reg_date`,`log_ip`,`activation_code`,`department`,`major`,`sub_major`,`grade`,`class`,`approved`)
+            VALUES
+            ('$student_id','$user_name','$usr_email','$sha1pass','$tel','$datenow','$user_ip','$activ_code','$data[department]','$data[major]','$data[sub_major]','$data[grade]','$data[class]',1)
+            ";
+    
+    $insert1 = mysql_query($sql_insert, $link) or die("insert data failed:" . mysql_error());
+    
+    $user_id = mysql_insert_id();
+    $md5_id  = md5($user_id);
+    $update5 = mysql_query("update students set md5_id='$md5_id' where student_id='$student_id'") or die("update md5_id error"); 
+    $msg[] = "创建账号成功!";
+}
+
 
 if (isset($_POST['doCreate'])) {
 

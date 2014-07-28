@@ -71,7 +71,7 @@ admin_page_protect();
         年级
       </td>
       <td>
-        <select name="grade" id="grade" class="form-control">
+        <select name="grade" id="grade-select" class="form-control">
          <option name="" value="">
              请选择年级 
            </option>
@@ -204,7 +204,6 @@ admin_page_protect();
             <td>班级</td>
             <td>是否关联<br>
             上网账号</td>
-            <td>操作</td>
           </tr>
           <tr> 
         </thead>
@@ -223,7 +222,7 @@ admin_page_protect();
 
 <?php 
 
-$footer_scripts = array("assets/js/settings.js","assets/lib/jquery.tmpl.min.js","assets/js/register.js","assets/js/admin.js");
+$footer_scripts = array("assets/lib/jquery.tmpl.min.js","assets/js/admin.js");
 
 include '../includes/footer.php'  
 

@@ -54,8 +54,6 @@ include 'includes/head.php';
         </form>
       </div>
   </div>
-
-   <script src="assets/js/settings.js"></script>
-
+  
   <?php include 'includes/footer.php'; ?>
 
