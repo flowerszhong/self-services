@@ -298,8 +298,6 @@ include '../includes/sidebar.php';
 
 <?php 
 
-$footer_scripts = array("assets/js/register.js");
-
 include '../includes/footer.php'  
 
 ?>

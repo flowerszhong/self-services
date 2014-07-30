@@ -188,6 +188,7 @@ class PHPExcel_IOFactory
 	 * @throws	PHPExcel_Reader_Exception
 	 */
 	public static function load($pFilename) {
+		echo $pFilename;
 		$reader = self::createReaderForFile($pFilename);
 		return $reader->load($pFilename);
 	}	//	function load()
@@ -222,6 +223,8 @@ class PHPExcel_IOFactory
 
 		// First, lucky guess by inspecting file extension
 		$pathinfo = pathinfo($pFilename);
+
+		echo $pathinfo;
 
 		$extensionType = NULL;
 		if (isset($pathinfo['extension'])) {

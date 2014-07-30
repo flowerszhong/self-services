@@ -14,11 +14,7 @@ define("DB_USER", "root"); // set database user
 define("DB_PASS", "root"); // set database password
 define("DB_NAME", "school_db"); // set database name
 
-//for live
-// define("DB_HOST", "localhost"); // set database host
-// define("DB_USER", "zyh"); // set database user
-// define("DB_PASS", "mzhong@19860216"); // set database password
-// define("DB_NAME", "yh_wangfei"); // set database name
+
 
 declare (encoding = 'UTF-8');
 
