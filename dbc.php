@@ -54,6 +54,8 @@ define("HEADER_LEVEL", 2);
 define("USER_LEVEL", 1);
 define("GUEST_LEVEL", 0);
 
+define("DOCS_DIR", 'docs');
+
 
 
 /*************** reCAPTCHA KEYS****************/

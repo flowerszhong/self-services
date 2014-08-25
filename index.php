@@ -85,7 +85,7 @@ if ($_POST['student_id'] && $_POST['pwd']) {
                 $err[] = "登录出错，该账号不存在";
             }
         } else {
-            echo "no record";
+            $err[] = "该记录不存在";
         }
 
     }else{
@@ -100,9 +100,8 @@ include 'includes/errors.php';
 <div class="container">
 	<div class="alert alert-success">
 		<h3>Welcome!</h3>
-		<p>1.请阅读上网缴费流程</p>
-		<p>2.下载相关文档</p>
-		<p>3.<a href="register.php">注册账号</a></p>
+		<p>1.请点击<a href="notices.php">使用需知</a>查看上网缴费流程</p>
+		<p>2.<a href="register.php">注册账号</a></p>
 	</div>
 </div>
 

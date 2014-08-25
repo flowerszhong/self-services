@@ -7,6 +7,7 @@
             <li><a href="net-accounts.php">上网账号表</a></li>
             <li><a href="export.php">数据备份</a></li>
             <li><a href="create.php">创建账号</a></li>
+            <li><a href="files.php">文档管理</a></li>
             <li><a href="logout.php">退出登录</a></li>
           </ul>
         <?php } ?>

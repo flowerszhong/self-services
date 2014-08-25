@@ -369,4 +369,43 @@ $(function () {
 	    });
 	}
 
+
+	//upload docs 
+
+	$("#upload-docs-btn").click(function () {
+		$("#docs-list").find('.docs').each(function (k,v) {
+			if(v.value == ""){
+				v.name = "uu";
+			}
+		});
+		$("#upload-docs-form").submit();
+	});
+
+	$("#add-doc").click(function () {
+		$("#docs-list").append('<li><input type="file" name="docs[]" class="docs"></li>');
+	});
+
+	$('.delete-doc').click(function () {
+		var docname = $(this).attr('data-id');
+		alert(docname);
+		$this = $(this);
+		$.ajax({
+		      type: "POST",
+		      url: "delete-doc.php",
+		      data: {
+		      	delete : 'delete',
+		      	'doc_name' : docname
+		      },
+		      success: function  (data) {
+		      	console.log(data);
+		        if(data && data.state =="ok"){
+	              $this.parent().hide();
+	            }
+		      },
+		      dataType: "json"
+		    });
+	});
+
+
+
 });
