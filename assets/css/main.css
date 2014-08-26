@@ -510,7 +510,6 @@ b.required{
 }
 
 
-
 /*admin*/
 
 .search-table{
@@ -528,5 +527,10 @@ label.error{
 
 
 
+/* statistics module*/
+
+#statistics-table a{
+	text-decoration: underline;
+}
 
 

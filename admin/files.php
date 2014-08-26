@@ -38,6 +38,11 @@ $handle=opendir($dir.".");
 $array_file = array();
 while (false !== ($file = readdir($handle)))
 {
+   $encode = mb_detect_encoding($file, array("UTF-8","GB2312","GBK",'BIG5'));
+   if($encode !== 'UTF-8'){
+      $file = iconv('GB2312','UTF-8', $file);
+   }
+
   if ($file != "." && $file != "..") {
     $array_file[] = $file; //输出文件名
   }
@@ -67,7 +72,7 @@ include "../includes/errors.php";
 
 	<h3 class="title">上传文档
 	<label class="hint">
-		(允许上传格式有：pdf,doc,docx,xls,xlsx)
+		(允许上传格式有：pdf,doc,docx,xls,xlsx,所有上传文件大小之合不超过10MB)
 	</label>
 	</h3>
 	<form name="upfile" action="files.php" method="post" id="upload-docs-form" enctype="multipart/form-data">

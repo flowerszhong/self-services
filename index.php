@@ -101,7 +101,8 @@ include 'includes/errors.php';
 	<div class="alert alert-success">
 		<h3>Welcome!</h3>
 		<p>1.请点击<a href="notices.php">使用需知</a>查看上网缴费流程</p>
-		<p>2.<a href="register.php">注册账号</a></p>
+        <p>2.<a href="register.php">注册账号</a></p>
+		<p>3.下载<a href="download/拨号客户端.rar">电信拨号软件客户端</a></p>
 	</div>
 </div>
 

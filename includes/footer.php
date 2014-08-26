@@ -10,10 +10,10 @@
 	</div>
 
 </div>
-<script type="text/javascript" src="<?php echo SITE_ROOT ?>/assets/lib/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="<?php echo SITE_ROOT ?>/assets/lib/jquery-1.11.1.js" ></script>
 <script type="text/javascript" src="<?php echo SITE_ROOT ?>/assets/lib/jquery.validate.js"></script>
 <script type="text/javascript" src="<?php echo SITE_ROOT ?>/assets/lib/jquery.validate.ext.js"></script>
-<script type="text/javascript" src="<?php echo SITE_ROOT ?>/assets/js/main.js"></script>
+<script type="text/javascript" src="<?php echo SITE_ROOT ?>/assets/js/main.js?timestamp=<?php echo time() ?>"></script>
 <?php 
 $scripts = "";
 if ($footer_scripts) {

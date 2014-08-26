@@ -387,23 +387,26 @@ $(function () {
 
 	$('.delete-doc').click(function () {
 		var docname = $(this).attr('data-id');
-		alert(docname);
-		$this = $(this);
-		$.ajax({
-		      type: "POST",
-		      url: "delete-doc.php",
-		      data: {
-		      	delete : 'delete',
-		      	'doc_name' : docname
-		      },
-		      success: function  (data) {
-		      	console.log(data);
-		        if(data && data.state =="ok"){
-	              $this.parent().hide();
-	            }
-		      },
-		      dataType: "json"
-		    });
+		if(confirm('确定删除文件:' + docname + "?")){
+			
+				$this = $(this);
+				$.ajax({
+				      type: "POST",
+				      url: "delete-doc.php",
+				      data: {
+				      	delete : 'delete',
+				      	'doc_name' : docname
+				      },
+				      success: function  (data) {
+				      	console.log(data);
+				        if(data && data.state =="ok"){
+			              $this.parent().hide();
+			            }
+				      },
+				      dataType: "json"
+				    });
+		}
+
 	});
 
 

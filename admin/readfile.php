@@ -5,7 +5,7 @@
 </html>
 
 <?php
-include 'dbc.php';
+include '../dbc.php';
 
 ini_set('max_execution_time', 1000);
 
@@ -30,14 +30,32 @@ while (!feof($file))
 
     $last_pay_date = $rowdata[9];
     $expire_date = trim($rowdata[10]);
+    echo $expire_date;
+    echo "<br>";
+
+    $import_date = date('Y-m-d');
 
   	$grade = 13;
 
+    // mysql_query("START TRANSACTION");
 
   	$sql = "INSERT INTO students2013 (name, tel,grade,major,class,net_id,net_pwd,fee,pay_date,expire_date) VALUES 
   	('$user_name','$tel','$grade','$major','$class','$net_id','$net_pwd','$fee','$last_pay_date','$expire_date')";  
-  	echo $sql;
-  	mysql_query($sql) or die(mysql_error());
+  	
+    $insert2013 = mysql_query($sql) or die(mysql_error());
+
+    $sql_accounts = "INSERT INTO accounts (net_id,net_pwd,import_date,start_date,end_date) VALUES
+    ('$net_id','$net_pwd','$import_date','$last_pay_date','$expire_date')";
+    
+    $insert_accounts = mysql_query($sql_accounts) or die(mysql_error());
+
+    // if($insert2013 and $insert_accounts){
+    //     mysql_query("COMMIT");
+    // }else{
+    //     mysql_query("ROLLBACK");
+    // }
+
+
   }
 fclose($file);
 
