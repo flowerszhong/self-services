@@ -25,6 +25,7 @@ $(function () {
 		$.ajax({
 		      type: "POST",
 		      url: "export.php",
+		      timeout: 1000*10000,
 		      data: {
 		      	'export' : "accounts"
 		      },

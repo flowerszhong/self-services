@@ -48,12 +48,12 @@ function associateNetAccount($student_id,$fee)
 
 		if(empty($student_data['net_id'])){
 			//分配账号
-			$sql_select_account = "select * from accounts where used=0 limit 1";
+			$sql_select_account = "select * from accounts where used=0 and available=1 limit 1";
 			$query_account = mysql_query($sql_select_account);
 			$row_account = mysql_fetch_array($query_account);
 			// var_dump($row_account);
 
-			$sql_update_account = "update accounts set used=1 where id=$row_account[id]";
+			$sql_update_account = "update accounts set used=1,start_date='$start_date',end_date='$end_date',user_id='$student_data[id]',student_id='$student_id' where id=$row_account[id]";
 			// echo $sql_update_account;
 			$bool_update_account = mysql_query($sql_update_account);
 
@@ -70,7 +70,10 @@ function associateNetAccount($student_id,$fee)
 			$sql_update_student = "update students set expire_date='$end_date' where student_id=$student_id";
 			// echo $sql_update_student;
 			$bool_update_student = mysql_query($sql_update_student);
-			$bool_update_account = true;
+
+			$sql_update_account = "update accounts set used=1,start_date='$start_date',end_date='$end_date' where net_id=$student_data[net_id]";
+
+			$bool_update_account = mysql_query($sql_update_account);
 
 		}
 

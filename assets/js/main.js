@@ -246,8 +246,12 @@ $(function () {
 				
 			}
 
+			$("#net-id-input").addClass('required');
+
 		}else{
 			$('.net-row').hide();
+			$("#net-id-input").removeClass('required');
+
 			$hint.empty();
 		}
 	});

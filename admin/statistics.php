@@ -92,18 +92,18 @@ $table_array = getMonthData($begin_date,'2015-04-01');
 					<td>
 						<?php echo $row['month']; ?>
 					</td>
-					<td data-type="1">
-						<a href=""><?php echo $row['expire']; ?></a>
+					<td>
+						<a data-type="1" href=""><?php echo $row['expire']; ?></a>
 					</td>
 
-					<td date-type="2">
-						<a href="">
+					<td>
+						<a href="" date-type="2">
 							<?php echo $row['new']; ?>
 						</a>
 					</td>
 
-					<td data-type="3">
-						<a href="">
+					<td>
+						<a href="" data-type="3">
 							<?php echo $row['all']; ?>
 						</a>
 					</td>

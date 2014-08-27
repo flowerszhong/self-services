@@ -93,7 +93,7 @@ include '../includes/head.php';
 include '../includes/errors.php';
 ?>
 
-<div class="container">
+<div class="container" style="height:360px;">
 	<h3 class="title">管理员登录</h3>
     <?php 
         if($_SESSION['student_id'] && $_SESSION['student_name']){

@@ -74,6 +74,8 @@ if ($_POST['doRegister'] == 'Register') {
     /***************************************************************************/
     if (empty($err)) {
         $datenow    = get_Datetime_Now();
+
+        mysql_query("START TRANSACTION");
         $sql_insert = "INSERT into `students`
                 (`student_id`,`user_name`,`user_email`,`pwd`,`tel`,`reg_date`,`log_ip`,`activation_code`,`department`,`major`,`sub_major`,`grade`,`class`,`user_level`)
                 VALUES
@@ -85,7 +87,6 @@ if ($_POST['doRegister'] == 'Register') {
         $user_id = mysql_insert_id();
         $md5_id  = md5($user_id);
 
-        mysql_query("START TRANSACTION");
 
         if (isset($row_2013) and (intval($data['grade'])==2013)) {
             $net_pwd = $row_2013["net_pwd"];
@@ -96,22 +97,30 @@ if ($_POST['doRegister'] == 'Register') {
 
             //TODO: 检查上网账号是否已经存在
 
-            $sql_account_exist = "select * accounts where net_id='$net_id'";
-            $exist = mysql_query($sql_account_exist);
-            $exist_num = mysql_num_rows($exist);
+            $sql_account_exist = "select * from accounts where net_id='$net_id'";
+            $exist = mysql_query($sql_account_exist) or die(mysql_error());
+            $exist_row = mysql_fetch_array($exist);
+            $exist_num = mysql_num_rows($exist); 
 
-            if($exist_num > 0){
-                $insert2 = true;
-                $msg[] = "你的网络账号(NET ID)已经被其它账号关联";
+            if($exist_num == 1){
+                if($exist_row['student_id']){
+                    $update2 = false;
+                    $msg[] = "你的网络账号(NET ID)已经被其它账号关联";
+                }else{
+
+                    $sql_update_accounts = "update accounts 
+                                            set student_id='$data[student_id]',
+                                                user_id='$user_id'
+                                            where net_id='$net_id'";
+
+                    $update2 = mysql_query($sql_update_accounts) or die("update accounts data failed: ". mysql_error());
+                }
             }else{
-
-                $sql_insert_accounts = "INSERT into accounts 
-                                        (`net_id`,`net_pwd`,`student_id`,`user_id`,`used`)
-                                        VALUES
-                                        ('$net_id','$net_pwd','$data[student_id]','$user_id',$used)
-                                        ";
-                $insert2 = mysql_query($sql_insert_accounts) or die("insert accounts data failed: ". mysql_error());
+                $update2 = false;
+                $err[] = "你的网络账号(NET ID)不存在";
             }
+
+            
 
             $sql_insert_consume ="INSERT into consume
                                   (`user_id`,`student_id`,`fee`,`start_date`,`end_date`)
@@ -129,42 +138,44 @@ if ($_POST['doRegister'] == 'Register') {
 
         }else{
             $update4 = true;
-            $insert2 = true;
             $insert3 = true;
+            $update2 = true;
         }
         
         $update5 = mysql_query("update students set md5_id='$md5_id' where student_id='$student_id'") or die("update md5_id error");
 
-        if($insert1 and $insert2 and $insert3 and $update4 and $update5){
+        if($insert1 and $update2 and $insert3 and $update4 and $update5){
             mysql_query("COMMIT");
+            if ($user_registration) {
+                $a_link = "
+                <h3>激活你的账号</h3>
+                <a href='http://$host$path/activate.php?user=$md5_id&activ_code=$activ_code'>http://$host$path/activate.php?user=$md5_id&activ_code=$activ_code</a>
+                ";
+            } else {
+                $a_link = "你的账号正在等待管理员激活";
+            }
+            
+            $message = "<p>hi $user_name,感谢你使用上网自助服务！</p>
+                        <ul>
+                            <li>姓名: $user_name</li>
+                            <li>邮箱: $usr_email </li>
+                            <li>密码: $data[pwd]</li>
+                        </ul>
+
+                        $a_link
+                        ";
+
+            $subject = "请激活您的账号";
+            $smtpOK = sendEmail($subject, $message, $usr_email);
+            
+            header("Location: thankyou.php");
+            exit();
         }else{
             mysql_query("ROLLBACK");
+            $err[] = "注册不成功，请重新注册或联系管理员";
         }
         
-        if ($user_registration) {
-            $a_link = "
-            <h3>激活你的账号</h3>
-            <a href='http://$host$path/activate.php?user=$md5_id&activ_code=$activ_code'>http://$host$path/activate.php?user=$md5_id&activ_code=$activ_code</a>
-            ";
-        } else {
-            $a_link = "你的账号正在等待管理员激活";
-        }
-        
-        $message = "<p>hi $user_name,感谢你使用上网自助服务！</p>
-                    <ul>
-                        <li>姓名: $user_name</li>
-                        <li>邮箱: $usr_email </li>
-                        <li>密码: $data[pwd]</li>
-                    </ul>
-
-                    $a_link
-                    ";
-
-        $subject = "请激活您的账号";
-        $smtpOK = sendEmail($subject, $message, $usr_email);
-        
-        header("Location: thankyou.php");
-        exit();
+       
     }
 }
 

@@ -1,11 +1,8 @@
-<html>
-	<head>
-		<meta charset="utf-8" />
-	</head>
-</html>
-
 <?php
+header("content-type:text/html;charset=utf-8");
+
 include '../dbc.php';
+admin_page_protect();
 
 ini_set('max_execution_time', 1000);
 
@@ -30,8 +27,8 @@ while (!feof($file))
 
     $last_pay_date = $rowdata[9];
     $expire_date = trim($rowdata[10]);
-    echo $expire_date;
-    echo "<br>";
+    // echo $expire_date;
+    // echo "<br>";
 
     $import_date = date('Y-m-d');
 
@@ -39,13 +36,15 @@ while (!feof($file))
 
     // mysql_query("START TRANSACTION");
 
-  	$sql = "INSERT INTO students2013 (name, tel,grade,major,class,net_id,net_pwd,fee,pay_date,expire_date) VALUES 
-  	('$user_name','$tel','$grade','$major','$class','$net_id','$net_pwd','$fee','$last_pay_date','$expire_date')";  
+  	$sql = "INSERT INTO students2013 (name, tel,grade,major,net_id,net_pwd,fee,pay_date,expire_date) VALUES 
+  	('$user_name','$tel','$grade','$major','$net_id','$net_pwd','$fee','$last_pay_date','$expire_date')";  
+
+    echo $sql;
   	
     $insert2013 = mysql_query($sql) or die(mysql_error());
 
-    $sql_accounts = "INSERT INTO accounts (net_id,net_pwd,import_date,start_date,end_date) VALUES
-    ('$net_id','$net_pwd','$import_date','$last_pay_date','$expire_date')";
+    $sql_accounts = "INSERT INTO accounts (net_id,net_pwd,import_date,start_date,end_date,used) VALUES
+    ('$net_id','$net_pwd','$import_date','$last_pay_date','$expire_date',1)";
     
     $insert_accounts = mysql_query($sql_accounts) or die(mysql_error());
 

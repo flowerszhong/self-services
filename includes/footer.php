@@ -7,6 +7,10 @@
 		<div class="support-by">
 			技术支持: 信息中心
 		</div>
+		
+	</div>
+	<div class="container">
+		<a style="clear:both;float:left;color:#333;" href="<?php echo SITE_ROOT ?>/admin/index.php">管理员入口</a>
 	</div>
 
 </div>
