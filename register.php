@@ -1,11 +1,10 @@
-<?php 
+<?php
 include 'dbc.php';
 include 'register-util.php';
-$page_title = "注册账号" ;
+$page_title = "注册账号";
 include 'includes/head.php';
 include 'includes/errors.php';
-?> 
-<div class="container">
+?><div class="container">
         <form action="register.php" method="post" name="regForm" id="regForm">
             <table>
 
@@ -27,7 +26,7 @@ include 'includes/errors.php';
                     <td>
                         <input name="user_name" type="text" id="user_name" class="required"></td>
                 </tr>
-                
+
                 <tr>
                     <td>
                         <b class="required"> * </b>
@@ -104,7 +103,7 @@ include 'includes/errors.php';
                     </td>
                     <td>
                         <select name="department" id="department"  class="form-control required">
-                          
+
                         </select>
                     </td>
                 </tr>
@@ -154,7 +153,7 @@ include 'includes/errors.php';
 
                 <tr>
                     <td>
-                        
+
                     </td>
                     <td>
                         <button name="doRegister" type="submit" id="doRegister" class="btn btn-success" value="Register">
@@ -166,11 +165,11 @@ include 'includes/errors.php';
         </table>
     </form>
 </div>
-   
 
-<?php 
 
-include 'includes/footer.php'  
+<?php
+
+include 'includes/footer.php'
 
 ?>
 
