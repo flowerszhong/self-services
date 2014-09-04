@@ -1,17 +1,15 @@
-<?php 
+<?php
 include '../dbc.php';
 admin_page_protect();
 ?>
 
 
-<?php 
-  $page_title = "管理学生信息";
-  include '../includes/head.php'; 
-  include '../includes/sidebar.php'; 
-  include '../includes/errors.php';
+<?php
+$page_title = "管理学生信息";
+include '../includes/head.php';
+include '../includes/sidebar.php';
+include '../includes/errors.php';
 ?>
-
-
 <div class="main">
 
 <h3 class="title">账号搜索</h3>
@@ -38,7 +36,7 @@ admin_page_protect();
       </td>
       <td>
         <input type="text" value="" class="form-control" id="user_name" />
-      
+
       </td>
     </tr>
 
@@ -48,7 +46,7 @@ admin_page_protect();
       </td>
       <td>
         <input type="text" value="" class="form-control" id="user_email" />
-      
+
       </td>
     </tr>
     <tr>
@@ -73,7 +71,7 @@ admin_page_protect();
       <td>
         <select name="grade" id="grade-select" class="form-control">
          <option name="" value="">
-             请选择年级 
+             请选择年级
            </option>
            <option name="" value="2013">
              2013
@@ -95,7 +93,7 @@ admin_page_protect();
              请选择系别
            </option>
          </select>
-      
+
       </td>
     </tr>
 
@@ -109,7 +107,7 @@ admin_page_protect();
              请选择专业
            </option>
          </select>
-      
+
       </td>
     </tr>
 
@@ -123,8 +121,8 @@ admin_page_protect();
              请选择专业方向
            </option>
          </select>
-      
-      
+
+
       </td>
     </tr>
 
@@ -146,8 +144,8 @@ admin_page_protect();
                <option name="class" value="9班">9班</option>
                <option name="class" value="10班">10班</option>
          </select>
-      
-      
+
+
       </td>
     </tr>
     <tr>
@@ -164,10 +162,10 @@ admin_page_protect();
 <br>
       <div class="">
         <span id="page-state">
-          
+
         </span>
 
-        
+
          <select id="row-limit">
            <option value="10">10</option>
            <option value="20">20</option>
@@ -177,7 +175,7 @@ admin_page_protect();
       </div>
 
       <div class="toolbar">
-       
+
 
 
           <input name="checkall" type="submit" id="checkall" value="全选">
@@ -188,11 +186,11 @@ admin_page_protect();
       </div>
 
 
-       
+
 
         <table>
         <thead>
-          <tr> 
+          <tr>
             <td>ID</td>
             <td>学号</td>
             <td>姓名</td>
@@ -205,25 +203,25 @@ admin_page_protect();
             <td>是否关联<br>
             上网账号</td>
           </tr>
-          <tr> 
+          <tr>
         </thead>
 
           <tbody id="students-list">
-         
+
           </tbody>
         </table>
-	   
+
      <div id="page-controls">
-       
+
      </div>
 
 
     </div>
 
-<?php 
+<?php
 
-$footer_scripts = array("assets/lib/jquery.tmpl.min.js","assets/js/admin.js");
+$footer_scripts = array("assets/lib/jquery.tmpl.min.js", "assets/js/admin.js");
 
-include '../includes/footer.php'  
+include '../includes/footer.php'
 
 ?>

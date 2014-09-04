@@ -268,7 +268,15 @@ $(function () {
         	'student_id' : {
         		required:true,
         		isStudentId :true
+        	},
+        	'user_name' :{
+        		required:true,
+        		isChineseName:true
         	}
+        }, 
+        submitHandler: function(form) {
+        	$("#doRegister").text("注册提交中...");
+            form.submit();
         }
     });
 
@@ -340,15 +348,6 @@ $(function () {
     //billing module
     $("#add-billing-form").validate();
     $("#add-billing-form tr").find("td:first").addClass("th");
-
-
-	// validate function
-	function isStudentId (id) {
-		if(id.length == 8){
-			return true;
-		}
-	}
-
 
 	$("#state-form").validate();
 

@@ -26,7 +26,7 @@ if ($_POST['student_id'] && $_POST['pwd']) {
 	if (isStudentId($student_id)) {
 		$search_cond = "where student_id=$student_id";
 
-		$sql_select = "SELECT `id`,`pwd`,`user_name`,`approved`,`user_level` FROM students $search_cond";
+		$sql_select = "SELECT `id`,`pwd`,`user_name`,`approved` FROM students $search_cond";
 		$result     = mysql_query($sql_select) or die(mysql_error());
 
 		$num = mysql_num_rows($result);
@@ -37,7 +37,7 @@ if ($_POST['student_id'] && $_POST['pwd']) {
 			// Match row found with more than 1 results  - the user is authenticated.
 			if ($row) {
 
-				list($id, $pwd, $user_name, $approved, $user_level) = $row;
+				list($id, $pwd, $user_name, $approved) = $row;
 
 				if (!$approved) {
 					//$msg = urlencode("Account not activated. Please check your email for activation code");
@@ -56,7 +56,6 @@ if ($_POST['student_id'] && $_POST['pwd']) {
 						$_SESSION['user_id']         = $id;
 						$_SESSION['student_id']      = $id;
 						$_SESSION['student_name']    = $user_name;
-						$_SESSION['user_level']      = $user_level;
 						$_SESSION['HTTP_USER_AGENT'] = md5($_SERVER['HTTP_USER_AGENT']);
 
 						//update the timestamp and key for cookie
@@ -84,7 +83,7 @@ if ($_POST['student_id'] && $_POST['pwd']) {
 				$err[] = "登录出错，该账号不存在";
 			}
 		} else {
-			$err[] = "该记录不存在";
+			$err[] = "学号或密码不正确";
 		}
 
 	} else {
@@ -113,31 +112,31 @@ if ($_SESSION['student_id'] && $_SESSION['student_name']) {
 
 	<?php } else {?>
 	<form class="form-signin" action="index.php" method="post" id="login-form" name="logForm">
-	        <label>学号</label>
-	        <div>
-	            <input type="text" name="student_id" id="student_id" class="form-control login-input required student_id" placeholder="学号" required="" autofocus="">
-	        </div>
-	        <label>密码</label>
-	        <div>
-	            <input type="password" name="pwd" class="form-control login-input" placeholder="密码" minlength="6" required="">
-	        </div>
+				        <label>学号</label>
+				        <div>
+				            <input type="text" name="student_id" id="student_id" class="form-control login-input required student_id" placeholder="学号" required="" autofocus="">
+				        </div>
+				        <label>密码</label>
+				        <div>
+				            <input type="password" name="pwd" class="form-control login-input" placeholder="密码" minlength="6" required="">
+				        </div>
 
-	        <div class="login-util">
-	            <label class="checkbox pull-left">
-	            <input type="checkbox" value="1" name="remember">
-	            记住我
-	        </label>
-	        <a href="forgot.php" class="forgot-pwd">忘记密码 </a>
-	        </div>
+				        <div class="login-util">
+				            <label class="checkbox pull-left">
+				            <input type="checkbox" value="1" name="remember">
+				            记住我
+				        </label>
+				        <a href="forgot.php" class="forgot-pwd">忘记密码 </a>
+				        </div>
 
-	        <button class="btn btn-primary btn-submit" name="doLogin" value="Login" type="hidden">
-	            登录</button>
-	        <a class="btn btn-primary link-submit" name="doLogin">登录</a>
-	        <a class="btn btn-success btn-register" href="register.php">
-	        注册</a>
+				        <button class="btn btn-primary btn-submit" name="doLogin" value="Login" type="hidden">
+				            登录</button>
+				        <a class="btn btn-primary link-submit" name="doLogin">登录</a>
+				        <a class="btn btn-success btn-register" href="register.php">
+				        注册</a>
 
-	        <span class="clearfix"></span>
-	    </form>
+				        <span class="clearfix"></span>
+				    </form>
 
 	<?php }?>
 </div>

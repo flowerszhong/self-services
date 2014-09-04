@@ -4,7 +4,8 @@ include 'register-util.php';
 $page_title = "注册账号";
 include 'includes/head.php';
 include 'includes/errors.php';
-?><div class="container">
+?>
+<div class="container">
         <form action="register.php" method="post" name="regForm" id="regForm">
             <table>
 
@@ -42,7 +43,7 @@ include 'includes/errors.php';
                         密码
                     </td>
                     <td>
-                        <input name="pwd" type="password" class="required password" minlength="6" id="pwd">
+                        <input name="pwd" type="password" class="required password" minlength="6" maxlength="16" id="pwd">
                         <b class="hint">(密码不小于6位字母数字)</b>
                     </td>
                 </tr>
@@ -64,7 +65,14 @@ include 'includes/errors.php';
                         电话
                     </td>
                     <td>
-                        <input name="tel" type="text" id="tel"></td>
+                        <input name="tel" type="text" id="tel" maxlength="14"></td>
+                </tr>
+                <tr>
+                    <td>
+                        QQ
+                    </td>
+                    <td>
+                        <input name="qq" type="text" id="qq" maxlength="12"></td>
                 </tr>
                 <tr>
                     <td>

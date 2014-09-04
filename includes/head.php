@@ -16,7 +16,7 @@
 
 <?php
 if (isset($_SESSION['admin_id'])) {?>
-				    <link href="<?php echo SITE_ROOT?>/assets/lib/jquery-ui.min.css" rel="stylesheet" type='text/css' media='all' />
+									    <link href="<?php echo SITE_ROOT?>/assets/lib/jquery-ui.min.css" rel="stylesheet" type='text/css' media='all' />
 
 	<?php }
 ?>
@@ -44,9 +44,9 @@ if (isset($_SESSION['admin_id'])) {?>
                 <div id="topnav">
                   <ul>
 <?php if (isset($_SESSION['student_id'])) {?>
-	<li><a href="logout.php">退出</a><span>Logout</span></li>
-				                    <li><a href="info.php">账号信息</a><span>Accounts</span></li>
-				                    <li><a href="mysettings.php">个人资料</a><span>Profiles</span></li>
+						<li><a href="logout.php">退出</a><span>Logout</span></li>
+									                    <li><a href="<?php echo SITE_ROOT?>/info.php">账号信息</a><span>Accounts</span></li>
+									                    <li><a href="<?php echo SITE_ROOT?>/mysettings.php">个人资料</a><span>Profiles</span></li>
 	<?php }?>
                     <li><a href="<?php echo SITE_ROOT?>/notices.php">使用需知</a><span>Notices</span></li>
                     <li><a href="<?php echo SITE_ROOT?>/index.php">首页</a><span>Home</span></li>

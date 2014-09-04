@@ -45,14 +45,6 @@ $user_registration = 1;// set 0 or 1
 define("COOKIE_TIME_OUT", 10);//specify cookie timeout in days (default is 10 days)
 define('SALT_LENGTH', 9);// salt for password
 
-//define ("ADMIN_NAME", "admin"); // sp
-
-/* Specify user levels */
-define("ADMIN_LEVEL", 5);
-define("HEADER_LEVEL", 2);
-define("USER_LEVEL", 1);
-define("GUEST_LEVEL", 0);
-
 define("DOCS_DIR", 'docs');
 
 /*************** reCAPTCHA KEYS****************/
@@ -104,10 +96,6 @@ function page_protect() {
 
 				$_SESSION['student_id']      = $_COOKIE['student_id'];
 				$_SESSION['student_name']    = $_COOKIE['student_name'];
-				$rs_userlevel                = mysql_query("select user_level from students where id='$_SESSION[user_id]'");
-				$user_level_row              = mysql_fetch_row($rs_userlevel);
-				$user_level                  = $user_level_row['user_level'];
-				$_SESSION['user_level']      = $user_level;
 				$_SESSION['HTTP_USER_AGENT'] = md5($_SERVER['HTTP_USER_AGENT']);
 
 			} else {
@@ -172,7 +160,6 @@ function admin_page_protect() {
 			}
 
 		} else {
-			echo "44444";
 			header("Location:index.php");
 			exit();
 		}
@@ -241,6 +228,29 @@ function format_date($date, $format_str = "Y-m-d") {
 }
 
 function isUserName($username) {
+	// if (preg_match('/^([\xe4-\xe9][\x80-\xbf]{2}){2,5}$/', $name)) {
+	// 	return true;
+	// } else {
+	// 	return false;
+	// }
+
+	// if (checkGBK($username,1,8)) {
+	// 	return true;
+	// }else{
+	// 	return false;
+	// }
+
+	return true;
+}
+
+function checkGBK($str,$lenStart,$lenEnd){//检查是否符合规定长度的gb2312汉字
+	$strLen=strlen($str)/2;
+	if($strLen>$lenEnd||$strLen<$lenStart) return false;
+	for($n=0;$n<strlen($str);$n+=2){
+		$fs=ord($str[$n]);
+		$ss=ord($str[$n+1]);
+		if(!($fs>175&&$fs<248&&$ss>160&&$ss<255))  return false;
+	}
 	return true;
 }
 
@@ -252,7 +262,7 @@ function isAdminName($adminName) {
 }
 
 function isStudentId($id) {
-	if (is_numeric($id) && strlen($id) == 8) {
+	if (is_numeric($id) && strlen($id) == 10) {
 		return true;
 	}
 	return false;
@@ -345,7 +355,6 @@ function logout() {
 	unset($_SESSION['student_id']);
 	unset($_SESSION['student_name']);
 	unset($_SESSION['user_id']);
-	unset($_SESSION['user_level']);
 	unset($_SESSION['HTTP_USER_AGENT']);
 	session_unset();
 	session_destroy();
@@ -396,15 +405,6 @@ function PwdHash($pwd, $salt = null) {
 	return $salt . sha1($pwd . $salt);
 }
 
-function checkAdmin() {
-	// var_dump($_SESSION);
-	// echo 'user_level'.$_SESSION['user_level'];
-	if ($_SESSION['user_level'] == ADMIN_LEVEL) {
-		return 1;
-	} else {
-		return 0;
-	}
-}
 
 function strToUtf8($vector) {
 	$from_chr = mb_detect_encoding($vector, array(

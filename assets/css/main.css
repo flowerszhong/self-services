@@ -83,12 +83,13 @@ body{
 /* top nav bar */
 
 .color-bar{
-	border-top: 10px solid #B86365;
+	/*border-top: 10px solid #B86365;*/
 	background-color: #191919;
 	height: 36px;
 	margin: 0;
 	padding: 0;
 	width: 100%;
+	background: #191919 url(../image/zctop.png) center top repeat-x;
 }
 
 .navbar{
@@ -529,7 +530,7 @@ label.error{
 
 /* statistics module*/
 
-#statistics-table a{
+.statistics-table a{
 	text-decoration: underline;
 }
 
