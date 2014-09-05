@@ -3,6 +3,7 @@ $(function() {
   var GLOBAL_SEARCH_PARAM = null;
 
   $(".statistics-table").on('click', "a", function(e) {
+    return false;
     var $link = $(this);
     var num = parseInt($link.text());
     if (num > 0) {

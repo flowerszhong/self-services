@@ -36,8 +36,9 @@ if ($_POST['export'] == 'students') {
 	$objPHPExcel->getActiveSheet()->setCellValue('G1', "专业");
 	$objPHPExcel->getActiveSheet()->setCellValue('H1', "专业方向");
 	$objPHPExcel->getActiveSheet()->setCellValue('I1', "年级");
-	$objPHPExcel->getActiveSheet()->setCellValue('J1', "上网账号");
-	$objPHPExcel->getActiveSheet()->setCellValue('K1', "账号到期时间");
+	$objPHPExcel->getActiveSheet()->setCellValue('J1', "班级");
+	$objPHPExcel->getActiveSheet()->setCellValue('K1', "上网账号");
+	$objPHPExcel->getActiveSheet()->setCellValue('L1', "账号到期时间");
 
 // Rows to repeat at top
 	$objPHPExcel->getActiveSheet()->getPageSetup()->setRowsToRepeatAtTopByStartAndEnd(1, 1);
@@ -54,8 +55,9 @@ if ($_POST['export'] == 'students') {
 		            ->setCellValue('G' . $startIndex, $row['major'])
 		            ->setCellValue('H' . $startIndex, $row['sub_major'])
 		            ->setCellValue('I' . $startIndex, $row['grade'])
-		            ->setCellValue('J' . $startIndex, $row['net_id'])
-		            ->setCellValue('K' . $startIndex, $row['expire_date']);
+		            ->setCellValue('J' . $startIndex, $row['class'])
+		            ->setCellValue('K' . $startIndex, $row['net_id'])
+		            ->setCellValue('L' . $startIndex, $row['expire_date']);
 		$startIndex = $startIndex + 1;
 	}
 

@@ -23,10 +23,13 @@ if (isset($_POST['upload'])) {
 	if ($upfile->uploadeFile('docs')) {
 		$arrfile = $upfile->getnewFile();
 		foreach ($arrfile as $v) {
-			$encode = mb_detect_encoding($v, array("UTF-8", "GB2312", "GBK", 'BIG5'));
-			if ($encode == 'GB2312') {
-				$v = iconv('GB2312', 'UTF-8', $v);
-			}
+			// $encode = mb_detect_encoding($v, array("UTF-8", "GB2312", "GBK", 'BIG5'));
+			// if ($encode == 'GB2312') {
+			// 	$v = iconv('GB2312', 'UTF-8', $v);
+			// }
+
+			$v = iconv('GB2312', 'UTF-8', $v);
+
 			$msg[] = $v . '上传成功';
 		}
 	} else {
@@ -62,11 +65,11 @@ include "../includes/errors.php";
 <?php
 foreach ($array_file as $key => $value) {
 	?>
-																																																	  <li>
-																																																	    <a target="blank" href="<?php echo SITE_ROOT . '/admin/docs/' . $value;?>"><?php echo $value;
+																																																								  <li>
+																																																								    <a target="blank" href="<?php echo SITE_ROOT . '/admin/docs/' . $value;?>"><?php echo $value;
 	?></a>
-																																																	    <input type="button" class='delete-doc' data-id='<?php echo $value;?>' value="删除" />
-																																																	  </li>
+																																																								    <input type="button" class='delete-doc' data-id='<?php echo $value;?>' value="删除" />
+																																																								  </li>
 	<?php
 }
 ?>

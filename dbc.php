@@ -223,8 +223,13 @@ function get_Datetime_Now() {
 }
 
 function format_date($date, $format_str = "Y-m-d") {
-	$d = strtotime($date);
-	return date($format_str, $d);
+	if($date){
+		$d = strtotime($date);
+		return date($format_str, $d);
+	}else{
+		return $date;
+	}
+	
 }
 
 function isUserName($username) {

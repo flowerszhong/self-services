@@ -12,7 +12,9 @@ include '../includes/errors.php';
 ?>
 <div class="main">
 
-<h3 class="title">账号搜索</h3>
+<h3 class="title">账号搜索
+<a href="inquery/index.php?r=students/admin">(点击切换到高级搜索)</a>
+</h3>
 
 <form id="search-form">
   <table class="search-table">

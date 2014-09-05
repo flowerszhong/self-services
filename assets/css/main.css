@@ -531,7 +531,19 @@ label.error{
 /* statistics module*/
 
 .statistics-table a{
-	text-decoration: underline;
+	/*text-decoration: underline;*/
+}
+
+
+
+/*billing module*/
+
+.import-fail{
+	color: red;
+}
+
+.import-ok{
+	color:green;
 }
 
 

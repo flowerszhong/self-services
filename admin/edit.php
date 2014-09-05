@@ -1,102 +1,100 @@
-<?php 
+<?php
 /********************** MYSETTINGS.PHP**************************
 This updates user settings and password
-************************************************************/
+ ************************************************************/
 include '../dbc.php';
 admin_page_protect();
 
 $err = array();
 $msg = array();
 
-
-if(!empty($_GET['id'])){
+if (!empty($_GET['id'])) {
 	$id = $_GET['id'];
-	
-}else{
+
+} else {
 	header("Content-type:text/html;charset=utf-8");
 	echo "不存在该用户，请检查该用户ID";
 	die();
 }
 
-if(sizeof($_POST)>0)  
-{
+if (sizeof($_POST) > 0) {
 	// Filter POST data for harmful code (sanitize)
-	foreach($_POST as $key =>$value) {
+	foreach ($_POST as $key => $value) {
 		$data[$key] = filter($value);
 	}
 
 	// var_dump($_POST);
 
-	if($data['user_name']){
+	if ($data['user_name']) {
 		$sql_update = "UPDATE students SET `user_name` = '$data[user_name]' WHERE id='$id'";
 		mysql_query($sql_update) or die(mysql_error());
 	}
 
-	if($data['student_id']){
+	if ($data['student_id']) {
 		$sql_update = "UPDATE students SET `student_id` = '$data[student_id]' WHERE id='$id'";
 		mysql_query($sql_update) or die(mysql_error());
 	}
 
-
-	if($data['tel']){
+	if ($data['tel']) {
 		$sql_tel_update = "UPDATE students SET `tel` = '$data[tel]' WHERE id='$id'";
 		mysql_query($sql_tel_update) or die(mysql_error());
 	}
 
-	if($data['user_email']){
+	if ($data['qq']) {
+		$sql_qq_update = "UPDATE students SET `qq` = '$data[qq]' WHERE id='$id'";
+		mysql_query($sql_qq_update) or die(mysql_error());
+	}
+
+	if ($data['user_email']) {
 		$sql_update = "UPDATE students SET `user_email` = '$data[user_email]' WHERE id='$id'";
 		mysql_query($sql_update) or die(mysql_error());
 	}
 
-	if($data['grade']){
+	if ($data['grade']) {
 		$sql_update = "UPDATE students SET `grade` = '$data[grade]' WHERE id='$id'";
 		mysql_query($sql_update) or die(mysql_error());
 	}
 
-	if($data['department']){
+	if ($data['department']) {
 		$sql_update = "UPDATE students SET `department` = '$data[department]',`major` = '$data[major]',`sub_major` = '$data[sub_major]' WHERE id='$id'";
 		mysql_query($sql_update) or die(mysql_error());
 	}
 
-	if($data['major']){
+	if ($data['major']) {
 		$sql_update = "UPDATE students SET `major` = '$data[major]',`sub_major` = '$data[sub_major]'  WHERE id='$id'";
 		mysql_query($sql_update) or die(mysql_error());
 	}
 
-	if($data['sub_major']){
+	if ($data['sub_major']) {
 		$sql_update = "UPDATE students SET `sub_major` = '$data[sub_major]' WHERE id='$id'";
 		mysql_query($sql_update) or die(mysql_error());
 	}
 
-
-	if($data['class']){
+	if ($data['class']) {
 		$sql_update = "UPDATE students SET `class` = '$data[class]' WHERE id='$id'";
 		mysql_query($sql_update) or die(mysql_error());
 	}
 
-	
 	$msg[] = "人个资料更新成功";
-	 }
- 
-$rs_settings = mysql_query("select * from students where id='$id'") or die(mysql_error()); 
+}
+
+$rs_settings  = mysql_query("select * from students where id='$id'") or die(mysql_error());
 $row_settings = mysql_fetch_array($rs_settings);
-
-
 
 $page_title = '编辑学生信息';
 include '../includes/head.php';
 include '../includes/errors.php';
 include '../includes/sidebar.php';
- ?>
+?>
 <div class="main">
 
 	<h3 class="title">编辑学生信息</h3>
-	<form action="edit.php?id=<?php echo $id; ?>" method="post" name="settingForm" id="setting-form">
+	<form action="edit.php?id=<?php echo $id;?>" method="post" name="settingForm" id="setting-form">
 		<table id="setting-table">
 			<tr>
 				<td>学号</td>
 				<td>
-					<input name="student_id" type="text" id="student_id" class="required" value="<? echo $row_settings['student_id']; ?>" /> 
+					<input name="student_id" type="text" id="student_id" class="required" value="<? echo $row_settings['student_id']; ?>" />
 				</td>
 			</tr>
 
@@ -116,6 +114,12 @@ include '../includes/sidebar.php';
 				<td>电话</td>
 				<td>
 					<input name="tel" type="text" id="tel" value="<? echo $row_settings['tel']; ?>"></td>
+			</tr>
+
+			<tr>
+				<td>qq</td>
+				<td>
+					<input name="qq" type="text" id="qq" value="<? echo $row_settings['qq']; ?>"></td>
 			</tr>
 
 			<tr>
@@ -165,7 +169,7 @@ include '../includes/sidebar.php';
 			<tr>
 				<td>系别</td>
 				<td>
-					<label class="lbl"> <?php echo $row_settings['department']; ?> </label>
+					<label class="lbl"> <?php echo $row_settings['department'];?></label>
 
 					<select name="department" id="department" class="form-control required editing">
 					</select>
@@ -177,8 +181,8 @@ include '../includes/sidebar.php';
 				<td>
 
 					<label class="lbl">
-						<?php echo $row_settings['major'];  ?>
-					</label>
+<?php echo $row_settings['major'];?>
+</label>
 
 					<select name="major" id="major" class="form-control required editing">
 					    <option value="">请选择专业</option>
@@ -191,7 +195,7 @@ include '../includes/sidebar.php';
 				<td>
 
 					<label class="lbl">
-						<?php echo $row_settings['sub_major'];  ?>
+<?php echo $row_settings['sub_major'];?>
 					</label>
 
 					<select name="sub_major" id="sub-major" class="form-control editing">
@@ -203,9 +207,9 @@ include '../includes/sidebar.php';
 			<tr>
 				<td>班级</td>
 				<td>
-				<label class="lbl"><?php echo $row_settings['class']; ?> 班</label>
+				<label class="lbl"><?php echo $row_settings['class'];?> 班</label>
 
-					<select name="class" id="" class="editing required"> cvalue="<?php echo $row_settings['class']; ?>" >
+					<select name="class" id="" class="editing required"> cvalue="<?php echo $row_settings['class'];?>" >
 
 						<option value="">请选择班级</option>
 						<option value="1">1班</option>
@@ -232,11 +236,11 @@ include '../includes/sidebar.php';
 	</form>
 	</div>
 
-<?php 
+<?php
 
-$footer_scripts = array("assets/lib/jquery.validate.js","assets/lib/jquery.validate.ext.js","assets/js/register.js","assets/js/settings.js");
+$footer_scripts = array("assets/lib/jquery.validate.js", "assets/lib/jquery.validate.ext.js", "assets/js/register.js", "assets/js/settings.js");
 
-include '../includes/footer.php'; ?>
+include '../includes/footer.php';?>
 
 
 

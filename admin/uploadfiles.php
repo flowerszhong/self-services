@@ -120,10 +120,12 @@ class UploadFiles {
 			return false;
 		}
 		$arrstr = explode('.', $name);
-		$encode = mb_detect_encoding($name, array("UTF-8", "GB2312", "GBK", 'BIG5'));
-		if ($encode == 'GB2312') {
-			$name = iconv('UTF-8', 'GB2312', $name);
-		}
+		// $encode = mb_detect_encoding($name, array("UTF-8", "GB2312", "GBK", 'BIG5'));
+		// if ($encode == 'GB2312') {
+		// 	$name = iconv('UTF-8', 'GB2312', $name);
+		// }
+
+		$name = iconv('UTF-8', 'GB2312', $name);
 
 		$type = end($arrstr);
 		$this->setOption('originName', $name);
