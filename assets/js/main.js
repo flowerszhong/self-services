@@ -235,10 +235,10 @@ $(function () {
 					dataType :"json",
 					type:"GET"
 				}).done(function (data) {
-					console.log(data);
+					// console.log(data);
 					if(data){
 						var netId = data['net_id'];
-						console.log(netId);
+						// console.log(netId);
 						hintText = "Hi " + username + " 同学，你的上网账号有可能是：" + netId;
 						$hint.text(hintText);
 					}
@@ -401,7 +401,7 @@ $(function () {
 				      	'doc_name' : docname
 				      },
 				      success: function  (data) {
-				      	console.log(data);
+				      	// console.log(data);
 				        if(data && data.state =="ok"){
 			              $this.parent().hide();
 			            }
@@ -410,6 +410,37 @@ $(function () {
 				    });
 		}
 
+	});
+
+
+	$("#resign-net").click(function () {
+		if(confirm("确定重新分配上网账号？")){
+			$this = $(this);
+			$this.text("正在分配上网账号....");
+
+			netId = $this.attr("data-id");
+			if(netId == ""){
+				alert("该生尚未拥有上网账号，不能重新分配上网账号");
+				$this.text("重新分配上网账号")
+			}else{
+			    $.ajax({
+			      type: "POST",
+			      url: "resign.php",
+			      data: {
+			      	'net_id' : netId
+			      },
+			      success: function  (data) {
+			      	// console.log(data);
+			        if(data && data.state =="ok"){
+			        	$("#input-net-id").val(data['net_id']);
+			        	$("#input-net-pwd").val(data['net_pwd']);
+		              $this.text("分配成功");
+		            }
+			      },
+			      dataType: "json"
+			    });
+			}
+		}
 	});
 
 

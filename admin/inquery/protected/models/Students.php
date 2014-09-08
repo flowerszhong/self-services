@@ -28,6 +28,7 @@
  * @property string $net_pwd
  * @property string $start_date
  * @property string $expire_date
+ * @property string $pay_date
  */
 class Students extends CActiveRecord {
 	/**
@@ -56,7 +57,7 @@ class Students extends CActiveRecord {
 			array('reg_date, start_date, expire_date', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, student_id, user_name, user_email, tel, qq, department, major, sub_major, grade, class, log_ip, approved, reg_date, activation_code, banned, ckey, ctime, net_id, net_pwd, start_date, expire_date', 'safe', 'on' => 'search'),
+			array('id, student_id, user_name, user_email, tel, qq, department, major, sub_major, grade, class, log_ip, approved, reg_date, activation_code, banned, ckey, ctime, net_id, net_pwd, start_date, expire_date,pay_date', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -99,6 +100,7 @@ class Students extends CActiveRecord {
 			'net_pwd'         => '上网密码',
 			'start_date'      => '开始时间',
 			'expire_date'     => '结束时间',
+			'pay_date'        => '缴费日期',
 		);
 	}
 

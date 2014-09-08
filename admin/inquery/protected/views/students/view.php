@@ -1,3 +1,6 @@
+<a href="index.php?r=students/admin">返回</a>
+
+
 <?php $this->widget('zii.widgets.CDetailView', array(
 		'data'       => $model,
 		'attributes' => array(
@@ -25,5 +28,6 @@
 			'net_pwd',
 			'start_date',
 			'expire_date',
+			'pay_date',
 		),
 	));?>

@@ -26,9 +26,6 @@ $('.search-form form').submit(function(){
 	));?>
 </div><!-- search-form -->
 
-
-
-
 <?php $this->widget('zii.widgets.grid.CGridView', array(
 		'id'           => 'students-grid',
 		'dataProvider' => $model->search(),
@@ -61,7 +58,8 @@ $('.search-form form').submit(function(){
 			'expire_date',
 
 			array(
-				'class' => 'CButtonColumn',
+				'class'    => 'CButtonColumn',
+				'template' => '{view} {update}',
 			),
 		),
 	));?>

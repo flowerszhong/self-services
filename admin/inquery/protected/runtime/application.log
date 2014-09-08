@@ -85,3 +85,170 @@ Stack trace:
 REQUEST_URI=/self-services/admin/inquery/index.php?Students%5Bstudent_id%5D=&Students%5Buser_name%5D=&Students%5Bdepartment%5D=&Students%5Bmajor%5D=&Students%5Bsub_major%5D=%E5%B7%A5%E7%A8%8B%E7%9B%91%E6%B5%8B%E6%8A%80%E6%9C%AF&Students%5Bgrade%5D=&Students%5Bclass%5D=&Students%5Bapproved%5D=&Students%5Bnet_id%5D=&Students%5Bnet_pwd%5D=&Students%5Bstart_date%5D=%25%EF%BC%9D2014-08-31&Students%5Bexpire_date%5D=&Students_page=1&ajax=students-grid&r=students%2Fadmin
 HTTP_REFERER=http://192.168.22.150:1988/self-services/admin/inquery/index.php?r=students/admin
 ---
+2014/09/07 18:58:28 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Users/janice/Projects/php/yii/yii/framework/web/CController.php:336
+Stack trace:
+#0 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('view')
+#9 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('students/view')
+#10 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
+#12 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=students/view
+---
+2014/09/07 18:58:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "view?id=1".' in /Users/janice/Projects/php/yii/yii/framework/web/CController.php:483
+Stack trace:
+#0 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(270): CController->missingAction('view?id=1')
+#1 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('view?id=1')
+#2 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('students/view?i...')
+#3 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
+#5 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=students/view?id=1
+---
+2014/09/07 19:05:15 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Users/janice/Projects/php/yii/yii/framework/web/CController.php:336
+Stack trace:
+#0 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('view')
+#9 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('students/view')
+#10 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
+#12 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=students/view
+---
+2014/09/08 11:04:22 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('admin')
+#8 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('accounts/admin')
+#9 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
+#11 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=accounts/admin
+HTTP_REFERER=http://localhost:1988/self-services/admin/net-accounts.php
+---
+2014/09/08 11:05:33 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('admin')
+#8 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('accounts/admin')
+#9 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
+#11 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=accounts/admin
+HTTP_REFERER=http://localhost:1988/self-services/admin/net-accounts.php
+---
+2014/09/08 11:05:36 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('admin')
+#8 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('accounts/admin')
+#9 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
+#11 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=accounts/admin
+---
+2014/09/08 11:05:55 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('admin')
+#8 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('Accounts/admin')
+#9 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
+#11 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=Accounts/admin
+---
+2014/09/08 11:06:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "login".' in /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('login')
+#1 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#2 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=login
+---
+2014/09/08 11:07:15 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('admin')
+#8 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('accounts/admin')
+#9 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
+#11 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=accounts/admin
+---
+2014/09/08 11:09:31 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('admin')
+#8 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('Accounts/admin')
+#9 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
+#11 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=Accounts/admin
+---
+2014/09/08 11:09:39 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php:182
+Stack trace:
+#0 /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
+#1 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
+#2 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#3 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#4 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#5 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
+#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#7 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('admin')
+#8 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('accounts/admin')
+#9 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#10 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
+#11 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=accounts/admin
+HTTP_REFERER=http://localhost:1988/self-services/admin/inquery/index.php?r=Accounts
+---

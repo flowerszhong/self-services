@@ -29,6 +29,13 @@ function associateNetAccount($student_id, $fee) {
 		return false;
 	}
 
+	if (!compare_pay_date($student_data['pay_date'])) {
+		add_log(false, 'payed_recent', $student_id, $student_data['user_name']);
+		return false;
+	}
+
+	$curr_date = date('Y-m-d');
+
 	if ($student_data && $student_data['student_id'] == $student_id) {
 
 		$expire_date = $student_data['expire_date'];
@@ -68,7 +75,8 @@ where id='$row_account[id]'";
 net_id='$row_account[net_id]',
 net_pwd='$row_account[net_pwd]',
 expire_date='$end_date',
-start_date='$start_date'
+start_date='$start_date',
+pay_date='$curr_date'
 where student_id=$student_id";
 // echo $sql_update_student;
 			$bool_update_student = mysql_query($sql_update_student) or die($sql_update_student);
@@ -77,13 +85,14 @@ where student_id=$student_id";
 			// var_dump($bool_update_student);
 
 		} else {
-			$pay_date = $start_date;
+			$s_start_date = $start_date;
 			if ($student_data['start_date']) {
-				$pay_date = $student_data['start_date'];
+				$s_start_date = $student_data['start_date'];
 			}
 			$sql_update_student = "update students set
 expire_date='$end_date',
-start_date='$pay_date'
+start_date='$s_start_date',
+pay_date='$curr_date'
 where student_id='$student_id'";
 // echo $sql_update_student;
 			$bool_update_student = mysql_query($sql_update_student) or die($sql_update_student);
@@ -102,9 +111,9 @@ where net_id='$student_data[net_id]'";
 		$user_id = $student_data['id'];
 
 		$sql_insert_consume = "INSERT into consume
-(`user_id`,`student_id`,`fee`,`start_date`,`end_date`)
+(`user_id`,`student_id`,`fee`,`start_date`,`end_date`,`pay_date`)
 VALUES
-($user_id,'$student_id','$fee','$start_date','$end_date')
+($user_id,'$student_id','$fee','$start_date','$end_date','$curr_date')
 ";
 
 		$bool_insert_consume = mysql_query($sql_insert_consume) or die($sql_insert_consume);
@@ -136,6 +145,15 @@ VALUES
 	}
 
 	return $flag;
+}
+
+function compare_pay_date($last_pay_date) {
+	$current_date = date("Y-m-d");
+	if (strtotime($current_date) - strtotime($last_pay_date) < 5270400) {
+		return false;
+	} else {
+		return true;
+	}
 }
 
 function calc_start_end_date($expire_date, $fee) {
@@ -175,7 +193,6 @@ function calc_start_end_date($expire_date, $fee) {
 					1,
 					date('Y')
 				));
-			echo $start_date;
 		}
 
 		$start_date_time = strtotime($start_date);
@@ -205,15 +222,16 @@ function calc_start_end_date($expire_date, $fee) {
 
 function add_log($ok, $code, $student_id, $user_name) {
 	$code_array = array(
-		'ok'         => '添加成功',
-		'duplicate'  => '已有缴费记录，请不要重复缴费',
-		'students'   => '更新学生表失败',
-		'fee'        => '费用出错',
-		'accounts'   => '更新账号表失败',
-		'consume'    => '更新缴费记录表失败',
-		'not_found'  => '未找到该用户',
-		'data_error' => '未找到该用户',
-		'unknow'     => '未知错误',
+		'ok'           => '添加成功',
+		'duplicate'    => '已有缴费记录，请不要重复缴费',
+		'payed_recent' => '近期已缴费，请不要重复缴费',
+		'students'     => '更新学生表失败',
+		'fee'          => '费用出错',
+		'accounts'     => '更新账号表失败',
+		'consume'      => '更新缴费记录表失败',
+		'not_found'    => '未找到该用户',
+		'data_error'   => '未找到该用户',
+		'unknow'       => '未知错误',
 	);
 
 	global $report;
@@ -231,7 +249,7 @@ function add_log($ok, $code, $student_id, $user_name) {
 }
 
 function getStudentData($student_id) {
-	$sql_select = "select id,student_id,user_name,net_id,net_pwd,start_date,expire_date,grade from students where student_id=$student_id";
+	$sql_select = "select id,student_id,user_name,net_id,net_pwd,start_date,expire_date,grade,pay_date from students where student_id=$student_id";
 // echo $sql_select;
 	$query = mysql_query($sql_select);
 	if ($query) {
@@ -326,34 +344,34 @@ include "../includes/errors.php";
 if (sizeof($report) > 0) {
 	?>
 	<h3 class="title">
-																																																																																																														导入结果
-																																																																																																														</h3>
-																																																																																																														<table>
-																																																																																																														<tr>
-																																																																																																															<td>成功</td>
-																																																																																																															<td>学号</td>
-																																																																																																															<td>姓名</td>
-																																																																																																															<td>原因</td>
-																																																																																																														</tr>
+				导入结果
+				</h3>
+				<table>
+				<tr>
+				<td>成功</td>
+				<td>学号</td>
+				<td>姓名</td>
+				<td>原因</td>
+				</tr>
 	<?php
 
 	foreach ($report as $key => $log) {?>
-		<tr class="import-<?php echo $log['ok'];?>">
-																																																																																																																																																																																																																																																																																																																														<td>
+								<tr class="import-<?php echo $log['ok'];?>">
+								<td>
 		<?php echo $log['ok_msg'];?>
 		</td>
 
-																																																																																																																																																																																																																																																																																																																														<td>
+								<td>
 		<?php echo $log['id'];?>
 		</td>
-																																																																																																																																																																																																																																																																																																																														<td>
+								<td>
 		<?php echo $log['name'];?>
 		</td>
 
-																																																																																																																																																																																																																																																																																																																														<td>
+								<td>
 		<?php echo $log['cause'];?>
 		</td>
-																																																																																																																																																																																																																																																																																																																													</tr>
+								</tr>
 
 
 		<?php

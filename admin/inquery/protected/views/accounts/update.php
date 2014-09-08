@@ -1,21 +1,5 @@
-<?php
-/* @var $this AccountsController */
-/* @var $model Accounts */
+<a href="index.php?r=accounts/admin">返回</a>
 
-$this->breadcrumbs=array(
-	'Accounts'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
-	'Update',
-);
+<h1 class="title">更新上网账号</h1>
 
-$this->menu=array(
-	array('label'=>'List Accounts', 'url'=>array('index')),
-	array('label'=>'Create Accounts', 'url'=>array('create')),
-	array('label'=>'View Accounts', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage Accounts', 'url'=>array('admin')),
-);
-?>
-
-<h1>Update Accounts <?php echo $model->id; ?></h1>
-
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_form', array('model' => $model));?>
