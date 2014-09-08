@@ -100,7 +100,7 @@ where student_id='$student_id'";
 			$sql_update_account = "update accounts set
 used=1,
 grade='$student_data[grade]',
-start_date='$start_date',
+start_date='$s_start_date',
 end_date='$end_date'
 where net_id='$student_data[net_id]'";
 
@@ -209,7 +209,7 @@ function calc_start_end_date($expire_date, $fee) {
 				date('Y', $time_expire_date)
 			));
 		$end_date = date('Y-m-d', mktime(0, 0, 0,
-				date('m', $time_expire_date) + $months,
+				date('m', $time_expire_date) + $months + 1,
 				0,
 				date('Y', $time_expire_date)
 			));
