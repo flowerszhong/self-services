@@ -18,7 +18,7 @@ var $studentsList = $("#students-list"),
   			'doSearch': 'Search',
   			'record_limit' : $recordLimitSelect.val(),
   			'student_id' : $studentId.val(),
-  			'user_email' : $email.val(),
+  			'user_email' : $email.val()
   		}
   		return param;
   }

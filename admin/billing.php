@@ -45,6 +45,7 @@ function associateNetAccount($student_id, $fee) {
 		if ($dates) {
 			$start_date = $dates['start_date'];
 			$end_date   = $dates['end_date'];
+			$rebalance  = $dates['rebalance'];
 		} else {
 			add_log(false, "duplicate", $student_id, $student_data['user_name']);
 			return false;
@@ -86,7 +87,7 @@ where student_id=$student_id";
 
 		} else {
 			$s_start_date = $start_date;
-			if ($student_data['start_date']) {
+			if (!$rebalance) {
 				$s_start_date = $student_data['start_date'];
 			}
 			$sql_update_student = "update students set
@@ -180,8 +181,9 @@ function calc_start_end_date($expire_date, $fee) {
 		return null;
 	}
 	if ($time_now >= $time_expire_date) {
+		$rebalance  = true;
 		$start_date = $current_date;
-		if (date('d') > 20) {
+		if (date('d') > 15) {
 			$start_date = date("Y-m-d", mktime(0, 0, 0,
 					date('m') + 1,
 					1,
@@ -203,6 +205,7 @@ function calc_start_end_date($expire_date, $fee) {
 				date('Y', $start_date_time)
 			));
 	} else {
+		$rebalance  = false;
 		$start_date = date('Y-m-d', mktime(0, 0, 0,
 				date('m', $time_expire_date) + 1,
 				1,
@@ -215,8 +218,10 @@ function calc_start_end_date($expire_date, $fee) {
 			));
 	}
 
-	return array('start_date' => $start_date,
-		'end_date'               => $end_date,
+	return array(
+		"rebalance"  => $rebalance,
+		'start_date' => $start_date,
+		'end_date'   => $end_date,
 	);
 }
 
@@ -344,34 +349,34 @@ include "../includes/errors.php";
 if (sizeof($report) > 0) {
 	?>
 	<h3 class="title">
-				导入结果
-				</h3>
-				<table>
-				<tr>
-				<td>成功</td>
-				<td>学号</td>
-				<td>姓名</td>
-				<td>原因</td>
-				</tr>
+	导入结果
+	</h3>
+	<table>
+	<tr>
+	<td>成功</td>
+	<td>学号</td>
+	<td>姓名</td>
+	<td>原因</td>
+	</tr>
 	<?php
 
 	foreach ($report as $key => $log) {?>
-								<tr class="import-<?php echo $log['ok'];?>">
-								<td>
+		<tr class="import-<?php echo $log['ok'];?>">
+		<td>
 		<?php echo $log['ok_msg'];?>
 		</td>
 
-								<td>
+		<td>
 		<?php echo $log['id'];?>
 		</td>
-								<td>
+		<td>
 		<?php echo $log['name'];?>
 		</td>
 
-								<td>
+		<td>
 		<?php echo $log['cause'];?>
 		</td>
-								</tr>
+		</tr>
 
 
 		<?php

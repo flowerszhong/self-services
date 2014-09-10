@@ -41,7 +41,7 @@ if (isset($_POST['import'])) {
 			echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
 		} else {
 
-			// if (file_exists("upload/" . $_FILES["file"]["name"])) {
+// if (file_exists("upload/" . $_FILES["file"]["name"])) {
 			//     echo $_FILES["file"]["name"] . " already exists. ";
 			// } else {
 			// move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $_FILES["file"]["name"]);
@@ -49,7 +49,7 @@ if (isset($_POST['import'])) {
 			// }
 
 			$filename = iconv('UTF-8', 'GB2312', $_FILES["file"]["name"]);
-			// $filename = $_FILES["file"]["name"];
+// $filename = $_FILES["file"]["name"];
 			// $encode   = mb_detect_encoding($filename, array("UTF-8", "GB2312", "GBK", 'BIG5'));
 			// if ($encode == 'GB2312') {
 			// 	$filename = iconv('UTF-8', 'GB2312', $filename);
@@ -64,12 +64,12 @@ if (isset($_POST['import'])) {
 				$highestColumm = "B";// 取得总列数
 				// $highestColumm = $sheet->getHighestColumn(); // 取得总列数
 
-				/** 循环读取每个单元格的数据 */
+/** 循环读取每个单元格的数据 */
 				for ($row = 2; $row <= $highestRow; $row++) {//行数是以第1行开始
 					$net_id  = $sheet->getCell("A" . $row)->getValue();
 					$net_pwd = $sheet->getCell("B" . $row)->getValue();
 					addAccount($net_id, $net_pwd, $err);
-					// for ($column = 'A'; $column <= $highestColumm; $column++) {//列数是以A列开始
+// for ($column = 'A'; $column <= $highestColumm; $column++) {//列数是以A列开始
 					//     $dataset[] = $sheet->getCell($column.$row)->getValue();
 					//     echo $column.$row.":".$sheet->getCell($column.$row)->getValue()."<br />";
 					// }
@@ -169,13 +169,13 @@ echo $expire_num;
 </div>
 
 <h3 class="title">
-	上网账号高级查询
+上网账号高级查询
 </h3>
 
 <div>
-	<a href="inquery/index.php?r=accounts/admin" class="btn btn-success">
-		点击查询上网账号
-	</a>
+<a href="inquery/index.php?r=accounts/admin" class="btn btn-success">
+点击查询上网账号
+</a>
 </div>
 
 
@@ -195,19 +195,19 @@ $rows_result = mysql_query($sql_select) or die(mysql_error());
 
 <?php while ($rrow = mysql_fetch_array($rows_result)) {?>
 	<tr>
-																																																														<td>
+	<td>
 	<?php echo $rrow['net_id'];?>
 	</td>
 
-																																																														<td>
+	<td>
 	<?php echo $rrow['net_pwd'];?>
 	</td>
-																																																														<td>
+	<td>
 	<?php if ($rrow['used']) {echo "已关联";} else {
 		echo "未关联";
 	}?>
 	</td>
-																																																														</tr>
+	</tr>
 
 
 	<?php }?>

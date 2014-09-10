@@ -260,6 +260,10 @@ li{
 	color: #333;
 }
 
+.form-signin div{
+	vertical-align: top;
+}
+
 
 
 .form-control {

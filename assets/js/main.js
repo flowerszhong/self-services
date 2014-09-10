@@ -257,6 +257,11 @@ $(function () {
 	});
 
 
+
+	// $(".form-signin").on("submit",function () {
+	// 	return false;
+	// });
+
 	$("#regForm input").addClass("form-control");
 
 	$("#regForm input[type='text']").addClass("custom-input");
@@ -302,12 +307,6 @@ $(function () {
 		$(this).hide();
 		$("#change-major-setting").show();
 	});
-
-	$(".link-submit").click(function () {
-		$("#login-form").submit();
-		return false;
-	});
-
 
 	$("#link-save-setting").click(function () {
 		$("#setting-form").submit();
@@ -397,7 +396,7 @@ $(function () {
 				      type: "POST",
 				      url: "delete-doc.php",
 				      data: {
-				      	delete : 'delete',
+				      	'delete' : 'delete',
 				      	'doc_name' : docname
 				      },
 				      success: function  (data) {

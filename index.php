@@ -129,9 +129,9 @@ if ($_SESSION['student_id'] && $_SESSION['student_name']) {
 	<a href="forgot.php" class="forgot-pwd">忘记密码 </a>
 	</div>
 
-	<button class="btn btn-primary btn-submit" name="doLogin" value="Login" type="hidden">
-	登录</button>
-	<a class="btn btn-primary link-submit" name="doLogin">登录</a>
+
+	<input class="btn btn-primary" name="doLogin" value="登录" type="submit" />
+
 	<a class="btn btn-success btn-register" href="register.php">
 	注册</a>
 
