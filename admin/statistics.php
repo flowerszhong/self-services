@@ -8,7 +8,7 @@ $current_date = date("Y-m-d");
 $first_date   = date("Y-m-01", strtotime($current_date));
 $last_date    = date("Y-m-t", strtotime($current_date));
 
-$begin_time = mktime(0, 0, 0, 5, 1, 2014);
+$begin_time = mktime(0, 0, 0, 7, 1, 2014);
 $begin_date = date("Y-m-d", $begin_time);
 
 function getMonthData($begin_date, $current_first_date) {
@@ -167,78 +167,78 @@ $array_wrap = getMonthData($begin_date, '2015-04-01');
 <?php
 foreach ($array_wrap['table_array'] as $key => $row) {
 	?>
-				<tr data-id="<?php
+	<tr data-id="<?php
 	echo $row['start_date'];
 	?>">
-				<td>
+	<td>
 	<?php
 	echo $row['month'];
 	?>
-				</td>
+	</td>
 
-				<td>
-				<a data-type="1" href=""><?php
+	<td>
+	<a data-type="1" href=""><?php
 	echo $row['expire_13'];
 	?></a>
-				</td>
+	</td>
 
-				<td>
-				<a data-type="1" href=""><?php
+	<td>
+	<a data-type="1" href=""><?php
 	echo $row['expire_14'];
 	?></a>
-				</td>
+	</td>
 
-				<td>
-				<a data-type="1" href=""><?php
+	<td>
+	<a data-type="1" href=""><?php
 	echo $row['expire'];
 	?></a>
-				</td>
+	</td>
 
-				<td>
-				<a href="" date-type="2">
+	<td>
+	<a href="" date-type="2">
 	<?php
 	echo $row['new_13'];
 	?>
 	</a>
-				</td>
+	</td>
 
-				<td>
-				<a href="" date-type="2">
+	<td>
+	<a href="" date-type="2">
 	<?php
 	echo $row['new_14'];
 	?>
 	</a>
-				</td>
-				<td>
-				<a href="" date-type="2">
+	</td>
+	<td>
+	<a href="" date-type="2">
 	<?php
 	echo $row['new'];
 	?>
 	</a>
-				</td>
-				<td>
-				<a href="" data-type="3">
+	</td>
+	<td>
+	<a href="" data-type="3">
 	<?php
 	echo $row['all_13'];
 	?>
 	</a>
-				</td>
-				<td>
-				<a href="" data-type="3">
+	</td>
+	<td>
+	<a href="" data-type="3">
 	<?php
 	echo $row['all_14'];
 	?>
 	</a>
-				</td>
+	</td>
 
-				<td>
-				<a href="" data-type="3">
+	<td>
+	<a href="" data-type="3">
 	<?php
 	echo $row['all'];
 	?>
 	</a>
-				</td>
-				</tr>
+	</td>
+	</tr>
 
 	<?php
 }
@@ -267,36 +267,36 @@ foreach ($array_wrap['table_array'] as $key => $row) {
 <?php
 foreach ($array_wrap['table_array_13'] as $key => $row) {
 	?>
-				<tr data-id="<?php
+	<tr data-id="<?php
 	echo $row['start_date'];
 	?>">
-				<td>
+	<td>
 	<?php
 	echo $row['month'];
 	?>
-				</td>
-				<td>
-				<a data-type="1" href=""><?php
+	</td>
+	<td>
+	<a data-type="1" href=""><?php
 	echo $row['expire_13'];
 	?></a>
-				</td>
+	</td>
 
-				<td>
-				<a href="" date-type="2">
+	<td>
+	<a href="" date-type="2">
 	<?php
 	echo $row['new_13'];
 	?>
 	</a>
-				</td>
+	</td>
 
-				<td>
-				<a href="" data-type="3">
+	<td>
+	<a href="" data-type="3">
 	<?php
 	echo $row['all_13'];
 	?>
 	</a>
-				</td>
-				</tr>
+	</td>
+	</tr>
 
 	<?php
 }
@@ -324,36 +324,36 @@ foreach ($array_wrap['table_array_13'] as $key => $row) {
 <?php
 foreach ($array_wrap['table_array_14'] as $key => $row) {
 	?>
-				<tr data-id="<?php
+	<tr data-id="<?php
 	echo $row['start_date'];
 	?>">
-				<td>
+	<td>
 	<?php
 	echo $row['month'];
 	?>
-				</td>
-				<td>
-				<a data-type="1" href=""><?php
+	</td>
+	<td>
+	<a data-type="1" href=""><?php
 	echo $row['expire_14'];
 	?></a>
-				</td>
+	</td>
 
-				<td>
-				<a href="" date-type="2">
+	<td>
+	<a href="" date-type="2">
 	<?php
 	echo $row['new_14'];
 	?>
 	</a>
-				</td>
+	</td>
 
-				<td>
-				<a href="" data-type="3">
+	<td>
+	<a href="" data-type="3">
 	<?php
 	echo $row['all_14'];
 	?>
 	</a>
-				</td>
-				</tr>
+	</td>
+	</tr>
 
 	<?php
 }
