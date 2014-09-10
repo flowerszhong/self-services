@@ -61,7 +61,7 @@ queries the database and if it has any existing email it throws user email alrea
 	$total        = intval($row['total']);
 
 	if ($total > 0) {
-		$err[] = "错误 - 你已经注册过";
+		$err[] = "错误 - 出现重复的学号或邮箱，请确认你是否已经注册过";
 	}
 
 	if ($data['net_id']) {
@@ -89,14 +89,13 @@ VALUES
 		$md5_id  = md5($user_id);
 
 		if (isset($row_2013) and (intval($data['grade']) == 2013)) {
-// var_dump($row_2013);
 			$net_pwd    = $row_2013["net_pwd"];
 			$fee        = $row_2013['fee'];
 			$start_date = $row_2013['pay_date'];
 			$end_date   = $row_2013['expire_date'];
 			$used       = 1;
 
-//TODO: 检查上网账号是否已经存在
+			//TODO: 检查上网账号是否已经存在
 
 			$sql_account_exist = "select * from accounts where net_id='$net_id'";
 			$exist             = mysql_query($sql_account_exist) or die("获取上网账号信息失败 " . mysql_error());
@@ -110,11 +109,11 @@ VALUES
 				} else {
 
 					$sql_update_accounts = "update accounts
-set student_id='$data[student_id]',
-user_id='$user_id',
-user_name='$user_name',
-grade=2013
-where net_id='$net_id'";
+						set student_id='$data[student_id]',
+						user_id='$user_id',
+						user_name='$user_name',
+						grade=2013
+						where net_id='$net_id'";
 
 					$update2 = mysql_query($sql_update_accounts) or die("更新上网账号信息失败: " . mysql_error());
 				}

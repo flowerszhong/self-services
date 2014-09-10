@@ -53,7 +53,7 @@ function associateNetAccount($student_id, $fee) {
 
 		mysql_query("START TRANSACTION");
 
-		if (empty($student_data['net_id'])) {
+		if (empty($student_data['net_id']) or $rebalance) {
 //分配账号
 			$sql_select_account = "select * from accounts where used=0 and available=1 limit 1";
 			$query_account      = mysql_query($sql_select_account);
@@ -349,34 +349,34 @@ include "../includes/errors.php";
 if (sizeof($report) > 0) {
 	?>
 	<h3 class="title">
-	导入结果
-	</h3>
-	<table>
-	<tr>
-	<td>成功</td>
-	<td>学号</td>
-	<td>姓名</td>
-	<td>原因</td>
-	</tr>
+				导入结果
+				</h3>
+				<table>
+				<tr>
+				<td>成功</td>
+				<td>学号</td>
+				<td>姓名</td>
+				<td>原因</td>
+				</tr>
 	<?php
 
 	foreach ($report as $key => $log) {?>
-		<tr class="import-<?php echo $log['ok'];?>">
-		<td>
+								<tr class="import-<?php echo $log['ok'];?>">
+								<td>
 		<?php echo $log['ok_msg'];?>
 		</td>
 
-		<td>
+								<td>
 		<?php echo $log['id'];?>
 		</td>
-		<td>
+								<td>
 		<?php echo $log['name'];?>
 		</td>
 
-		<td>
+								<td>
 		<?php echo $log['cause'];?>
 		</td>
-		</tr>
+								</tr>
 
 
 		<?php

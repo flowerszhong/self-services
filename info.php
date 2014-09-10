@@ -48,10 +48,10 @@ include 'includes/errors.php';
 <td>账号密码</td>
 <td>
 <?php if ($row_settings['net_id']) {?>
-								<button class="btn btn-info" id="btn-check-pwd">查看账号密码</button>
-								<span for="" id="label-net-pwd"><?php echo $row_settings['net_pwd'];?>
+	<button class="btn btn-info" id="btn-check-pwd">查看账号密码</button>
+	<span for="" id="label-net-pwd"><?php echo $row_settings['net_pwd'];?>
 	<label class="hint">（如果密码与你使用密码不符合，请以你现在使用的密码为准，并通知信息中心更新）</label>
-								</span>
+	</span>
 
 	<?php }?>
 </td>
@@ -69,23 +69,23 @@ include 'includes/errors.php';
 <?php
 if ($consume_num > 0) {?>
 	<h3 class="title">你的缴费记录</h3>
-								<table>
-								<tr>
-								<td>缴费金额</td>
-								<td>开始时间</td>
-								<td>截止时间</td>
-								</tr>
+	<table>
+	<tr>
+	<td>缴费金额</td>
+	<td>开始时间</td>
+	<td>截止时间</td>
+	</tr>
 	<?php while ($consume_row = mysql_fetch_array($rows_consume)) {?>
 		<tr>
-																<td>
+									<td>
 		<?php echo $consume_row['fee'];?></td>
-																<td>
+									<td>
 		<?php echo format_date($consume_row['start_date']);?>
 		</td>
-																<td>
+									<td>
 		<?php echo format_date($consume_row['end_date']);?>
 		</td>
-																</tr>
+									</tr>
 
 		<?php }
 	?>

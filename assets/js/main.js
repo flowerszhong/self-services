@@ -443,5 +443,31 @@ $(function () {
 	});
 
 
+	//reset password
+
+	$("#btn-reset-pwd").click(function () {
+		if(confirm("确定重置该生密码？")){
+			$this = $(this).text("密码重置中");
+			studentId = $this.attr("data-id");
+			$.ajax({
+			      type: "GET",
+			      url: "reset-pwd.php",
+			      data: {
+			      	'student_id' : studentId
+			      },
+			      success: function  (data) {
+			      	// console.log(data);
+			        if(data && data.state =="ok" && data.updated){
+		              $this.text("重置成功");
+		            }else{
+		              $this.text("重置失败，请再次重置");
+		            }
+			      },
+			      dataType: "json"
+			    });
+		}
+	});
+
+
 
 });

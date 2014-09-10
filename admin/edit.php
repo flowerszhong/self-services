@@ -111,6 +111,15 @@ include '../includes/sidebar.php';
 </tr>
 
 <tr>
+	<td>
+		密码
+	</td>
+	<td>
+	<a id="btn-reset-pwd" class="btn btn-danger" data-id="<? echo $row_settings['student_id']; ?>">重置密码为123456</a>
+	</td>
+</tr>
+
+<tr>
 <td>电话</td>
 <td>
 <input name="tel" type="text" id="tel" value="<? echo $row_settings['tel']; ?>"></td>
