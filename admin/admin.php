@@ -204,6 +204,7 @@ include '../includes/errors.php';
             <td>班级</td>
             <td>是否关联<br>
             上网账号</td>
+            <td>已激活</td>
           </tr>
           <tr>
         </thead>

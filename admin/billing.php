@@ -218,6 +218,13 @@ function calc_start_end_date($expire_date, $fee) {
 			));
 	}
 
+	$time_end_date = strtotime($end_date);
+
+	if (date('m', $time_end_date) == 8) {
+		$end_date = date('Y-m-d',
+			mktime(0, 0, 0, date('m', $time_end_date), 0, date('Y', $time_end_date)));
+	}
+
 	return array(
 		"rebalance"  => $rebalance,
 		'start_date' => $start_date,
@@ -349,34 +356,34 @@ include "../includes/errors.php";
 if (sizeof($report) > 0) {
 	?>
 	<h3 class="title">
-	导入结果
-	</h3>
-	<table>
-	<tr>
-	<td>成功</td>
-	<td>学号</td>
-	<td>姓名</td>
-	<td>原因</td>
-	</tr>
+											导入结果
+											</h3>
+											<table>
+											<tr>
+											<td>成功</td>
+											<td>学号</td>
+											<td>姓名</td>
+											<td>原因</td>
+											</tr>
 	<?php
 
 	foreach ($report as $key => $log) {?>
-		<tr class="import-<?php echo $log['ok'];?>">
-		<td>
+																						<tr class="import-<?php echo $log['ok'];?>">
+																						<td>
 		<?php echo $log['ok_msg'];?>
 		</td>
 
-		<td>
+																						<td>
 		<?php echo $log['id'];?>
 		</td>
-		<td>
+																						<td>
 		<?php echo $log['name'];?>
 		</td>
 
-		<td>
+																						<td>
 		<?php echo $log['cause'];?>
 		</td>
-		</tr>
+																						</tr>
 
 
 		<?php

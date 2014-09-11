@@ -85,15 +85,18 @@ if (isset($_POST['import'])) {
 
 }
 
-$sql_all             = 'select count(*) as count from accounts';
-$sql_all_available   = 'select count(*) as count from accounts WHERE available=1';
-$sql_all_used        = 'select count(*) as count from accounts WHERE available=1 and used=1';
-$query_all           = mysql_query($sql_all) or die(mysql_error());
-$query_all_available = mysql_query($sql_all_available) or die(mysql_error());
-$query_all_used      = mysql_query($sql_all_used) or die(mysql_error());
-$all                 = mysql_fetch_array($query_all);
-$all_available       = mysql_fetch_array($query_all_available);
-$all_used            = mysql_fetch_array($query_all_used);
+$sql_all              = 'select count(*) as count from accounts';
+$sql_all_available    = 'select count(*) as count from accounts WHERE available=1';
+$sql_all_unvailable   = 'select count(*) as count from accounts WHERE available=0';
+$sql_all_used         = 'select count(*) as count from accounts WHERE available=1 and used=1';
+$query_all            = mysql_query($sql_all) or die(mysql_error());
+$query_all_available  = mysql_query($sql_all_available) or die(mysql_error());
+$query_all_unvailable = mysql_query($sql_all_unvailable) or die(mysql_error());
+$query_all_used       = mysql_query($sql_all_used) or die(mysql_error());
+$all                  = mysql_fetch_array($query_all);
+$all_available        = mysql_fetch_array($query_all_available);
+$all_unvailable       = mysql_fetch_array($query_all_unvailable);
+$all_used             = mysql_fetch_array($query_all_used);
 
 $current_date = date("Y-m-d");
 $first_date   = date("Y-m-01", strtotime($current_date));
@@ -113,6 +116,15 @@ include "../includes/errors.php";
 <td>
 <?php
 echo $all['count'];
+?>
+</td>
+</tr>
+
+<tr>
+<td width="250">不可用账号总数</td>
+<td>
+<?php
+echo $all_unvailable['count'];
 ?>
 </td>
 </tr>

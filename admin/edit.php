@@ -111,12 +111,12 @@ include '../includes/sidebar.php';
 </tr>
 
 <tr>
-	<td>
-		密码
-	</td>
-	<td>
-	<a id="btn-reset-pwd" class="btn btn-danger" data-id="<? echo $row_settings['student_id']; ?>">重置密码为123456</a>
-	</td>
+<td>
+密码
+</td>
+<td>
+<a id="btn-reset-pwd" class="btn btn-danger" data-id="<? echo $row_settings['student_id']; ?>">重置密码为123456</a>
+</td>
 </tr>
 
 <tr>
@@ -138,7 +138,7 @@ include '../includes/sidebar.php';
 <tr>
 <td>上网账号</td>
 <td>
-<input name="net_id" id="input-net-id" type="text" value="<? echo $row_settings['net_id']; ?>" >
+<input name="net_id" id="input-net-id" type="text" value="<? echo $row_settings['net_id']; ?>" disabled>
 <?php if ($row_settings['net_id']) {
 	?>
 	<a class="btn btn-danger" id="resign-net" data-id="<? echo $row_settings['net_id']; ?>">重新分配上网账号</a>
@@ -150,7 +150,19 @@ include '../includes/sidebar.php';
 <tr>
 <td>密码</td>
 <td>
-<input name="net_pwd" id="input-net-pwd" type="text" value="<? echo $row_settings['net_pwd']; ?>" ></td>
+<input name="net_pwd" id="input-net-pwd" type="text" value="<? echo $row_settings['net_pwd']; ?>" disabled>
+
+<?php if ($row_settings['net_id']) {
+	?>
+	<a class="btn btn-danger" id="resign-net-pwd">重置上网账号密码</a>
+		<span id="confirm-resign">
+		<input type="text" value="" id="new-net-pwd" data-net="<? echo $row_settings['net_id']; ?>" placeholder="请输入新密码" />
+		<input type="button" value="确认" class="btn btn-success" id="reset-net-pwd" />
+		</span>
+	<?php
+}?>
+
+</td>
 </td>
 </tr>
 

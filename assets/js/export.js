@@ -1,5 +1,5 @@
 $(function() {
-	$("#export-students,#export-accounts,#export-consume").click(function() {
+	$("#export-students,#export-accounts,#export-consume,#export-unavailable").click(function() {
 		this.value = "由于数据量大，请耐心等候...";
 		var type = $(this).attr("data-type");
 		var that = this;
