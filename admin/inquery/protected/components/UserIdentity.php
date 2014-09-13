@@ -15,20 +15,53 @@ class UserIdentity extends CUserIdentity {
 	 * @return boolean whether authentication succeeds.
 	 */
 	public function authenticate() {
-		$users = array(
-			// username => password
-			'flowerszhong' => 'flowerszhong',
-			'xiaoxue2014'  => 'xiaoxue2014',
-		);
-		if (!isset($users[$this->username])) {
+
+		$record = User::model()->findByAttributes(array('name' => $this->username));
+
+		// if ($record === null) {
+		// 	$this->errorCode = self::ERROR_USERNAME_INVALID;
+		// } else if ($record->pwd !== md5($this->password)) {
+		// 	$this->errorCode = self::ERROR_PASSWORD_INVALID;
+		// } else {
+		// 	$this->_id = $record->id;
+		// 	$this->setState('title', $record->title);
+		// 	$this->errorCode = self::ERROR_NONE;
+		// }
+
+		if ($record === null) {
 			$this->errorCode = self::ERROR_USERNAME_INVALID;
-		} elseif ($users[$this->username] !== $this->password) {
+		} else if ($record->pwd !== $this->PwdHash($this->password, substr($record->pwd, 0, 9))) {
 			$this->errorCode = self::ERROR_PASSWORD_INVALID;
 		} else {
-
 			$this->errorCode = self::ERROR_NONE;
 		}
 
 		return !$this->errorCode;
+
+		// $users = array(
+		// 	// username => password
+		// 	'flowerszhong' => 'flowerszhong',
+		// 	'xiaoxue2014'  => 'xiaoxue2014',
+		// );
+
+		// if (!isset($users[$this->username])) {
+		// 	$this->errorCode = self::ERROR_USERNAME_INVALID;
+		// } elseif ($users[$this->username] !== $this->password) {
+		// 	$this->errorCode = self::ERROR_PASSWORD_INVALID;
+		// } else {
+		// 	$this->errorCode = self::ERROR_NONE;
+		// }
+
+		// return !$this->errorCode;
+	}
+
+	// Password and salt generation
+	public function PwdHash($pwd, $salt = null) {
+		if ($salt === null) {
+			$salt = substr(md5(uniqid(rand(), true)), 0, 9);
+		} else {
+			$salt = substr($salt, 0, 9);
+		}
+		return $salt . sha1($pwd . $salt);
 	}
 }

@@ -183,7 +183,7 @@ function calc_start_end_date($expire_date, $fee) {
 	if ($time_now >= $time_expire_date) {
 		$rebalance  = true;
 		$start_date = $current_date;
-		if (date('d') > 15) {
+		if (date('d') > 25) {
 			$start_date = date("Y-m-d", mktime(0, 0, 0,
 					date('m') + 1,
 					1,
@@ -221,6 +221,11 @@ function calc_start_end_date($expire_date, $fee) {
 	$time_end_date = strtotime($end_date);
 
 	if (date('m', $time_end_date) == 8) {
+		$end_date = date('Y-m-d',
+			mktime(0, 0, 0, date('m', $time_end_date), 0, date('Y', $time_end_date)));
+	}
+
+	if (date('m', $time_end_date) == 2) {
 		$end_date = date('Y-m-d',
 			mktime(0, 0, 0, date('m', $time_end_date), 0, date('Y', $time_end_date)));
 	}
@@ -355,44 +360,44 @@ include "../includes/errors.php";
 
 if (sizeof($report) > 0) {
 	?>
-	<h3 class="title">
-											导入结果
-											</h3>
-											<table>
-											<tr>
-											<td>成功</td>
-											<td>学号</td>
-											<td>姓名</td>
-											<td>原因</td>
-											</tr>
-	<?php
+<h3 class="title">
+		导入结果
+		</h3>
+		<table>
+		<tr>
+		<td>成功</td>
+		<td>学号</td>
+		<td>姓名</td>
+		<td>原因</td>
+		</tr>
+<?php
 
 	foreach ($report as $key => $log) {?>
-																						<tr class="import-<?php echo $log['ok'];?>">
-																						<td>
-		<?php echo $log['ok_msg'];?>
-		</td>
+				<tr class="import-<?php echo $log['ok'];?>">
+				<td>
+<?php echo $log['ok_msg'];?>
+</td>
 
-																						<td>
-		<?php echo $log['id'];?>
-		</td>
-																						<td>
-		<?php echo $log['name'];?>
-		</td>
+				<td>
+<?php echo $log['id'];?>
+</td>
+				<td>
+<?php echo $log['name'];?>
+</td>
 
-																						<td>
-		<?php echo $log['cause'];?>
-		</td>
-																						</tr>
+				<td>
+<?php echo $log['cause'];?>
+</td>
+				</tr>
 
 
-		<?php
-	}
+<?php
+}
 
 	?>
-	</table>
+</table>
 
-	<?php
+<?php
 }
 ?>
 <h3 class="title">单个学生收费录入</h3>
@@ -419,8 +424,15 @@ if (sizeof($report) > 0) {
 <select name="fee" class="form-control required">
 <option name="fee" value="">请选择缴费金额</option>
 <option name="fee" value="300">300</option>
+<option name="fee" value="270">270</option>
+<option name="fee" value="240">240</option>
+<option name="fee" value="210">210</option>
+<option name="fee" value="180">180</option>
 <option name="fee" value="150">150</option>
 <option name="fee" value="120">120</option>
+<option name="fee" value="90">90</option>
+<option name="fee" value="60">60</option>
+<option name="fee" value="30">30</option>
 </select>
 </td>
 </tr>

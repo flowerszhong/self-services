@@ -72,7 +72,7 @@ foreach ($array_file as $key => $value) {
 	?></a>
 	<input type="button" class='delete-doc' data-id='<?php echo $value;?>' value="删除" />
 	</li>
-	<?php
+<?php
 }
 ?>
 </ul>
@@ -84,9 +84,9 @@ foreach ($array_file as $key => $value) {
 </h3>
 <form name="upfile" action="files.php" method="post" id="upload-docs-form" enctype="multipart/form-data">
 <ul id="docs-list">
-<li><input type="file" name="docs[]" class="docs"/></li>
-<li><input type="file" name="docs[]" class="docs"/></li>
-<li><input type="file" name="docs[]" class="docs"/></li>
+<li><input type="file" multiple="multiple" name="docs[]" class="docs"/></li>
+<li><input type="file" multiple="multiple" name="docs[]" class="docs"/></li>
+<li><input type="file" multiple="multiple" name="docs[]" class="docs"/></li>
 </ul>
 
 <input type="button" class="btn btn-xs btn-info" value="添加文档" id="add-doc" /> <br>

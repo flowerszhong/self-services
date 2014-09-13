@@ -206,28 +206,28 @@ $rows_result = mysql_query($sql_select) or die(mysql_error());
 ?>
 
 <?php while ($rrow = mysql_fetch_array($rows_result)) {?>
-	<tr>
-	<td>
-	<?php echo $rrow['net_id'];?>
-	</td>
+<tr>
+<td>
+<?php echo $rrow['net_id'];?>
+</td>
 
-	<td>
-	<?php echo $rrow['net_pwd'];?>
-	</td>
-	<td>
-	<?php if ($rrow['used']) {echo "已关联";} else {
+<td>
+<?php echo $rrow['net_pwd'];?>
+</td>
+<td>
+<?php if ($rrow['used']) {echo "已关联";} else {
 		echo "未关联";
 	}?>
-	</td>
-	</tr>
+</td>
+</tr>
 
 
-	<?php }?>
+<?php }?>
 </table>
 
 
 
-<h3 class="title">添加账号</h3>
+<!-- <h3 class="title">添加账号</h3>
 <div>
 <form action="net-accounts.php" method="post" id="add-form">
 <table>
@@ -251,7 +251,7 @@ $rows_result = mysql_query($sql_select) or die(mysql_error());
 </tr>
 </table>
 
-</form>
+</form> -->
 </div>
 
 

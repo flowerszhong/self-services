@@ -95,31 +95,31 @@ include '../includes/errors.php';
 <?php
 if ($_SESSION['student_id'] && $_SESSION['student_name']) {
 	?>
-	<p>你已经登录，点击<a href="logout.php">退出</a>，或点击查看<a href="statistics.php">统计面板</a></p>
+<p>你已经登录，点击<a href="logout.php">退出</a>，或点击查看<a href="statistics.php">统计面板</a></p>
 
-	<?php } else {?>
-	<form class="form-signin" action="index.php" method="post" id="login-form" name="logForm">
-		    <label>用户名</label>
-		    <div>
-		        <input type="text" name="user_name" class="form-control login-input required" placeholder="用户名" minlength='6' required="" autofocus="">
-		    </div>
-		    <label>密码</label>
-		    <div>
-		        <input type="password" name="pwd" class="form-control login-input required" minlength='6' placeholder="密码" required="">
-		    </div>
+<?php } else {?>
+<form class="form-signin" action="index.php" method="post" id="login-form" name="logForm">
+<label>用户名</label>
+<div>
+<input type="text" name="user_name" class="form-control login-input required" placeholder="用户名" minlength='6' required="" autofocus="">
+</div>
+<label>密码</label>
+<div>
+<input type="password" name="pwd" class="form-control login-input required" minlength='6' placeholder="密码" required="">
+</div>
 
-		    <div class="login-util">
-		        <label class="checkbox pull-left">
-		        <input type="checkbox" value="1" name="remember">
-		        记住我
-		    </label>
-		    </div>
+<div class="login-util">
+<label class="checkbox pull-left">
+<input type="checkbox" value="1" name="remember">
+记住我
+</label>
+</div>
 
-		    <input type="submit" class="btn btn-primary" name="doLogin" value="登录" />
+<input type="submit" class="btn btn-primary" name="doLogin" value="登录" />
 
-		</form>
+</form>
 
-	<?php }?>
+<?php }?>
 </div>
 
 
