@@ -217,6 +217,37 @@ $(function() {
 
 	});
 
+	$("#regForm #user_name").on('blur',function () {
+		var $hint = $("#net-id-hint");
+		var grade = $("#reg-grade").val();
+		if (parseInt(grade) == 2013) {
+			$(".net-row").show();
+			var username = $("#user_name").val();
+			var hintText = "";
+			// var username = "何寿鸿";
+			if (username) {
+				$.ajax({
+					url: "query-source.php",
+					data: {
+						"cmd": "source",
+						"name": username
+					},
+					dataType: "json",
+					type: "GET"
+				}).done(function(data) {
+					// console.log(data);
+					if (data) {
+						var netId = data['net_id'];
+						// console.log(netId);
+						hintText = "Hi " + username + " 同学，你的上网账号有可能是：" + netId +" ，请将以下空格填写完整";
+						$hint.text(hintText);
+					}
+				});
+
+			}
+		}
+	});
+
 
 	$("#reg-grade").change(function() {
 		var $hint = $("#net-id-hint");

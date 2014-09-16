@@ -474,7 +474,7 @@ b.required{
 }
 
 .net-row{
-	display: none;
+	/*display: none;*/
 }
 
 #net-id-input{

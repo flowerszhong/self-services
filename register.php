@@ -77,13 +77,20 @@ QQ
 </tr>
 <tr>
 <td>
-<b class="required"> * </b>
+<b class="required">*</b>
 年级
+<br>
+<b class="required">指入学的时间</b>
+<br>
+<b class="required">老生请选择2013</b>
+<br>
+<b class="required">新生请选择2014</b>
+
 </td>
 <td>
 <select name="grade" id="reg-grade">
-<option value="2013">2013</option>
-<option value="2014" selected>2014</option>
+<option value="2013" selected>2013</option>
+<option value="2014">2014</option>
 </select>
 </td>
 </tr>

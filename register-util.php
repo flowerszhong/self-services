@@ -66,15 +66,25 @@ queries the database and if it has any existing email it throws user email alrea
 
 	if ($data['net_id']) {
 		$net_id = 'fsVPDNhb' . $data['net_id'] . '@fsnhedu.v.gd';
-// $net_id          = 'fsVPDNhb001728@fsnhedu.v.gd';
+		// $net_id  = 'fsVPDNhb001728@fsnhedu.v.gd';
 		$sql_select_2013 = "select * from students2013 where net_id='$net_id'";
 		$result_2013     = mysql_query($sql_select_2013) or die("获取原始数据失败");
 		$row_2013        = mysql_fetch_array($result_2013);
+	} else {
+		// if (intval($data['grade']) == 2013 && $user_name) {
+		// 	// echo "more";
+		// 	$sql_select_2013 = "select * from students2013 where name='$user_name'";
+		// 	$result_2013     = mysql_query($sql_select_2013) or die("获取原始数据失败");
+		// 	$row_2013        = mysql_fetch_array($result_2013);
+		// 	$net_id          = $row_2013['net_id'];
+
+		// 	echo $net_id;
+		// }
 	}
 
 /***************************************************************************/
 	if (empty($err)) {
-		$datenow = get_Datetime_Now();
+		$datenow = date("Y-m-d");
 
 		$sql_insert_user = "INSERT into `user`
 		(`student_id`,`user_name`,`user_email`,`pwd`,`tel`,`qq`,`reg_date`,`log_ip`,`activation_code`,`department`,`major`,`sub_major`,`grade`,`class`)
@@ -95,7 +105,7 @@ VALUES
 		$user_id = mysql_insert_id();
 		$md5_id  = md5($user_id);
 
-		if (isset($row_2013) and (intval($data['grade']) == 2013)) {
+		if (isset($row_2013) and (intval($data['grade']) == 2013) && isset($net_id)) {
 			$net_pwd    = $row_2013["net_pwd"];
 			$fee        = $row_2013['fee'];
 			$start_date = $row_2013['pay_date'];
