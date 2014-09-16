@@ -25,8 +25,19 @@ if ($data['type'] == "all") {
 	$new_id  = $new['net_id'];
 	$new_pwd = $new['net_pwd'];
 
+	if (!isset($new_id)) {
+		$output = array(
+			"state" => "error",
+		);
+
+		echo json_encode($output);
+
+		exit();
+	}
+
 	$student_id = $old['student_id'];
 	$user_id    = $old['user_id'];
+	$user_name  = $old['user_name'];
 
 	mysql_query("START TRANSACTION");
 
@@ -36,6 +47,7 @@ if ($data['type'] == "all") {
 	$sql_update_new = "update accounts set
 						user_id=$user_id,
 						student_id=$student_id,
+						user_name='$user_name',
 						grade=$old[grade],
 						import_date='$old[import_date]',
 						used=1,

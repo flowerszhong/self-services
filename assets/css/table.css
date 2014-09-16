@@ -114,3 +114,10 @@
 	  color: #6f6f6f;
 	  padding: 20px 30px;
 	}
+
+
+
+body .grid-view .button-column{
+	width: 70px!important;
+}
+

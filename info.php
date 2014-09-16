@@ -33,27 +33,27 @@ include 'includes/errors.php';
 ?>
 <div class="container">
 
-<h3 class="title">上网账号信息</h3>
+<h3 class="title">宽带账号信息</h3>
 <table id="net-account-table">
 <tr>
 <td width="120">上网账号</td>
 <td>
 <?php if ($row_settings['net_id']) {?>
-	<input name="student_id" type="text" id="student_id" value="<? echo $row_settings['net_id']; ?>" class="form-control custom-input" disabled></td>
-	<?php } else {?>
-	你尚未分配上网账号
-	<?php }?>
+<input name="student_id" type="text" id="student_id" value="<? echo $row_settings['net_id']; ?>" class="form-control custom-input" disabled></td>
+<?php } else {?>
+你尚未分配上网账号
+<?php }?>
 </tr>
 <tr>
 <td>账号密码</td>
 <td>
 <?php if ($row_settings['net_id']) {?>
-	<button class="btn btn-info" id="btn-check-pwd">查看账号密码</button>
-	<span for="" id="label-net-pwd"><?php echo $row_settings['net_pwd'];?>
-	<label class="hint">（如果密码与你使用密码不符合，请以你现在使用的密码为准，并通知信息中心更新）</label>
-	</span>
+<button class="btn btn-info" id="btn-check-pwd">查看账号密码</button>
+<span for="" id="label-net-pwd"><?php echo $row_settings['net_pwd'];?>
+<label class="hint">（如果密码与你使用密码不符合，请以你现在使用的密码为准，并通知信息中心更新）</label>
+</span>
 
-	<?php }?>
+<?php }?>
 </td>
 </tr>
 <tr>
@@ -68,30 +68,30 @@ include 'includes/errors.php';
 
 <?php
 if ($consume_num > 0) {?>
-	<h3 class="title">你的缴费记录</h3>
-	<table>
-	<tr>
-	<td>缴费金额</td>
-	<td>开始时间</td>
-	<td>截止时间</td>
-	</tr>
-	<?php while ($consume_row = mysql_fetch_array($rows_consume)) {?>
-		<tr>
-									<td>
-		<?php echo $consume_row['fee'];?></td>
-									<td>
-		<?php echo format_date($consume_row['start_date']);?>
-		</td>
-									<td>
-		<?php echo format_date($consume_row['end_date']);?>
-		</td>
-									</tr>
+<h3 class="title">你的缴费记录</h3>
+<table>
+<tr>
+<td>缴费金额</td>
+<td>开始时间</td>
+<td>截止时间</td>
+</tr>
+<?php while ($consume_row = mysql_fetch_array($rows_consume)) {?>
+<tr>
+<td>
+<?php echo $consume_row['fee'];?></td>
+<td>
+<?php echo format_date($consume_row['start_date']);?>
+</td>
+<td>
+<?php echo format_date($consume_row['end_date']);?>
+</td>
+</tr>
 
-		<?php }
+<?php }
 	?>
-	</table>
+</table>
 
-	<?php }
+<?php }
 ?>
 <h3 class="title">修改网站登录密码<b class="hint">(非上网账号密码)</b></h3>
 <div class="table-responsive">

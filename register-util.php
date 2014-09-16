@@ -76,11 +76,18 @@ queries the database and if it has any existing email it throws user email alrea
 	if (empty($err)) {
 		$datenow = get_Datetime_Now();
 
+		$sql_insert_user = "INSERT into `user`
+		(`student_id`,`user_name`,`user_email`,`pwd`,`tel`,`qq`,`reg_date`,`log_ip`,`activation_code`,`department`,`major`,`sub_major`,`grade`,`class`)
+		VALUES
+		('$student_id','$user_name','$usr_email','$data[pwd]','$data[tel]','$data[qq]','$datenow','$user_ip','$activ_code','$data[department]','$data[major]','$data[sub_major]','$data[grade]','$data[class]')";
+
+		mysql_query($sql_insert_user);
+
 		mysql_query("START TRANSACTION");
 		$sql_insert = "INSERT into `students`
-(`student_id`,`user_name`,`user_email`,`pwd`,`tel`,`qq`,`reg_date`,`log_ip`,`activation_code`,`department`,`major`,`sub_major`,`grade`,`class`)
+(`student_id`,`user_name`,`user_email`,`pwd`,`tel`,`qq`,`reg_date`,`log_ip`,`activation_code`,`department`,`major`,`sub_major`,`grade`,`class`,`approved`)
 VALUES
-('$student_id','$user_name','$usr_email','$sha1pass','$data[tel]','$data[qq]','$datenow','$user_ip','$activ_code','$data[department]','$data[major]','$data[sub_major]','$data[grade]','$data[class]')";
+('$student_id','$user_name','$usr_email','$sha1pass','$data[tel]','$data[qq]','$datenow','$user_ip','$activ_code','$data[department]','$data[major]','$data[sub_major]','$data[grade]','$data[class]',1)";
 
 		$insert1 = mysql_query($sql_insert) or die("注册新用户失败:" . mysql_error());
 // sleep(3);
@@ -155,7 +162,7 @@ where student_id='$student_id'";
 
 		if ($insert1 and $update2 and $insert3 and $update4 and $update5) {
 			mysql_query("COMMIT");
-			if ($user_registration) {
+			if (false) {
 				$a_link = "
 <h3>激活你的账号</h3>
 <a href='http://$host$path/activate.php?user=$md5_id&activ_code=$activ_code'>http://$host$path/activate.php?user=$md5_id&activ_code=$activ_code</a>";
@@ -174,9 +181,9 @@ where student_id='$student_id'";
 $a_link";
 
 			$subject = "请激活您的账号";
-			$smtpOK  = sendEmail($subject, $message, $usr_email);
-
-			header("Location: thankyou.php");
+			// $smtpOK  = sendEmail($subject, $message, $usr_email);
+			header("Location: activate.php?done=1");
+			// header("Location: activate.php");
 			exit();
 		} else {
 			mysql_query("ROLLBACK");

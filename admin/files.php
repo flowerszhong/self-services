@@ -67,15 +67,15 @@ include "../includes/errors.php";
 <?php
 foreach ($array_file as $key => $value) {
 	?>
-	<li>
-	<a target="blank" href="<?php echo SITE_ROOT . '/admin/docs/' . $value;?>"><?php echo $value;
+<li>
+<a target="blank" href="<?php echo SITE_ROOT . '/admin/docs/' . $value;?>"><?php echo $value;
 	?></a>
-	<input type="button" class='delete-doc' data-id='<?php echo $value;?>' value="删除" />
-	</li>
+<input type="button" class='delete-doc' data-id='<?php echo $value;?>' value="删除" />
+</li>
 <?php
 }
 ?>
-</ul>
+</ul>`
 
 <h3 class="title">上传文档
 <label class="hint">

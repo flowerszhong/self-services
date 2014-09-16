@@ -162,7 +162,21 @@ include '../includes/errors.php';
 
 
 <br>
-      <div class="">
+
+<div class="">
+        <span id="page-state">
+
+        </span>
+
+
+         <select id="row-limit">
+           <option value="10">10</option>
+           <option value="20">20</option>
+           <option value="50">50</option>
+           <option value="100">100</option>
+         </select>行/页
+      </div>
+      <!-- <div class="">
         <span id="page-state">
 
         </span>
@@ -185,7 +199,7 @@ include '../includes/errors.php';
           <input name="doApprove" type="submit" id="doApprove" value="激活">
           <input name="doDelete" type="submit" id="doDelete" value="删除">
           <input name="doAllocation" type="submit" id="doAllocation" value="关联上网账号">
-      </div>
+      </div> -->
 
 
 

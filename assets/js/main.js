@@ -252,7 +252,7 @@ $(function() {
 			$('.net-row').hide();
 			// $("#net-id-input").removeClass('required');
 
-			$hint.empty();
+			// $hint.empty();
 		}
 	});
 
@@ -433,6 +433,8 @@ $(function() {
 						// console.log(data);
 						if (data && data.state == "ok") {
 							window.location.reload();
+						}else{
+							$this.text("分配失败,可能因没有可更换的上网账号");
 						}
 					},
 					dataType: "json"

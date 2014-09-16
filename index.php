@@ -97,9 +97,10 @@ include 'includes/errors.php';
 <div class="container">
 <div class="alert alert-success">
 <h3>Welcome!</h3>
-<p>1.请点击<a href="notices.php">使用需知</a>查看上网缴费流程</p>
+<p>1.请点击<a href="notices.php">使用需知</a>查看上网缴费流程，或下载<a href="download/使用需知.rar">使用需知文件包(1.13MB)</a></p>
 <p>2.<a href="register.php">注册账号</a></p>
 <p>3.下载<a href="download/拨号客户端.rar">电信拨号软件客户端</a></p>
+<p>4.请使用IE7+,Chrome,Firefox,Safari等浏览器</p>
 </div>
 </div>
 
@@ -108,37 +109,37 @@ include 'includes/errors.php';
 <?php
 if ($_SESSION['student_id'] && $_SESSION['student_name']) {
 	?>
-	<p>你已经登录，点击<a href="logout.php">退出</a></p>
+<p>你已经登录，点击<a href="logout.php">退出</a></p>
 
-	<?php } else {?>
-	<form class="form-signin" action="index.php" method="post" id="login-form" name="logForm">
-	<label>学号</label>
-	<div>
-	<input type="text" name="student_id" id="student_id" class="form-control login-input required student_id" placeholder="学号" required="" autofocus="">
-	</div>
-	<label>密码</label>
-	<div>
-	<input type="password" name="pwd" class="form-control login-input" placeholder="密码" minlength="6" required="">
-	</div>
+<?php } else {?>
+<form class="form-signin" action="index.php" method="post" id="login-form" name="logForm">
+<label>学号</label>
+<div>
+<input type="text" name="student_id" id="student_id" class="form-control login-input required student_id" placeholder="学号" required="" autofocus="">
+</div>
+<label>密码</label>
+<div>
+<input type="password" name="pwd" class="form-control login-input" placeholder="密码" minlength="6" required="">
+</div>
 
-	<div class="login-util">
-	<label class="checkbox pull-left">
-	<input type="checkbox" value="1" name="remember">
-	记住我
-	</label>
-	<a href="forgot.php" class="forgot-pwd">忘记密码 </a>
-	</div>
+<div class="login-util">
+<label class="checkbox pull-left">
+<input type="checkbox" value="1" name="remember">
+记住我
+</label>
+<a href="forgot.php" class="forgot-pwd">忘记密码 </a>
+</div>
 
 
-	<input class="btn btn-primary" name="doLogin" value="登录" type="submit" />
+<input class="btn btn-primary" name="doLogin" value="登录" type="submit" />
 
-	<a class="btn btn-success btn-register" href="register.php">
-	注册</a>
+<a class="btn btn-success btn-register" href="register.php">
+注册</a>
 
-	<span class="clearfix"></span>
-	</form>
+<span class="clearfix"></span>
+</form>
 
-	<?php }?>
+<?php }?>
 </div>
 
 

@@ -59,7 +59,7 @@ $('.search-form form').submit(function(){
 
 			array(
 				'class'    => 'CButtonColumn',
-				'template' => '{view} {update}',
+				'template' => '{view} {update} {delete}',
 			),
 		),
 	));?>
