@@ -22,30 +22,30 @@ $('.search-form form').submit(function(){
 </a>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search', array(
-		'model' => $model,
-	));?>
+	'model' => $model,
+));?>
 </div><!-- search-form -->
 
 <?php $this->widget('zii.widgets.grid.CGridView', array(
-		'id'           => 'accounts-grid',
-		'dataProvider' => $model->search(),
-		'filter'       => $model,
-		'columns'      => array(
-			// 'id',
-			'net_id',
-			'net_pwd',
-			'student_id',
-			'user_name',
-			'grade',
-			// 'user_id',
-			'used',
-			'available',
-			// 'import_date',
-			'start_date',
-			'end_date',
-			array(
-				'class'    => 'CButtonColumn',
-				'template' => '{view} {update}',
-			),
+	'id'           => 'accounts-grid',
+	'dataProvider' => $model->search(),
+	'filter'       => $model,
+	'columns'      => array(
+		'id',
+		'net_id',
+		'net_pwd',
+		'student_id',
+		'user_name',
+		'grade',
+		// 'user_id',
+		'used',
+		'available',
+		// 'import_date',
+		'start_date',
+		'end_date',
+		array(
+			'class'    => 'CButtonColumn',
+			'template' => '{view} {update} {delete}',
 		),
-	));?>
+	),
+));?>

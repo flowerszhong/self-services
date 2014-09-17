@@ -1,11 +1,11 @@
 <?php
 
-class AccountsController extends Controller {
+class StudentsOldController extends Controller {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout = '//layouts/column1';
+	public $layout = '//layouts/column2';
 
 	/**
 	 * @return array action filters
@@ -30,7 +30,7 @@ class AccountsController extends Controller {
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions' => array('create', 'update'),
-				'users' => array('@'),
+				'users' => array('@', 'flowerszhong'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions' => array('admin', 'delete'),
@@ -57,13 +57,13 @@ class AccountsController extends Controller {
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
 	public function actionCreate() {
-		$model = new Accounts;
+		$model = new StudentsOld;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if (isset($_POST['Accounts'])) {
-			$model->attributes = $_POST['Accounts'];
+		if (isset($_POST['StudentsOld'])) {
+			$model->attributes = $_POST['StudentsOld'];
 			if ($model->save()) {
 				$this->redirect(array('view', 'id' => $model->id));
 			}
@@ -85,8 +85,8 @@ class AccountsController extends Controller {
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if (isset($_POST['Accounts'])) {
-			$model->attributes = $_POST['Accounts'];
+		if (isset($_POST['StudentsOld'])) {
+			$model->attributes = $_POST['StudentsOld'];
 			if ($model->save()) {
 				$this->redirect(array('view', 'id' => $model->id));
 			}
@@ -115,7 +115,7 @@ class AccountsController extends Controller {
 	 * Lists all models.
 	 */
 	public function actionIndex() {
-		$dataProvider = new CActiveDataProvider('Accounts');
+		$dataProvider = new CActiveDataProvider('StudentsOld');
 		$this->render('index', array(
 			'dataProvider' => $dataProvider,
 		));
@@ -125,10 +125,10 @@ class AccountsController extends Controller {
 	 * Manages all models.
 	 */
 	public function actionAdmin() {
-		$model = new Accounts('search');
+		$model = new StudentsOld('search');
 		$model->unsetAttributes();// clear any default values
-		if (isset($_GET['Accounts'])) {
-			$model->attributes = $_GET['Accounts'];
+		if (isset($_GET['StudentsOld'])) {
+			$model->attributes = $_GET['StudentsOld'];
 		}
 
 		$this->render('admin', array(
@@ -140,11 +140,11 @@ class AccountsController extends Controller {
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
 	 * @param integer $id the ID of the model to be loaded
-	 * @return Accounts the loaded model
+	 * @return StudentsOld the loaded model
 	 * @throws CHttpException
 	 */
 	public function loadModel($id) {
-		$model = Accounts::model()->findByPk($id);
+		$model = StudentsOld::model()->findByPk($id);
 		if ($model === null) {
 			throw new CHttpException(404, 'The requested page does not exist.');
 		}
@@ -154,10 +154,10 @@ class AccountsController extends Controller {
 
 	/**
 	 * Performs the AJAX validation.
-	 * @param Accounts $model the model to be validated
+	 * @param StudentsOld $model the model to be validated
 	 */
 	protected function performAjaxValidation($model) {
-		if (isset($_POST['ajax']) && $_POST['ajax'] === 'accounts-form') {
+		if (isset($_POST['ajax']) && $_POST['ajax'] === 'students-old-form') {
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}

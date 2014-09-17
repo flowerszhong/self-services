@@ -557,4 +557,26 @@ label.error{
 }
 
 
+/*audit*/
+
+.log-output{
+	background-color: #ccc;
+}
+
+.log-output td{
+	background-color: yellow;
+}
+
+#audit-report .ok{
+	color: green;
+}
+
+#audit-report .not-ok{
+	color: red;
+	font-weight: bold;
+}
+
+
+
+
 

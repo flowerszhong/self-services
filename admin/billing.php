@@ -185,37 +185,37 @@ function calc_start_end_date($expire_date, $fee) {
 		$start_date = $current_date;
 		if (date('d') > 25) {
 			$start_date = date("Y-m-d", mktime(0, 0, 0,
-					date('m') + 1,
-					1,
-					date('Y')
-				));
+				date('m') + 1,
+				1,
+				date('Y')
+			));
 		} else {
 			$start_date = date("Y-m-d", mktime(0, 0, 0,
-					date('m'),
-					1,
-					date('Y')
-				));
+				date('m'),
+				1,
+				date('Y')
+			));
 		}
 
 		$start_date_time = strtotime($start_date);
 
 		$end_date = $end_date = date('Y-m-d', mktime(0, 0, 0,
-				date('m', $start_date_time) + $months,
-				0,
-				date('Y', $start_date_time)
-			));
+			date('m', $start_date_time) + $months,
+			0,
+			date('Y', $start_date_time)
+		));
 	} else {
 		$rebalance  = false;
 		$start_date = date('Y-m-d', mktime(0, 0, 0,
-				date('m', $time_expire_date) + 1,
-				1,
-				date('Y', $time_expire_date)
-			));
+			date('m', $time_expire_date) + 1,
+			1,
+			date('Y', $time_expire_date)
+		));
 		$end_date = date('Y-m-d', mktime(0, 0, 0,
-				date('m', $time_expire_date) + $months + 1,
-				0,
-				date('Y', $time_expire_date)
-			));
+			date('m', $time_expire_date) + $months + 1,
+			0,
+			date('Y', $time_expire_date)
+		));
 	}
 
 	$time_end_date = strtotime($end_date);

@@ -236,12 +236,17 @@ $(function() {
 					type: "GET"
 				}).done(function(data) {
 					// console.log(data);
-					if (data) {
-						var netId = data['net_id'];
+					if (data && data.length) {
+						// var netId = data['net_id'];
+						var netId = data.join(" 或者是 ")
 						// console.log(netId);
 						hintText = "Hi " + username + " 同学，你的上网账号有可能是：" + netId +" ，请将以下空格填写完整";
 						$hint.text(hintText);
+					}else{
+						$hint.text("请填写你的上网账号(新开户同学不必填写)");
 					}
+				}).fail(function (data) {
+					$hint.text("请填写你的上网账号(新开户同学不必填写)");
 				});
 
 			}

@@ -36,7 +36,7 @@ include 'includes/errors.php';
 <h3 class="title">宽带账号信息</h3>
 <table id="net-account-table">
 <tr>
-<td width="120">上网账号</td>
+<td width="120">宽带上网账号</td>
 <td>
 <?php if ($row_settings['net_id']) {?>
 <input name="student_id" type="text" id="student_id" value="<? echo $row_settings['net_id']; ?>" class="form-control custom-input" disabled></td>
@@ -45,10 +45,10 @@ include 'includes/errors.php';
 <?php }?>
 </tr>
 <tr>
-<td>账号密码</td>
+<td>宽带账号密码</td>
 <td>
 <?php if ($row_settings['net_id']) {?>
-<button class="btn btn-info" id="btn-check-pwd">查看账号密码</button>
+<button class="btn btn-info" id="btn-check-pwd">查看宽带账号密码</button>
 <span for="" id="label-net-pwd"><?php echo $row_settings['net_pwd'];?>
 <label class="hint">（如果密码与你使用密码不符合，请以你现在使用的密码为准，并通知信息中心更新）</label>
 </span>
@@ -93,7 +93,7 @@ if ($consume_num > 0) {?>
 
 <?php }
 ?>
-<h3 class="title">修改网站登录密码<b class="hint">(非上网账号密码)</b></h3>
+<h3 class="title">修改网站登录密码<b class="hint">(这个密码是wf.gdepc.com的登录密码，非宽带账号密码)</b></h3>
 <div class="table-responsive">
 <form name="resetForm" id="reset-form" method="post" action="info.php">
 <table class="table table-striped">
