@@ -12,12 +12,19 @@ foreach ($_POST as $key => $value) {
 }
 
 if (isset($_POST['sync'])) {
+
+	$name_array = array('梁嘉琪', '黄键聪', '钟伟健', '梁晓莹', '张丽');
+
 	$sql   = "select * from students where net_id is null and grade=2013";
 	$query = mysql_query($sql) or die("fail");
 	while ($row = mysql_fetch_array($query)) {
-		$student_id      = $row['student_id'];
-		$user_id         = $row['id'];
-		$user_name       = $row['user_name'];
+		$student_id = $row['student_id'];
+		$user_id    = $row['id'];
+		$user_name  = $row['user_name'];
+		if (in_array($user_name, $name_array)) {
+			continue;
+		}
+
 		$sql_select_2013 = "select * from students2013 where name='$user_name'";
 		$result_2013     = mysql_query($sql_select_2013) or die("获取原始数据失败");
 		$row_2013        = mysql_fetch_array($result_2013);

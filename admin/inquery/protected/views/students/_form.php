@@ -6,13 +6,13 @@
 <div class="form">
 
 <?php $form = $this->beginWidget('CActiveForm', array(
-		'id' => 'students-form',
+	'id' => 'students-form',
 // Please note: When you enable ajax validation, make sure the corresponding
-		// controller action is handling ajax validation correctly.
-		// There is a call to performAjaxValidation() commented in generated controller code.
-		// See class documentation of CActiveForm for details on this.
-		'enableAjaxValidation' => false,
-	));?>
+	// controller action is handling ajax validation correctly.
+	// There is a call to performAjaxValidation() commented in generated controller code.
+	// See class documentation of CActiveForm for details on this.
+	'enableAjaxValidation' => false,
+));?>
 <p class="note">星号<span class="required">*</span>为必填项</p>
 
 <?php echo $form->errorSummary($model);?>
@@ -111,7 +111,7 @@
 
 
 
-<!-- <div class="row">
+<div class="row">
 <?php echo $form->labelEx($model, 'net_id');?>
 <?php echo $form->textField($model, 'net_id', array('size' => 60, 'maxlength' => 400));?>
 <?php echo $form->error($model, 'net_id');?>
@@ -133,7 +133,7 @@
 <?php echo $form->labelEx($model, 'expire_date');?>
 <?php echo $form->textField($model, 'expire_date');?>
 <?php echo $form->error($model, 'expire_date');?>
-</div> -->
+</div>
 
 <div class="row buttons">
 <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save');?>

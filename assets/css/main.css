@@ -577,6 +577,33 @@ label.error{
 }
 
 
+#code-container{
+	margin:3px;
+	width:100px;
+	height: 40px;
+	background: #191919 url(../image/validatecode_bg.jpg) center top repeat-x;
+	float: left;
+	font-size: 36px;
+    font-family:Arial;  
+    font-style:italic;  
+    font-weight:bold;  
+    border:0;  
+    letter-spacing:2px;  
+    color:blue;  
+    overflow: hidden;
+
+    -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+
+   /*
+     Introduced in IE 10.
+     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+   */
+   -ms-user-select: none;
+   user-select: none;
+}
+
 
 
 

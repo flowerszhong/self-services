@@ -1,10 +1,11 @@
 <?php
-include '../dbc.php';
-admin_page_protect();
+include 'dbc.php';
+// page_protect();
+
+session_start();
 
 $page_title = "审核";
-include '../includes/head.php';
-include '../includes/sidebar.php';
+include 'includes/head.php';
 
 $err    = array();
 $msg    = array();
@@ -142,13 +143,13 @@ if (isset($_POST['import'])) {
 		if ($_FILES["file"]["error"] > 0) {
 			echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
 		} else {
-			$origin_file_name = $_FILES["file"]["name"];
-			$filename         = iconv('UTF-8', 'GB2312', $_FILES["file"]["name"]);
-			if (move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $filename)) {
-				require_once dirname(__FILE__) . '/PHPExcel/Classes/PHPExcel/IOFactory.php';
+
+			$filename = iconv('UTF-8', 'GB2312', $_FILES["file"]["name"]);
+			if (move_uploaded_file($_FILES["file"]["tmp_name"], "admin/upload/" . $filename)) {
+				require_once dirname(__FILE__) . '/admin/PHPExcel/Classes/PHPExcel/IOFactory.php';
 				$reader = PHPExcel_IOFactory::createReader('Excel2007');//设置以Excel5格式(Excel97-2003工作簿)
 				// var_dump($reader);
-				$PHPExcel = $reader->load("upload/" . $filename);// 载入excel文件
+				$PHPExcel = $reader->load("admin/upload/" . $filename);// 载入excel文件
 				// var_dump($PHPExcel);
 				$sheet         = $PHPExcel->getSheet(0);// 读取第一個工作表
 				$highestRow    = $sheet->getHighestRow();// 取得总行数
@@ -160,7 +161,13 @@ if (isset($_POST['import'])) {
 					$student_id = trim($sheet->getCell("A" . $row)->getValue());
 					$user_name  = trim($sheet->getCell("B" . $row)->getValue());
 					$fee        = $sheet->getCell("C" . $row)->getValue();
-					$comment    = trim($sheet->getCell("D" . $row)->getValue());
+					$comment    = $sheet->getCell("D" . $row)->getValue();
+
+					$student_id = filter($student_id);
+					$user_name  = filter($user_name);
+					$fee        = filter($fee);
+					$comment    = filter($comment);
+
 					if ($student_id == "系部") {
 						break;
 					}
@@ -169,11 +176,8 @@ if (isset($_POST['import'])) {
 						continue;
 					}
 
-					if ($student_id && $user_name && $fee && $comment) {
+					checkStudentId($student_id, $user_name, $fee, $comment);
 
-						checkStudentId($student_id, $user_name, $fee, $comment);
-
-					}
 				}
 			} else {
 				$err[] = "错误 - 上传文件失败";
@@ -186,16 +190,30 @@ if (isset($_POST['import'])) {
 
 }
 
-include "../includes/errors.php";
+include "includes/errors.php";
 
 ?>
 <div class="main">
 
+
+<div class="alert alert-success">
+<h3>缴费前审核</h3>
+<p>班长或班级负责人上传班级缴费表，点击审核可查看班级成员是否注册成功</p>
+<p>导入审核表格
+<br>
+<img src="assets/image/001.png" width="500">
+</p>
+<br>
+<p>查看审核结果
+<br>
+<img src="assets/image/002.png" width="500">
+</p>
+</div>
 <h3 class="title">导入班级缴费表
-<label class="hint">xls文档类型请另存为xlsx文档类型后，再导入审核</label>
+<label class="hint">样本文件下载 :<a href="admin/download/班级缴费表.xlsx" target="_blank">班级缴费表.xlsx</a>,,请保持xlsx后缀格式</label>
 </h3>
 <div>
-<form action="audit.php" method="post" enctype="multipart/form-data">
+<form action="audit-self.php" method="post" enctype="multipart/form-data">
 <input type="file" name="file" id="file" />
 <br />
 <input type="submit" name="import" class="btn btn-success" value="审核" />
@@ -208,8 +226,7 @@ include "../includes/errors.php";
 if (sizeof($report) > 0) {
 	?>
 <h3 class="title">
-<?php echo $origin_file_name;?><br>
- 审核结果(<?php echo sizeof($report) / 2;?>条记录)
+审核结果
 </h3>
 <table id="audit-report">
 <tr>
@@ -262,7 +279,7 @@ if ($log['type'] == "output") {
 
 
 <?php
-include '../includes/footer.php';
+include 'includes/footer.php';
 ?>
 
 

@@ -408,3 +408,12 @@ Stack trace:
 REQUEST_URI=/self-services/admin/inquery/index.php?r=site/login
 HTTP_REFERER=http://192.168.22.150:1988/self-services/admin/inquery/index.php?r=site/login
 ---
+2014/09/19 17:42:21 [warning] [application] Failed to set unsafe attribute "pay_date" of "Students".
+in /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/StudentsController.php (89)
+in /Users/janice/Projects/php/self-services/admin/inquery/index.php (14)
+2014/09/19 17:42:41 [warning] [application] Failed to set unsafe attribute "pay_date" of "Students".
+in /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/StudentsController.php (89)
+in /Users/janice/Projects/php/self-services/admin/inquery/index.php (14)
+2014/09/19 17:46:34 [warning] [application] Failed to set unsafe attribute "pay_date" of "Students".
+in /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/StudentsController.php (89)
+in /Users/janice/Projects/php/self-services/admin/inquery/index.php (14)

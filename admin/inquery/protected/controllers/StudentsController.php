@@ -34,7 +34,7 @@ class StudentsController extends Controller {
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions' => array('admin', 'delete'),
-				'users' => array('admin', 'flowerszhong', 'xiaoxue2014'),
+				'users' => array('admin', 'flowerszhong', 'xiaoxue2014', 'qiuyixin2014'),
 			),
 			array('deny', // deny all users
 				'users' => array('*'),
@@ -48,8 +48,8 @@ class StudentsController extends Controller {
 	 */
 	public function actionView($id) {
 		$this->render('view', array(
-				'model' => $this->loadModel($id),
-			));
+			'model' => $this->loadModel($id),
+		));
 	}
 
 	/**
@@ -70,8 +70,8 @@ class StudentsController extends Controller {
 		}
 
 		$this->render('create', array(
-				'model' => $model,
-			));
+			'model' => $model,
+		));
 	}
 
 	/**
@@ -93,8 +93,8 @@ class StudentsController extends Controller {
 		}
 
 		$this->render('update', array(
-				'model' => $model,
-			));
+			'model' => $model,
+		));
 	}
 
 	/**
@@ -117,8 +117,8 @@ class StudentsController extends Controller {
 	public function actionIndex() {
 		$dataProvider = new CActiveDataProvider('Students');
 		$this->render('index', array(
-				'dataProvider' => $dataProvider,
-			));
+			'dataProvider' => $dataProvider,
+		));
 	}
 
 	/**
@@ -132,8 +132,8 @@ class StudentsController extends Controller {
 		}
 
 		$this->render('admin', array(
-				'model' => $model,
-			));
+			'model' => $model,
+		));
 	}
 
 	/**

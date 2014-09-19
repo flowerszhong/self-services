@@ -141,8 +141,8 @@ include '../includes/sidebar.php';
 <input name="net_id" id="input-net-id" type="text" value="<? echo $row_settings['net_id']; ?>" disabled>
 <?php if ($row_settings['net_id']) {
 	?>
-	<a class="btn btn-danger" id="resign-net" data-id="<? echo $row_settings['net_id']; ?>">重新分配上网账号</a>
-	<?php
+<a class="btn btn-danger" id="resign-net" data-id="<? echo $row_settings['net_id']; ?>">重新分配上网账号</a>
+<?php
 }?>
 </td>
 </tr>
@@ -154,12 +154,12 @@ include '../includes/sidebar.php';
 
 <?php if ($row_settings['net_id']) {
 	?>
-	<a class="btn btn-danger" id="resign-net-pwd">重置上网账号密码</a>
+<a class="btn btn-danger" id="resign-net-pwd">重置上网账号密码</a>
 		<span id="confirm-resign">
 		<input type="text" value="" id="new-net-pwd" data-net="<? echo $row_settings['net_id']; ?>" placeholder="请输入新密码" />
 		<input type="button" value="确认" class="btn btn-success" id="reset-net-pwd" />
 		</span>
-	<?php
+<?php
 }?>
 
 </td>
@@ -263,8 +263,6 @@ include '../includes/sidebar.php';
 </div>
 
 <?php
-
-$footer_scripts = array("assets/lib/jquery.validate.js", "assets/lib/jquery.validate.ext.js");
 
 include '../includes/footer.php';?>
 

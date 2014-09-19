@@ -2,8 +2,10 @@
 include '../dbc.php';
 admin_page_protect();
 
-$err = array();
-$msg = array();
+$err      = array();
+$msg      = array();
+$sha1pass = PwdHash('123456');
+echo $sha1pass;
 
 function randomStudentId() {
 	return rand(2014091000, 2015091000);
