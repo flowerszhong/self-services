@@ -161,11 +161,15 @@ function calc_start_end_date($expire_date, $fee) {
 	$current_date = date("Y-m-d");
 	$time_now     = time();
 	$months       = $fee / 30;
-	if ($months == 4 || $months == 5) {
-		$months += 1;
-	} else {
+
+	if ($months == 10) {
 		$months += 2;
+	} else {
+		if ($months > 4) {
+			$months += 1;
+		}
 	}
+
 	$max_time = strtotime("2015-03-01");//config max time to global
 
 	$start_date = "";
@@ -239,7 +243,7 @@ function calc_start_end_date($expire_date, $fee) {
 
 function add_log($ok, $code, $student_id, $user_name) {
 	$code_array = array(
-		'ok'           => '添加成功',
+		'ok'           => '交费成功',
 		'duplicate'    => '已有缴费记录，请不要重复缴费',
 		'payed_recent' => '近期已缴费，请不要重复缴费',
 		'students'     => '更新学生表失败',

@@ -13,7 +13,7 @@ $report = array();
 foreach ($_POST as $key => $value) {
 	$data[$key] = filter($value);// post variables are filtered
 }
-function checkStudentId($student_id, $user_name, $fee, $comment) {
+function checkStudentId($student_id, $user_name, $fee, $comment, $filename) {
 	global $report;
 	$input = array(
 		'type'       => 'input',
@@ -34,6 +34,7 @@ function checkStudentId($student_id, $user_name, $fee, $comment) {
 			'comment'       => null,
 			'comment_ok'    => null,
 		);
+
 		$report[] = $input;
 		$report[] = $output;
 		return;
@@ -54,8 +55,17 @@ function checkStudentId($student_id, $user_name, $fee, $comment) {
 			'comment_ok'    => null,
 		);
 
+		$sql = "INSERT INTO `audit`
+					(`filename`, `student_id`, `user_name`, `fee`, `comment`, `student_id_msg`, `student_id_ok`, `user_name_msg`, `user_name_ok`,
+						`fee_msg`, `fee_ok`, `comment_msg`, `comment_ok`)
+				VALUES
+					('$filename',$student_id,'$user_name','$fee','$comment','$output[student_id]','$output[student_id_ok]','$output[user_name]','$output[name_ok]',
+						'$output[fee]','$output[fee_ok]','$output[comment]','$output[comment_ok]')";
+		@mysql_query($sql);
+
 		$report[] = $input;
 		$report[] = $output;
+
 		return;
 	}
 
@@ -102,6 +112,16 @@ function checkStudentId($student_id, $user_name, $fee, $comment) {
 		'comment'       => $new_msg,
 		'comment_ok'    => $new_ok,
 	);
+
+	if ($new_ok == "not-ok" || $name_ok == "not-ok") {
+		$sql = "INSERT INTO `audit`
+					(`filename`, `student_id`, `user_name`, `fee`, `comment`, `student_id_msg`, `student_id_ok`, `user_name_msg`, `user_name_ok`,
+						`fee_msg`, `fee_ok`, `comment_msg`, `comment_ok`)
+				VALUES
+					('$filename',$student_id,'$user_name','$fee','$comment','$output[student_id]','$output[student_id_ok]','$output[user_name]','$output[name_ok]',
+						'$output[fee]','$output[fee_ok]','$output[comment]','$output[comment_ok]')";
+		@mysql_query($sql);
+	}
 
 	$report[] = $input;
 	$report[] = $output;
@@ -171,7 +191,7 @@ if (isset($_POST['import'])) {
 
 					if ($student_id && $user_name && $fee && $comment) {
 
-						checkStudentId($student_id, $user_name, $fee, $comment);
+						checkStudentId($student_id, $user_name, $fee, $comment, $origin_file_name);
 
 					}
 				}
