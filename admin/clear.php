@@ -11,13 +11,14 @@ foreach ($_POST as $key => $value) {
 
 if (isset($_POST['clear'])) {
 	$last_month_end = date("Y-m-d", mktime(0, 0, 0, date('m'), 0, date('Y')));
-	$sql_update     = "update accounts set available=0 where
+	$sql_update = "update accounts set available=0 where
 						available=1 and
 						end_date is not null and
 						end_date<='$last_month_end'";
-	$query = mysql_query($sql_update) or die("清理过期上网账号信息失败");
+	echo $sql_update;
+	// $query = mysql_query($sql_update) or die("清理过期上网账号信息失败");
 
-	$updated = mysql_affected_rows();
+	// $updated = mysql_affected_rows();
 }
 
 $page_title = "清理旧数据";

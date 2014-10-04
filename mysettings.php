@@ -70,7 +70,7 @@ if (sizeof($_POST) > 0) {
 	$msg[] = "人个资料更新成功";
 }
 
-$rs_settings  = mysql_query("select * from students where id='$_SESSION[user_id]'") or die(mysql_error());
+$rs_settings = mysql_query("select * from students where id='$_SESSION[user_id]'") or die(mysql_error());
 $row_settings = mysql_fetch_array($rs_settings);
 include 'includes/head.php';
 include 'includes/errors.php';
@@ -107,13 +107,7 @@ include 'includes/errors.php';
 <tr>
 <td>邮箱</td>
 <td>
-<input name="user_email" type="text" class="email" value="<? echo $row_settings['user_email']; ?>"
-
-<?php if (!empty($row_settings['user_email'])) {
-	echo "disabled";
-}?>
-
-></td>
+<input name="user_email" type="text" class="email" value="<? echo $row_settings['user_email']; ?>"></td>
 </tr>
 
 <tr>

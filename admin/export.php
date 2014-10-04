@@ -12,7 +12,7 @@ if ($_POST['export'] == 'students') {
 	$result = mysql_query($sql_select_all) or die("获取学生信息失败");
 
 	$current_date = date("Ymd");
-	$filename     = 'student-' . $current_date . '.xlsx';
+	$filename = 'student-' . $current_date . '.xlsx';
 
 	$objPHPExcel = new PHPExcel();
 
@@ -69,7 +69,7 @@ if ($_POST['export'] == 'students') {
 	$objWriter->save('download/' . $filename);
 
 	$response_data = array(
-		'state'    => "ok",
+		'state' => "ok",
 		'xls_name' => SITE_ROOT . "/admin/download/" . $filename,
 	);
 
@@ -126,12 +126,12 @@ if ($_POST['export'] == 'accounts') {
 
 // Save Excel 2007 file
 	$current_date = date("Ymd");
-	$filename     = 'net-table-' . $current_date . '.xlsx';
-	$objWriter    = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+	$filename = 'net-table-' . $current_date . '.xlsx';
+	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 	$objWriter->save('download/' . $filename);
 
 	$response_data = array(
-		'state'    => "ok",
+		'state' => "ok",
 		'xls_name' => SITE_ROOT . "/admin/download/" . $filename,
 	);
 
@@ -143,7 +143,8 @@ if ($_POST['export'] == 'accounts') {
 if ($_POST['export'] == 'unavailable') {
 	// 在使用的时候,调用getExcel方法，并传入相应的参数即可,例如：
 
-	$sql_select_all = "select * from accounts where available=0";
+	// $sql_select_all = "select * from accounts where available=0";
+	$sql_select_all = "select * from accounts where available=1 and start_date is not null and end_date<='2014-09-30'";
 
 	$result = mysql_query($sql_select_all) or die("获取上网账号表失败");
 
@@ -165,8 +166,9 @@ if ($_POST['export'] == 'unavailable') {
 	$objPHPExcel->getActiveSheet()->setCellValue('C1', "开始时间");
 	$objPHPExcel->getActiveSheet()->setCellValue('D1', "截止时间");
 	$objPHPExcel->getActiveSheet()->setCellValue('E1', "学生学号");
-	$objPHPExcel->getActiveSheet()->setCellValue('F1', "是否被使用");
-	$objPHPExcel->getActiveSheet()->setCellValue('G1', "是否可用");
+	$objPHPExcel->getActiveSheet()->setCellValue('F1', "学生姓名");
+	$objPHPExcel->getActiveSheet()->setCellValue('G1', "是否被使用");
+	$objPHPExcel->getActiveSheet()->setCellValue('H1', "是否可用");
 
 // Rows to repeat at top
 	$objPHPExcel->getActiveSheet()->getPageSetup()->setRowsToRepeatAtTopByStartAndEnd(1, 1);
@@ -179,8 +181,9 @@ if ($_POST['export'] == 'unavailable') {
 		            ->setCellValue('C' . $startIndex, $row['start_date'])
 		            ->setCellValue('D' . $startIndex, $row['end_date'])
 		            ->setCellValue('E' . $startIndex, $row['student_id'])
-		            ->setCellValue('F' . $startIndex, $row['used'])
-		            ->setCellValue('G' . $startIndex, $row['available']);
+		            ->setCellValue('F' . $startIndex, $row['user_name'])
+		            ->setCellValue('G' . $startIndex, $row['used'])
+		            ->setCellValue('H' . $startIndex, $row['available']);
 		$startIndex = $startIndex + 1;
 	}
 
@@ -189,12 +192,12 @@ if ($_POST['export'] == 'unavailable') {
 
 // Save Excel 2007 file
 	$current_date = date("Ymd");
-	$filename     = 'net-unavailable-table-' . $current_date . '.xlsx';
-	$objWriter    = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+	$filename = 'net-unavailable-table-' . $current_date . '.xlsx';
+	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 	$objWriter->save('download/' . $filename);
 
 	$response_data = array(
-		'state'    => "ok",
+		'state' => "ok",
 		'xls_name' => SITE_ROOT . "/admin/download/" . $filename,
 	);
 
@@ -253,12 +256,12 @@ if ($_POST['export'] == 'consume') {
 
 // Save Excel 2007 file
 	$current_date = date("Ymd");
-	$filename     = 'consume-table-' . $current_date . '.xlsx';
-	$objWriter    = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+	$filename = 'consume-table-' . $current_date . '.xlsx';
+	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 	$objWriter->save('download/' . $filename);
 
 	$response_data = array(
-		'state'    => "ok",
+		'state' => "ok",
 		'xls_name' => SITE_ROOT . "/admin/download/" . $filename,
 	);
 
