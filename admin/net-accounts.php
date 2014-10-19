@@ -16,13 +16,15 @@ foreach ($_POST as $key => $value) {
 function addAccount($net_id, $net_pwd, $err) {
 	global $err;
 	$sql_check_exist = "select count(id) as count from accounts where net_id='$net_id'";
-	$check_query     = mysql_query($sql_check_exist);
-	$check_result    = mysql_fetch_array($check_query);
+	$check_query = mysql_query($sql_check_exist);
+	$check_result = mysql_fetch_array($check_query);
 	if ($check_result['count'] > 0) {
+		echo $net_id;
+		echo "<br>";
 		$err[] = "该账号已经存在于数据中，请不在重复添加";
 	} else {
 		$current_date = date("Y-m-d");
-		$sql_insert   = "insert into `accounts` (`net_id`,`net_pwd`,`used`,`import_date`) VALUES ('$net_id','$net_pwd','0','$current_date')";
+		$sql_insert = "insert into `accounts` (`net_id`,`net_pwd`,`used`,`import_date`) VALUES ('$net_id','$net_pwd','0','$current_date')";
 		mysql_query($sql_insert) or die(mysql_error());
 	}
 }
@@ -57,16 +59,16 @@ if (isset($_POST['import'])) {
 			// $filename = $_FILES["file"]["name"];
 			if (move_uploaded_file($_FILES["file"]["tmp_name"], "upload/" . $filename)) {
 				require_once dirname(__FILE__) . '/PHPExcel/Classes/PHPExcel/IOFactory.php';
-				$reader        = PHPExcel_IOFactory::createReader('Excel5');//设置以Excel5格式(Excel97-2003工作簿)
-				$PHPExcel      = $reader->load("upload/" . $filename);// 载入excel文件
-				$sheet         = $PHPExcel->getSheet(0);// 读取第一個工作表
-				$highestRow    = $sheet->getHighestRow();// 取得总行数
+				$reader = PHPExcel_IOFactory::createReader('Excel5');//设置以Excel5格式(Excel97-2003工作簿)
+				$PHPExcel = $reader->load("upload/" . $filename);// 载入excel文件
+				$sheet = $PHPExcel->getSheet(0);// 读取第一個工作表
+				$highestRow = $sheet->getHighestRow();// 取得总行数
 				$highestColumm = "B";// 取得总列数
 				// $highestColumm = $sheet->getHighestColumn(); // 取得总列数
 
 /** 循环读取每个单元格的数据 */
 				for ($row = 2; $row <= $highestRow; $row++) {//行数是以第1行开始
-					$net_id  = $sheet->getCell("A" . $row)->getValue();
+					$net_id = $sheet->getCell("A" . $row)->getValue();
 					$net_pwd = $sheet->getCell("B" . $row)->getValue();
 					addAccount($net_id, $net_pwd, $err);
 // for ($column = 'A'; $column <= $highestColumm; $column++) {//列数是以A列开始
@@ -85,25 +87,26 @@ if (isset($_POST['import'])) {
 
 }
 
-$sql_all              = 'select count(*) as count from accounts';
-$sql_all_available    = 'select count(*) as count from accounts WHERE available=1';
-$sql_all_unvailable   = 'select count(*) as count from accounts WHERE available=0';
-$sql_all_used         = 'select count(*) as count from accounts WHERE available=1 and used=1';
-$query_all            = mysql_query($sql_all) or die(mysql_error());
-$query_all_available  = mysql_query($sql_all_available) or die(mysql_error());
+$sql_all = 'select count(*) as count from accounts';
+$sql_all_available = 'select count(*) as count from accounts WHERE available=1';
+$sql_all_unvailable = 'select count(*) as count from accounts WHERE available=0';
+$sql_all_used = 'select count(*) as count from accounts WHERE available=1 and used=1';
+$query_all = mysql_query($sql_all) or die(mysql_error());
+$query_all_available = mysql_query($sql_all_available) or die(mysql_error());
 $query_all_unvailable = mysql_query($sql_all_unvailable) or die(mysql_error());
-$query_all_used       = mysql_query($sql_all_used) or die(mysql_error());
-$all                  = mysql_fetch_array($query_all);
-$all_available        = mysql_fetch_array($query_all_available);
-$all_unvailable       = mysql_fetch_array($query_all_unvailable);
-$all_used             = mysql_fetch_array($query_all_used);
+$query_all_used = mysql_query($sql_all_used) or die(mysql_error());
+$all = mysql_fetch_array($query_all);
+$all_available = mysql_fetch_array($query_all_available);
+$all_unvailable = mysql_fetch_array($query_all_unvailable);
+$all_used = mysql_fetch_array($query_all_used);
 
 $current_date = date("Y-m-d");
-$first_date   = date("Y-m-01", strtotime($current_date));
+$first_date = date("Y-m-01", strtotime($current_date));
 
-$sql_select_expire = "select net_id as count from accounts where end_date<$first_date and available=1";
-$sql_result1       = mysql_query($sql_select_expire);
-$expire_num        = mysql_num_rows($sql_result1);
+$sql_select_expire = "select count(*) as count from accounts where end_date<'$first_date' and available=1";
+// echo $sql_select_expire;
+$sql_result1 = mysql_query($sql_select_expire);
+$expire_num = mysql_fetch_array($sql_result1);
 
 include "../includes/errors.php";
 
@@ -157,7 +160,7 @@ echo $first_date;
 </td>
 <td>
 <?php
-echo $expire_num;
+echo $expire_num['count'];
 ?>
 </td>
 </tr>
@@ -201,7 +204,7 @@ echo $expire_num;
 </tr>
 <?php
 
-$sql_select  = "select * from `accounts` ORDER BY id DESC limit 10";
+$sql_select = "select * from `accounts` ORDER BY id DESC limit 10";
 $rows_result = mysql_query($sql_select) or die(mysql_error());
 ?>
 
@@ -216,8 +219,8 @@ $rows_result = mysql_query($sql_select) or die(mysql_error());
 </td>
 <td>
 <?php if ($rrow['used']) {echo "已关联";} else {
-		echo "未关联";
-	}?>
+	echo "未关联";
+}?>
 </td>
 </tr>
 

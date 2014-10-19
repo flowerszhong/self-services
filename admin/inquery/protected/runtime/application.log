@@ -1,456 +1,285 @@
-2014/09/05 22:58:50 [error] [php] Use of undefined constant SITE_ROOT - assumed 'SITE_ROOT' (/Users/janice/Projects/php/self-services/admin/inquery/protected/views/layouts/main.php:29)
+2014/10/19 09:49:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "notices/admin".' in /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php:286
 Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/web/widgets/CContentDecorator.php(76): SiteController->renderFile()
-#1 /Users/janice/Projects/php/yii/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate()
-#2 /Users/janice/Projects/php/yii/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput()
-#3 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(206): CContentDecorator->run()
-#4 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(300): SiteController->endWidget()
-#5 /Users/janice/Projects/php/self-services/admin/inquery/protected/views/layouts/column1.php(6): SiteController->endContent()
-#6 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(126): require()
-#7 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
-#8 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(784): SiteController->renderFile()
-#9 /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/SiteController.php(98): SiteController->render()
-#10 /Users/janice/Projects/php/yii/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
-#11 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
-#12 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(286): SiteController->runAction()
-#13 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
-#14 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): SiteController->run()
-#15 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
-#16 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#17 /Users/janice/Projects/php/self-services/admin/inquery/index.php(13): CWebApplication->run()
-REQUEST_URI=/self-services/admin/inquery/index.php?r=site/login
-in /Users/janice/Projects/php/self-services/admin/inquery/protected/views/layouts/main.php (29)
-in /Users/janice/Projects/php/self-services/admin/inquery/protected/views/layouts/column1.php (6)
-in /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/SiteController.php (98)
-2014/09/05 23:06:10 [error] [php] Use of undefined constant SITE_ROOT - assumed 'SITE_ROOT' (/Users/janice/Projects/php/self-services/admin/inquery/protected/views/layouts/main.php:92)
-Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/web/widgets/CContentDecorator.php(76): SiteController->renderFile()
-#1 /Users/janice/Projects/php/yii/yii/framework/web/widgets/CContentDecorator.php(54): CContentDecorator->decorate()
-#2 /Users/janice/Projects/php/yii/yii/framework/web/widgets/COutputProcessor.php(44): CContentDecorator->processOutput()
-#3 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(206): CContentDecorator->run()
-#4 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(300): SiteController->endWidget()
-#5 /Users/janice/Projects/php/self-services/admin/inquery/protected/views/layouts/column1.php(6): SiteController->endContent()
-#6 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(126): require()
-#7 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(95): SiteController->renderInternal()
-#8 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(784): SiteController->renderFile()
-#9 /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/SiteController.php(98): SiteController->render()
-#10 /Users/janice/Projects/php/yii/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
-#11 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
-#12 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(286): SiteController->runAction()
-#13 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): SiteController->runActionWithFilters()
-#14 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): SiteController->run()
-#15 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
-#16 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#17 /Users/janice/Projects/php/self-services/admin/inquery/index.php(13): CWebApplication->run()
-REQUEST_URI=/self-services/admin/inquery/index.php?r=site/login
-in /Users/janice/Projects/php/self-services/admin/inquery/protected/views/layouts/main.php (92)
-in /Users/janice/Projects/php/self-services/admin/inquery/protected/views/layouts/column1.php (6)
-in /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/SiteController.php (98)
-2014/09/05 23:37:42 [error] [system.db.CDbCommand] CDbCommand::fetchColumn() failed: SQLSTATE[HY000]: General error: 1271 Illegal mix of collations for operation 'like'. The SQL statement executed was: SELECT COUNT(*) FROM `students` `t` WHERE (sub_major LIKE :ycp0) AND (start_date LIKE :ycp1).
-in /Users/janice/Projects/php/self-services/admin/inquery/protected/views/students/admin.php (61)
-in /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/StudentsController.php (136)
-in /Users/janice/Projects/php/self-services/admin/inquery/index.php (13)
-2014/09/05 23:37:42 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[HY000]: General error: 1271 Illegal mix of collations for operation 'like'. The SQL statement executed was: SELECT COUNT(*) FROM `students` `t` WHERE (sub_major LIKE :ycp0) AND (start_date LIKE :ycp1)' in /Users/janice/Projects/php/yii/yii/framework/db/CDbCommand.php:543
-Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/db/CDbCommand.php(433): CDbCommand->queryInternal('fetchColumn', 0, Array)
-#1 /Users/janice/Projects/php/yii/yii/framework/db/ar/CActiveRecord.php(1601): CDbCommand->queryScalar()
-#2 /Users/janice/Projects/php/yii/yii/framework/web/CActiveDataProvider.php(228): CActiveRecord->count(Object(CDbCriteria))
-#3 /Users/janice/Projects/php/yii/yii/framework/web/CDataProvider.php(224): CActiveDataProvider->calculateTotalItemCount()
-#4 /Users/janice/Projects/php/yii/yii/framework/web/CActiveDataProvider.php(178): CDataProvider->getTotalItemCount()
-#5 /Users/janice/Projects/php/yii/yii/framework/web/CDataProvider.php(168): CActiveDataProvider->fetchData()
-#6 /Users/janice/Projects/php/yii/yii/framework/zii/widgets/CBaseListView.php(111): CDataProvider->getData()
-#7 /Users/janice/Projects/php/yii/yii/framework/zii/widgets/grid/CGridView.php(339): CBaseListView->init()
-#8 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(147): CGridView->init()
-#9 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(172): CBaseController->createWidget('zii.widgets.gri...', Array)
-#10 /Users/janice/Projects/php/self-services/admin/inquery/protected/views/students/admin.php(61): CBaseController->widget('zii.widgets.gri...', Array)
-#11 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(126): require('/Users/janice/P...')
-#12 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Users/janice/P...', Array, true)
-#13 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(869): CBaseController->renderFile('/Users/janice/P...', Array, true)
-#14 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(782): CController->renderPartial('admin', Array, true)
-#15 /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/StudentsController.php(136): CController->render('admin', Array)
-#16 /Users/janice/Projects/php/yii/yii/framework/web/actions/CInlineAction.php(49): StudentsController->actionAdmin()
-#17 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
-#18 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
-#19 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
-#20 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
-#21 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
-#22 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
-#23 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
-#24 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#25 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('admin')
-#26 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('students/admin')
-#27 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#28 /Users/janice/Projects/php/self-services/admin/inquery/index.php(13): CApplication->run()
-#29 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?Students%5Bstudent_id%5D=&Students%5Buser_name%5D=&Students%5Bdepartment%5D=&Students%5Bmajor%5D=&Students%5Bsub_major%5D=%E5%B7%A5%E7%A8%8B%E7%9B%91%E6%B5%8B%E6%8A%80%E6%9C%AF&Students%5Bgrade%5D=&Students%5Bclass%5D=&Students%5Bapproved%5D=&Students%5Bnet_id%5D=&Students%5Bnet_pwd%5D=&Students%5Bstart_date%5D=%25%EF%BC%9D2014-08-31&Students%5Bexpire_date%5D=&Students_page=1&ajax=students-grid&r=students%2Fadmin
-HTTP_REFERER=http://192.168.22.150:1988/self-services/admin/inquery/index.php?r=students/admin
----
-2014/09/07 18:58:28 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Users/janice/Projects/php/yii/yii/framework/web/CController.php:336
-Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
-#1 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
-#2 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
-#3 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
-#4 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
-#5 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
-#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
-#7 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#8 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('view')
-#9 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('students/view')
-#10 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#11 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
-#12 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=students/view
----
-2014/09/07 18:58:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "view?id=1".' in /Users/janice/Projects/php/yii/yii/framework/web/CController.php:483
-Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(270): CController->missingAction('view?id=1')
-#1 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('view?id=1')
-#2 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('students/view?i...')
-#3 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#4 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
-#5 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=students/view?id=1
----
-2014/09/07 19:05:15 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Users/janice/Projects/php/yii/yii/framework/web/CController.php:336
-Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(309): CController->invalidActionParams(Object(CInlineAction))
-#1 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
-#2 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
-#3 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
-#4 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
-#5 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
-#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
-#7 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#8 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('view')
-#9 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('students/view')
-#10 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#11 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
-#12 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=students/view
----
-2014/09/08 11:04:22 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php:182
-Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
-#1 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
-#2 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
-#3 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
-#4 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
-#5 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
-#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#7 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('admin')
-#8 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('accounts/admin')
-#9 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#10 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
-#11 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=accounts/admin
-HTTP_REFERER=http://localhost:1988/self-services/admin/net-accounts.php
----
-2014/09/08 11:05:33 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php:182
-Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
-#1 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
-#2 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
-#3 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
-#4 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
-#5 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
-#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#7 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('admin')
-#8 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('accounts/admin')
-#9 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#10 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
-#11 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=accounts/admin
-HTTP_REFERER=http://localhost:1988/self-services/admin/net-accounts.php
----
-2014/09/08 11:05:36 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php:182
-Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
-#1 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
-#2 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
-#3 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
-#4 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
-#5 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
-#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#7 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('admin')
-#8 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('accounts/admin')
-#9 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#10 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
-#11 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=accounts/admin
----
-2014/09/08 11:05:55 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php:182
-Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
-#1 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
-#2 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
-#3 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
-#4 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
-#5 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
-#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#7 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('admin')
-#8 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('Accounts/admin')
-#9 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#10 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
-#11 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=Accounts/admin
----
-2014/09/08 11:06:26 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "login".' in /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php:286
-Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('login')
+#0 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('notices/admin')
 #1 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#2 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
+#2 /Users/janice/Projects/php/self-services/admin/inquery/index.php(15): CApplication->run()
 #3 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=login
+REQUEST_URI=/self-services/admin/inquery/index.php?r=notices/admin
 ---
-2014/09/08 11:07:15 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php:182
+2014/10/19 10:24:54 [error] [exception.CException] exception 'CException' with message 'CWebUser and its behaviors do not have a method or closure named "isAdmin".' in /Users/janice/Projects/php/yii/yii/framework/base/CComponent.php:266
 Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
-#1 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
-#2 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
-#3 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
-#4 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
-#5 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
-#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#7 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('admin')
-#8 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('accounts/admin')
-#9 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#10 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
-#11 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=accounts/admin
+#0 /Users/janice/Projects/php/self-services/admin/inquery/protected/views/notice/index.php(9): CComponent->__call('isAdmin', Array)
+#1 /Users/janice/Projects/php/self-services/admin/inquery/protected/views/notice/index.php(9): CWebUser->isAdmin()
+#2 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(126): require('/Users/janice/P...')
+#3 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Users/janice/P...', Array, true)
+#4 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(869): CBaseController->renderFile('/Users/janice/P...', Array, true)
+#5 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#6 /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/NoticeController.php(125): CController->render('index', Array)
+#7 /Users/janice/Projects/php/yii/yii/framework/web/actions/CInlineAction.php(49): NoticeController->actionIndex()
+#8 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#9 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#11 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
+#15 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('index')
+#17 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('notice/index')
+#18 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#19 /Users/janice/Projects/php/self-services/admin/inquery/index.php(15): CApplication->run()
+#20 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=notice/index
 ---
-2014/09/08 11:09:31 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php:182
+2014/10/19 10:25:44 [error] [exception.CException] exception 'CException' with message 'CWebUser and its behaviors do not have a method or closure named "isAdmin".' in /Users/janice/Projects/php/yii/yii/framework/base/CComponent.php:266
 Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
-#1 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
-#2 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
-#3 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
-#4 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
-#5 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
-#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#7 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('admin')
-#8 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('Accounts/admin')
-#9 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#10 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
-#11 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=Accounts/admin
+#0 /Users/janice/Projects/php/self-services/admin/inquery/protected/views/notice/index.php(9): CComponent->__call('isAdmin', Array)
+#1 /Users/janice/Projects/php/self-services/admin/inquery/protected/views/notice/index.php(9): CWebUser->isAdmin()
+#2 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(126): require('/Users/janice/P...')
+#3 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Users/janice/P...', Array, true)
+#4 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(869): CBaseController->renderFile('/Users/janice/P...', Array, true)
+#5 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(782): CController->renderPartial('index', Array, true)
+#6 /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/NoticeController.php(125): CController->render('index', Array)
+#7 /Users/janice/Projects/php/yii/yii/framework/web/actions/CInlineAction.php(49): NoticeController->actionIndex()
+#8 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#9 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#10 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#11 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#12 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#13 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#14 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
+#15 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#16 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('index')
+#17 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('notice/index')
+#18 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#19 /Users/janice/Projects/php/self-services/admin/inquery/index.php(15): CApplication->run()
+#20 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=notice/index
 ---
-2014/09/08 11:09:39 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php:182
+2014/10/19 10:26:15 [error] [php] Object of class CWebUser could not be converted to string (/Users/janice/Projects/php/self-services/admin/inquery/protected/views/notice/index.php:9)
 Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
-#1 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
-#2 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
-#3 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
-#4 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
-#5 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
-#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#7 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('admin')
-#8 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('accounts/admin')
-#9 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#10 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
-#11 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=accounts/admin
-HTTP_REFERER=http://localhost:1988/self-services/admin/inquery/index.php?r=Accounts
----
-2014/09/08 20:27:16 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection failed to open the DB connection: SQLSTATE[28000] [1045] Access denied for user 'zyh'@'localhost' (using password: YES)' in /Users/janice/Projects/php/yii/yii/framework/db/CDbConnection.php:382
-Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/db/CDbConnection.php(330): CDbConnection->open()
-#1 /Users/janice/Projects/php/yii/yii/framework/db/CDbConnection.php(308): CDbConnection->setActive(true)
-#2 /Users/janice/Projects/php/yii/yii/framework/base/CModule.php(387): CDbConnection->init()
-#3 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(450): CModule->getComponent('db')
-#4 /Users/janice/Projects/php/yii/yii/framework/db/ar/CActiveRecord.php(634): CApplication->getDb()
-#5 /Users/janice/Projects/php/yii/yii/framework/db/ar/CActiveRecord.php(2361): CActiveRecord->getDbConnection()
-#6 /Users/janice/Projects/php/yii/yii/framework/db/ar/CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(Accounts))
-#7 /Users/janice/Projects/php/yii/yii/framework/db/ar/CActiveRecord.php(79): CActiveRecord->getMetaData()
-#8 /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/AccountsController.php(128): CActiveRecord->__construct('search')
-#9 /Users/janice/Projects/php/yii/yii/framework/web/actions/CInlineAction.php(49): AccountsController->actionAdmin()
-#10 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
-#11 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
-#12 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
-#13 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
-#14 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
-#15 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
-#16 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
-#17 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#18 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('admin')
-#19 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('accounts/admin')
-#20 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#21 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
-#22 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=accounts/admin
-HTTP_REFERER=http://localhost:1988/self-services/admin/net-accounts.php
----
-2014/09/13 21:24:40 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in /Users/janice/Projects/php/yii/yii/framework/gii/GiiModule.php:170
-Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
-#1 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('')
-#2 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
-#3 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#4 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
-#5 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=gii
----
-2014/09/13 21:24:46 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in /Users/janice/Projects/php/yii/yii/framework/gii/GiiModule.php:170
-Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
-#1 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('index')
-#2 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('gii/default/ind...')
-#3 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#4 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
-#5 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=gii/default/index
-HTTP_REFERER=http://192.168.22.150:1988/self-services/admin/inquery/index.php?r=gii
----
-2014/09/13 21:24:53 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in /Users/janice/Projects/php/yii/yii/framework/gii/GiiModule.php:170
-Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
-#1 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('index')
-#2 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('gii/default/ind...')
-#3 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#4 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
-#5 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=gii/default/index
-HTTP_REFERER=http://192.168.22.150:1988/self-services/admin/inquery/index.php?r=gii
----
-2014/09/13 21:24:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "login".' in /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php:286
-Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('login')
-#1 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#2 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
-#3 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=login
----
-2014/09/13 21:25:23 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in /Users/janice/Projects/php/yii/yii/framework/gii/GiiModule.php:170
-Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
-#1 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('')
-#2 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
-#3 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#4 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
-#5 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=gii
----
-2014/09/13 21:25:43 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in /Users/janice/Projects/php/yii/yii/framework/gii/GiiModule.php:170
-Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
-#1 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('')
-#2 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
-#3 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#4 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
-#5 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=gii
----
-2014/09/13 21:25:51 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in /Users/janice/Projects/php/yii/yii/framework/gii/GiiModule.php:170
-Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
-#1 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('')
-#2 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
-#3 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#4 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
-#5 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=gii
----
-2014/09/13 21:34:28 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php:182
-Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
-#1 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
-#2 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
-#3 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
-#4 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
-#5 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
-#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#7 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('admin')
-#8 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('user/admin')
-#9 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#10 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
-#11 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=user/admin
----
-2014/09/13 22:02:55 [error] [exception.CException] exception 'CException' with message 'Property "User.flowerszhong" is not defined.' in /Users/janice/Projects/php/yii/yii/framework/base/CComponent.php:130
-Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/db/ar/CActiveRecord.php(145): CComponent->__get('flowerszhong')
-#1 /Users/janice/Projects/php/yii/yii/framework/base/CModel.php(596): CActiveRecord->__get('flowerszhong')
-#2 /Users/janice/Projects/php/self-services/admin/inquery/protected/components/UserIdentity.php(26): CModel->offsetGet('flowerszhong')
-#3 /Users/janice/Projects/php/self-services/admin/inquery/protected/models/LoginForm.php(47): UserIdentity->authenticate()
-#4 /Users/janice/Projects/php/yii/yii/framework/validators/CInlineValidator.php(42): LoginForm->authenticate('password', Array)
-#5 /Users/janice/Projects/php/yii/yii/framework/validators/CValidator.php(213): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
-#6 /Users/janice/Projects/php/yii/yii/framework/base/CModel.php(159): CValidator->validate(Object(LoginForm), NULL)
-#7 /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/SiteController.php(94): CModel->validate()
-#8 /Users/janice/Projects/php/yii/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
-#9 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
-#10 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
-#11 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#12 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('login')
-#13 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
+#0 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(869): NoticeController->renderFile()
+#1 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(782): NoticeController->renderPartial()
+#2 /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/NoticeController.php(125): NoticeController->render()
+#3 /Users/janice/Projects/php/yii/yii/framework/web/actions/CInlineAction.php(49): NoticeController->actionIndex()
+#4 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(308): CInlineAction->runWithParams()
+#5 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(133): NoticeController->runAction()
+#6 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CAccessControlFilter->filter()
+#8 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): NoticeController->filterAccessControl()
+#9 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter()
+#10 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
+#11 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): NoticeController->runActionWithFilters()
+#12 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): NoticeController->run()
+#13 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController()
 #14 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#15 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
-#16 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=site/login
-HTTP_REFERER=http://192.168.22.150:1988/self-services/admin/inquery/index.php?r=site/login
----
-2014/09/13 22:25:10 [error] [exception.CException] exception 'CException' with message 'Property "UserIdentity._id" is not defined.' in /Users/janice/Projects/php/yii/yii/framework/base/CComponent.php:173
+#15 /Users/janice/Projects/php/self-services/admin/inquery/index.php(15): CWebApplication->run()
+REQUEST_URI=/self-services/admin/inquery/index.php?r=notice/index
+in /Users/janice/Projects/php/self-services/admin/inquery/protected/views/notice/index.php (9)
+in /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/NoticeController.php (125)
+in /Users/janice/Projects/php/self-services/admin/inquery/index.php (15)
+2014/10/19 10:35:58 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Users/janice/Projects/php/yii/yii/framework/web/CController.php:1118
 Stack trace:
-#0 /Users/janice/Projects/php/self-services/admin/inquery/protected/components/UserIdentity.php(36): CComponent->__set('_id', '1')
-#1 /Users/janice/Projects/php/self-services/admin/inquery/protected/models/LoginForm.php(47): UserIdentity->authenticate()
-#2 /Users/janice/Projects/php/yii/yii/framework/validators/CInlineValidator.php(42): LoginForm->authenticate('password', Array)
-#3 /Users/janice/Projects/php/yii/yii/framework/validators/CValidator.php(213): CInlineValidator->validateAttribute(Object(LoginForm), 'password')
-#4 /Users/janice/Projects/php/yii/yii/framework/base/CModel.php(159): CValidator->validate(Object(LoginForm), NULL)
-#5 /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/SiteController.php(94): CModel->validate()
-#6 /Users/janice/Projects/php/yii/yii/framework/web/actions/CInlineAction.php(49): SiteController->actionLogin()
-#7 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
-#8 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(286): CController->runAction(Object(CInlineAction))
-#9 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#10 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('login')
-#11 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('site/login')
-#12 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#13 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
-#14 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=site/login
-HTTP_REFERER=http://192.168.22.150:1988/self-services/admin/inquery/index.php?r=site/login
+#0 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterPostOnly(Object(CFilterChain))
+#1 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#2 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('delete')
+#9 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('notice/delete')
+#10 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Users/janice/Projects/php/self-services/admin/inquery/index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=notice/delete&id=3
+HTTP_REFERER=http://10.1.43.52:1988/self-services/admin/inquery/index.php?r=notice/admin
 ---
-2014/09/19 17:42:21 [warning] [application] Failed to set unsafe attribute "pay_date" of "Students".
-in /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/StudentsController.php (89)
-in /Users/janice/Projects/php/self-services/admin/inquery/index.php (14)
-2014/09/19 17:42:41 [warning] [application] Failed to set unsafe attribute "pay_date" of "Students".
-in /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/StudentsController.php (89)
-in /Users/janice/Projects/php/self-services/admin/inquery/index.php (14)
-2014/09/19 17:46:34 [warning] [application] Failed to set unsafe attribute "pay_date" of "Students".
-in /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/StudentsController.php (89)
-in /Users/janice/Projects/php/self-services/admin/inquery/index.php (14)
-2014/09/20 16:33:47 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not authorized to perform this action.' in /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php:182
+2014/10/19 10:36:19 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Users/janice/Projects/php/yii/yii/framework/web/CController.php:1118
 Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/web/auth/CAccessControlFilter.php(145): CAccessControlFilter->accessDenied(Object(CWebUser), 'You are not aut...')
-#1 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(38): CAccessControlFilter->preFilter(Object(CFilterChain))
-#2 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
-#3 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
-#4 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
-#5 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
-#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#7 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('admin')
-#8 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('audit/admin')
-#9 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#10 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
-#11 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=audit/admin
-HTTP_REFERER=http://192.168.22.150:1988/self-services/admin/inquery/index.php?r=audit
+#0 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterPostOnly(Object(CFilterChain))
+#1 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#2 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('delete')
+#9 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('notice/delete')
+#10 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Users/janice/Projects/php/self-services/admin/inquery/index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=notice/delete&id=3
+HTTP_REFERER=http://10.1.43.52:1988/self-services/admin/inquery/index.php?r=notice/admin
 ---
-2014/09/20 20:51:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "student/admin".' in /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php:286
+2014/10/19 10:36:32 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Users/janice/Projects/php/yii/yii/framework/web/CController.php:1118
 Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('student/admin')
-#1 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#2 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
-#3 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=student/admin
+#0 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterPostOnly(Object(CFilterChain))
+#1 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#2 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('delete')
+#9 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('notice/delete')
+#10 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Users/janice/Projects/php/self-services/admin/inquery/index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=notice/delete&id=2
+HTTP_REFERER=http://10.1.43.52:1988/self-services/admin/inquery/index.php?r=notice/admin
 ---
-2014/09/20 20:51:51 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'school_db.students' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `students`.
-in /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/StudentsController.php (128)
-in /Users/janice/Projects/php/self-services/admin/inquery/index.php (14)
-2014/09/20 20:51:51 [error] [exception.CDbException] exception 'CDbException' with message 'The table "students" for active record class "Students" cannot be found in the database.' in /Users/janice/Projects/php/yii/yii/framework/db/ar/CActiveRecord.php:2362
+2014/10/19 10:36:44 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in /Users/janice/Projects/php/yii/yii/framework/web/CController.php:1118
 Stack trace:
-#0 /Users/janice/Projects/php/yii/yii/framework/db/ar/CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(Students))
-#1 /Users/janice/Projects/php/yii/yii/framework/db/ar/CActiveRecord.php(79): CActiveRecord->getMetaData()
-#2 /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/StudentsController.php(128): CActiveRecord->__construct('search')
-#3 /Users/janice/Projects/php/yii/yii/framework/web/actions/CInlineAction.php(49): StudentsController->actionAdmin()
+#0 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterPostOnly(Object(CFilterChain))
+#1 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#2 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#3 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
+#7 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('delete')
+#9 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('notice/delete')
+#10 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#11 /Users/janice/Projects/php/self-services/admin/inquery/index.php(15): CApplication->run()
+#12 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=notice/delete&id=3
+HTTP_REFERER=http://10.1.43.52:1988/self-services/admin/inquery/index.php?r=notice/admin
+---
+2014/10/19 10:45:35 [error] [exception.CException] exception 'CException' with message 'Property "CDetailView.template" is not defined.' in /Users/janice/Projects/php/yii/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /Users/janice/Projects/php/yii/yii/framework/web/CWidgetFactory.php(161): CComponent->__set('template', '{show}')
+#1 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(NoticeController), 'zii.widgets.CDe...', Array)
+#2 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(172): CBaseController->createWidget('zii.widgets.CDe...', Array)
+#3 /Users/janice/Projects/php/self-services/admin/inquery/protected/views/notice/view.php(33): CBaseController->widget('zii.widgets.CDe...', Array)
+#4 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(126): require('/Users/janice/P...')
+#5 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Users/janice/P...', Array, true)
+#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(869): CBaseController->renderFile('/Users/janice/P...', Array, true)
+#7 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(782): CController->renderPartial('view', Array, true)
+#8 /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/NoticeController.php(52): CController->render('view', Array)
+#9 [internal function]: NoticeController->actionView('1')
+#10 /Users/janice/Projects/php/yii/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(NoticeController), Array)
+#11 /Users/janice/Projects/php/yii/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(NoticeController), Object(ReflectionMethod), Array)
+#12 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#15 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
+#19 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('view')
+#21 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('notice/view')
+#22 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#23 /Users/janice/Projects/php/self-services/admin/inquery/index.php(15): CApplication->run()
+#24 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=notice/view&id=1
+HTTP_REFERER=http://10.1.43.52:1988/self-services/admin/inquery/index.php?r=notice/admin
+---
+2014/10/19 10:45:44 [error] [exception.CException] exception 'CException' with message 'Property "CDetailView.template" is not defined.' in /Users/janice/Projects/php/yii/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /Users/janice/Projects/php/yii/yii/framework/web/CWidgetFactory.php(161): CComponent->__set('template', 'show')
+#1 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(NoticeController), 'zii.widgets.CDe...', Array)
+#2 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(172): CBaseController->createWidget('zii.widgets.CDe...', Array)
+#3 /Users/janice/Projects/php/self-services/admin/inquery/protected/views/notice/view.php(33): CBaseController->widget('zii.widgets.CDe...', Array)
+#4 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(126): require('/Users/janice/P...')
+#5 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Users/janice/P...', Array, true)
+#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(869): CBaseController->renderFile('/Users/janice/P...', Array, true)
+#7 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(782): CController->renderPartial('view', Array, true)
+#8 /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/NoticeController.php(52): CController->render('view', Array)
+#9 [internal function]: NoticeController->actionView('1')
+#10 /Users/janice/Projects/php/yii/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(NoticeController), Array)
+#11 /Users/janice/Projects/php/yii/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(NoticeController), Object(ReflectionMethod), Array)
+#12 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#15 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
+#19 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('view')
+#21 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('notice/view')
+#22 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#23 /Users/janice/Projects/php/self-services/admin/inquery/index.php(15): CApplication->run()
+#24 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=notice/view&id=1
+HTTP_REFERER=http://10.1.43.52:1988/self-services/admin/inquery/index.php?r=notice/admin
+---
+2014/10/19 10:45:54 [error] [exception.CException] exception 'CException' with message 'Property "CDetailView.view" is not defined.' in /Users/janice/Projects/php/yii/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /Users/janice/Projects/php/yii/yii/framework/web/CWidgetFactory.php(161): CComponent->__set('view', 'show')
+#1 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(NoticeController), 'zii.widgets.CDe...', Array)
+#2 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(172): CBaseController->createWidget('zii.widgets.CDe...', Array)
+#3 /Users/janice/Projects/php/self-services/admin/inquery/protected/views/notice/view.php(33): CBaseController->widget('zii.widgets.CDe...', Array)
+#4 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(126): require('/Users/janice/P...')
+#5 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Users/janice/P...', Array, true)
+#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(869): CBaseController->renderFile('/Users/janice/P...', Array, true)
+#7 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(782): CController->renderPartial('view', Array, true)
+#8 /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/NoticeController.php(52): CController->render('view', Array)
+#9 [internal function]: NoticeController->actionView('1')
+#10 /Users/janice/Projects/php/yii/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(NoticeController), Array)
+#11 /Users/janice/Projects/php/yii/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(NoticeController), Object(ReflectionMethod), Array)
+#12 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#13 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#14 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#15 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#16 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#17 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#18 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
+#19 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('view')
+#21 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('notice/view')
+#22 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#23 /Users/janice/Projects/php/self-services/admin/inquery/index.php(15): CApplication->run()
+#24 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=notice/view&id=1
+HTTP_REFERER=http://10.1.43.52:1988/self-services/admin/inquery/index.php?r=notice/admin
+---
+2014/10/19 11:09:36 [error] [exception.CException] exception 'CException' with message 'Property "Ueditor.textarea" is not defined.' in /Users/janice/Projects/php/yii/yii/framework/base/CComponent.php:173
+Stack trace:
+#0 /Users/janice/Projects/php/yii/yii/framework/web/CWidgetFactory.php(161): CComponent->__set('textarea', 'Notice[content]')
+#1 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(146): CWidgetFactory->createWidget(Object(NoticeController), 'ext.ueditor.Ued...', Array)
+#2 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(172): CBaseController->createWidget('ext.ueditor.Ued...', Array)
+#3 /Users/janice/Projects/php/self-services/admin/inquery/protected/views/notice/_form.php(64): CBaseController->widget('ext.ueditor.Ued...', Array)
+#4 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(126): require('/Users/janice/P...')
+#5 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Users/janice/P...', Array, true)
+#6 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(869): CBaseController->renderFile('/Users/janice/P...', Array, true)
+#7 /Users/janice/Projects/php/self-services/admin/inquery/protected/views/notice/update.php(14): CController->renderPartial('_form', Array)
+#8 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(126): require('/Users/janice/P...')
+#9 /Users/janice/Projects/php/yii/yii/framework/web/CBaseController.php(95): CBaseController->renderInternal('/Users/janice/P...', Array, true)
+#10 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(869): CBaseController->renderFile('/Users/janice/P...', Array, true)
+#11 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(782): CController->renderPartial('update', Array, true)
+#12 /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/NoticeController.php(101): CController->render('update', Array)
+#13 [internal function]: NoticeController->actionUpdate('1')
+#14 /Users/janice/Projects/php/yii/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(NoticeController), Array)
+#15 /Users/janice/Projects/php/yii/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(NoticeController), Object(ReflectionMethod), Array)
+#16 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#17 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#18 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#19 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#20 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#21 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#22 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
+#23 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#24 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('update')
+#25 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('notice/update')
+#26 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#27 /Users/janice/Projects/php/self-services/admin/inquery/index.php(15): CApplication->run()
+#28 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=notice/update&id=1
+HTTP_REFERER=http://10.1.43.52:1988/self-services/admin/inquery/index.php?r=notice/admin
+---
+2014/10/19 11:21:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/StudentsController.php:149
+Stack trace:
+#0 /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/StudentsController.php(51): StudentsController->loadModel('1')
+#1 [internal function]: StudentsController->actionView('1')
+#2 /Users/janice/Projects/php/yii/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(StudentsController), Array)
+#3 /Users/janice/Projects/php/yii/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(StudentsController), Object(ReflectionMethod), Array)
 #4 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
 #5 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
 #6 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
@@ -459,10 +288,71 @@ Stack trace:
 #9 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
 #10 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
 #11 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
-#12 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('admin')
-#13 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('students/admin')
+#12 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('view')
+#13 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('students/view')
 #14 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
-#15 /Users/janice/Projects/php/self-services/admin/inquery/index.php(14): CApplication->run()
+#15 /Users/janice/Projects/php/self-services/admin/inquery/index.php(15): CApplication->run()
 #16 {main}
-REQUEST_URI=/self-services/admin/inquery/index.php?r=students/admin
+REQUEST_URI=/self-services/admin/inquery/index.php?r=students/view&id=1
+---
+2014/10/19 11:21:22 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/StudentsController.php:149
+Stack trace:
+#0 /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/StudentsController.php(51): StudentsController->loadModel('1')
+#1 [internal function]: StudentsController->actionView('1')
+#2 /Users/janice/Projects/php/yii/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(StudentsController), Array)
+#3 /Users/janice/Projects/php/yii/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(StudentsController), Object(ReflectionMethod), Array)
+#4 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
+#11 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('view')
+#13 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('students/view')
+#14 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Users/janice/Projects/php/self-services/admin/inquery/index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=students/view&id=1
+---
+2014/10/19 11:39:43 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in /Users/janice/Projects/php/yii/yii/framework/gii/GiiModule.php:170
+Stack trace:
+#0 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('')
+#2 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
+#3 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Users/janice/Projects/php/self-services/admin/inquery/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=gii
+---
+2014/10/19 11:39:53 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in /Users/janice/Projects/php/yii/yii/framework/gii/GiiModule.php:170
+Stack trace:
+#0 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('')
+#2 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
+#3 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Users/janice/Projects/php/self-services/admin/inquery/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=gii
+---
+2014/10/19 11:40:06 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in /Users/janice/Projects/php/yii/yii/framework/gii/GiiModule.php:170
+Stack trace:
+#0 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('')
+#2 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
+#3 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Users/janice/Projects/php/self-services/admin/inquery/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=gii
+---
+2014/10/19 11:40:12 [error] [exception.CHttpException.403] exception 'CHttpException' with message 'You are not allowed to access this page.' in /Users/janice/Projects/php/yii/yii/framework/gii/GiiModule.php:170
+Stack trace:
+#0 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(263): GiiModule->beforeControllerAction(Object(DefaultController), Object(CInlineAction))
+#1 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('')
+#2 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('gii')
+#3 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#4 /Users/janice/Projects/php/self-services/admin/inquery/index.php(15): CApplication->run()
+#5 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=gii
 ---

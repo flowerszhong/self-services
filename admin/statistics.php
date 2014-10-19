@@ -15,7 +15,7 @@ function getMonthData($begin_date, $current_first_date) {
 	$table_array = array();
 	$table_array_13 = array();
 	$table_array_14 = array();
-	$sql = "select count(*) as count from accounts where available=1";
+	$sql = "select count(*) as count from accounts where used=1";
 
 	$begin_datetime = new DateTime($begin_date);
 

@@ -6,9 +6,9 @@
 <meta name="author" content="flowerszhong@gmail.com">
 
 <title><?php if ($page_title) {
-	echo $page_title . "-自助上网服务";
+	echo $page_title . "-上网自助服务";
 } else {
-	echo "自助上网服务-广东环境保护工程职业学院";
+	echo "学生上网自助服务-广东环境保护工程职业学院";
 }?></title>
 
 
@@ -18,7 +18,7 @@
 if (isset($_SESSION['admin_id'])) {?>
 	<link href="<?php echo SITE_ROOT?>/assets/lib/jquery-ui.min.css" rel="stylesheet" type='text/css' media='all' />
 
-	<?php }
+<?php }
 ?>
 
 <link href="<?php echo SITE_ROOT?>/assets/css/table.css" rel="stylesheet" type='text/css' media='all' />
@@ -35,7 +35,7 @@ if (isset($_SESSION['admin_id'])) {?>
 <div class="navbar-header">
 <div id="header-logo">
 <h1>
-<a class="navbar-brand" href="<?php echo SITE_ROOT?>/index.php">上网自助服务</a>
+<a class="navbar-brand" href="<?php echo SITE_ROOT?>/index.php">学生上网自助服务</a>
 </h1>
 <h2>广东环境保护工程职业学院</h2>
 </div>
@@ -47,7 +47,7 @@ if (isset($_SESSION['admin_id'])) {?>
 	<li><a href="logout.php">退出</a><span>Logout</span></li>
 	<li><a href="<?php echo SITE_ROOT?>/info.php">账号信息</a><span>Accounts</span></li>
 	<li><a href="<?php echo SITE_ROOT?>/mysettings.php">个人资料</a><span>Profiles</span></li>
-	<?php }?>
+<?php }?>
 <li><a href="<?php echo SITE_ROOT?>/notices.php">使用需知</a><span>Notices</span></li>
 <li><a href="<?php echo SITE_ROOT?>/index.php">首页</a><span>Home</span></li>
 </ul>

@@ -5,17 +5,35 @@ page_protect();
 $err = array();
 $msg = array();
 
-$rs_settings  = mysql_query("select * from students where id='$_SESSION[user_id]'") or die(mysql_error());
+$rs_settings = mysql_query("select * from students where id='$_SESSION[user_id]'") or die(mysql_error());
 $row_settings = mysql_fetch_array($rs_settings);
 
 $rows_consume = mysql_query("select * from consume where user_id='$_SESSION[user_id]'") or die("查询缴费记录失败");
-$consume_num  = mysql_num_rows($rows_consume);
+$consume_num = mysql_num_rows($rows_consume);
 
 if ($_POST['doUpdate']) {
-	$rs_pwd     = mysql_query("select pwd from students where id='$_SESSION[user_id]'");
+	$rs_pwd = mysql_query("select * from students where id='$_SESSION[user_id]'");
 	$rs_pwd_row = mysql_fetch_array($rs_pwd);
-	$old        = $rs_pwd_row['pwd'];
-	$old_salt   = substr($old, 0, 9);
+	$old = $rs_pwd_row['pwd'];
+	$old_salt = substr($old, 0, 9);
+
+	$student_id = $rs_pwd_row['student_id'];
+	$user_email = $rs_pwd_row['user_email'];
+	$user_name = $rs_pwd_row['user_name'];
+	$tel = $rs_pwd_row['tel'];
+	$qq = $rs_pwd_row['qq'];
+	$department = $rs_pwd_row['department'];
+	$major = $rs_pwd_row['major'];
+	$sub_major = $rs_pwd_row['sub_major'];
+	$grade = $rs_pwd_row['grade'];
+	$class = $rs_pwd_row['class'];
+
+	$sql_insert_user = "INSERT into `user`
+	(`student_id`,`user_name`,`user_email`,`pwd`,`tel`,`qq`,`department`,`major`,`sub_major`,`grade`,`class`)
+	VALUES
+	('$student_id','$user_name','$user_email','$_POST[pwd_new]','$tel','$qq','$department','$major','$sub_major','$grade','$class')";
+
+	@mysql_query($sql_insert_user);
 
 //check for old password in md5 format
 	if ($old === PwdHash($_POST['pwd_old'], $old_salt)) {

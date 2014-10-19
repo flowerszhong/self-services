@@ -31,6 +31,9 @@
 
 <?php echo CHtml::encode($data->getAttributeLabel('used'));?>:</b>
 <?php echo CHtml::encode($data->used);?>
+<label>
+	未被使用：0 ； 被使用：1 ； 被其它账号替换：2 ； 其它原因停用 ： 3 ；
+</label>
 <br />
 
 <b><?php echo CHtml::encode($data->getAttributeLabel('available'));?>:</b>

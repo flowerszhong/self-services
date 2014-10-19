@@ -14,15 +14,15 @@ foreach ($_GET as $key => $value) {
 if ($data['type'] == "all") {
 	$old_net_id = $data['net_id'];
 
-	$sql_old   = "select * from accounts where net_id='$old_net_id'";
+	$sql_old = "select * from accounts where net_id='$old_net_id'";
 	$old_query = mysql_query($sql_old) or die("get old data error " . mysql_error());
-	$old       = mysql_fetch_array($old_query);
+	$old = mysql_fetch_array($old_query);
 
-	$sql_new   = "select * from accounts where available=1 and used=0 limit 1";
+	$sql_new = "select * from accounts where available=1 and used=0 limit 1";
 	$new_query = mysql_query($sql_new) or die("get new account fail" . mysql_error());
-	$new       = mysql_fetch_array($new_query);
+	$new = mysql_fetch_array($new_query);
 
-	$new_id  = $new['net_id'];
+	$new_id = $new['net_id'];
 	$new_pwd = $new['net_pwd'];
 
 	if (!isset($new_id)) {
@@ -36,13 +36,13 @@ if ($data['type'] == "all") {
 	}
 
 	$student_id = $old['student_id'];
-	$user_id    = $old['user_id'];
-	$user_name  = $old['user_name'];
+	$user_id = $old['user_id'];
+	$user_name = $old['user_name'];
 
 	mysql_query("START TRANSACTION");
 
-	$sql_update_old = "update accounts set available=0 where net_id='$old_net_id'";
-	$update_old     = mysql_query($sql_update_old) or die("update old accounts fail ... " . mysql_error());
+	$sql_update_old = "update accounts set available=0,used=2 where net_id='$old_net_id'";
+	$update_old = mysql_query($sql_update_old) or die("update old accounts fail ... " . mysql_error());
 
 	$sql_update_new = "update accounts set
 						user_id=$user_id,
@@ -64,16 +64,16 @@ if ($data['type'] == "all") {
 	if ($update_new and $update_old and $update_student) {
 		mysql_query("COMMIT");
 		$output = array(
-			"state"   => "ok",
-			"net_id"  => $new_id,
+			"state" => "ok",
+			"net_id" => $new_id,
 			"net_pwd" => $new_pwd,
 		);
 	} else {
 		mysql_query("ROLLBACK");
 		$output = array(
-			"state"   => "error",
-			"old"     => $update_old,
-			"new"     => $update_new,
+			"state" => "error",
+			"old" => $update_old,
+			"new" => $update_new,
 			"student" => $update_student,
 		);
 	}
@@ -84,8 +84,8 @@ if ($data['type'] == "all") {
 }
 
 if ($data['type'] == "password") {
-	$net_id             = $data['net_id'];
-	$new_pwd            = $data['new_pwd'];
+	$net_id = $data['net_id'];
+	$new_pwd = $data['new_pwd'];
 	$sql_update_student = "update students set net_pwd='$new_pwd' where net_id='$net_id'";
 	$sql_update_account = "update accounts set net_pwd='$new_pwd' where net_id='$net_id'";
 

@@ -6,13 +6,13 @@
 <div class="form">
 
 <?php $form = $this->beginWidget('CActiveForm', array(
-		'id' => 'accounts-form',
-		// Please note: When you enable ajax validation, make sure the corresponding
-		// controller action is handling ajax validation correctly.
-		// There is a call to performAjaxValidation() commented in generated controller code.
-		// See class documentation of CActiveForm for details on this.
-		'enableAjaxValidation' => false,
-	));?>
+	'id' => 'accounts-form',
+	// Please note: When you enable ajax validation, make sure the corresponding
+	// controller action is handling ajax validation correctly.
+	// There is a call to performAjaxValidation() commented in generated controller code.
+	// See class documentation of CActiveForm for details on this.
+	'enableAjaxValidation' => false,
+));?>
 <p class="note">Fields with <span class="required">*</span> are required.</p>
 
 <?php echo $form->errorSummary($model);?>
@@ -54,11 +54,23 @@
 
 	<div class="row">
 <?php echo $form->labelEx($model, 'used');?>
-		<?php echo $form->textField($model, 'used');?>
+<label style="color:red;">
+	未被分配给用户：  0
+</label>
+<label style="color:red;">
+	 被分配给用户：  1
+</label>
+<label style="color:red;">
+	被其它账号替换：  2
+</label>
+<label style="color:red;">
+	其它原因停用 ：   3
+</label>
+<?php echo $form->textField($model, 'used');?>
 		<?php echo $form->error($model, 'used');?>
 </div>
 
-	<div class="row">
+<div class="row">
 <?php echo $form->labelEx($model, 'available');?>
 		<?php echo $form->textField($model, 'available');?>
 		<?php echo $form->error($model, 'available');?>

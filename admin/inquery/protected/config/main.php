@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-	'name'     => '高级查询',
+	'name' => '高级查询',
 
 	// preloading 'log' component
 	'preload' => array('log'),
@@ -22,10 +22,10 @@ return array(
 		// uncomment the following to enable the Gii tool
 
 		'gii' => array(
-			'class'    => 'system.gii.GiiModule',
+			'class' => 'system.gii.GiiModule',
 			'password' => 'admin',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
-			'ipFilters' => array('192.168.22.150', '::1'),
+			'ipFilters' => array('10.1.17.98', '::1'),
 		),
 
 	),
@@ -54,10 +54,10 @@ return array(
 
 		'db' => array(
 			'connectionString' => 'mysql:host=localhost;dbname=school_db',
-			'emulatePrepare'   => true,
-			'username'         => 'root',
-			'password'         => 'root',
-			'charset'          => 'utf8',
+			'emulatePrepare' => true,
+			'username' => 'root',
+			'password' => 'root',
+			'charset' => 'utf8',
 		),
 
 		// 'db' => array(
@@ -73,10 +73,10 @@ return array(
 			'errorAction' => 'site/error',
 		),
 		'log' => array(
-			'class'  => 'CLogRouter',
+			'class' => 'CLogRouter',
 			'routes' => array(
 				array(
-					'class'  => 'CFileLogRoute',
+					'class' => 'CFileLogRoute',
 					'levels' => 'error, warning',
 				),
 				// uncomment the following to show log messages on web pages
@@ -87,6 +87,7 @@ return array(
 			 */
 			),
 		),
+
 	),
 
 	// application-level parameters that can be accessed

@@ -6,8 +6,8 @@ $page_title = "按班收费";
 include '../includes/head.php';
 include '../includes/sidebar.php';
 
-$err    = array();
-$msg    = array();
+$err = array();
+$msg = array();
 $report = array();
 
 foreach ($_POST as $key => $value) {
@@ -44,8 +44,8 @@ function associateNetAccount($student_id, $fee) {
 
 		if ($dates) {
 			$start_date = $dates['start_date'];
-			$end_date   = $dates['end_date'];
-			$rebalance  = $dates['rebalance'];
+			$end_date = $dates['end_date'];
+			$rebalance = $dates['rebalance'];
 		} else {
 			add_log(false, "duplicate", $student_id, $student_data['user_name']);
 			return false;
@@ -56,9 +56,12 @@ function associateNetAccount($student_id, $fee) {
 		if (empty($student_data['net_id']) or $rebalance) {
 //分配账号
 			$sql_select_account = "select * from accounts where used=0 and available=1 limit 1";
-			$query_account      = mysql_query($sql_select_account);
-			$row_account        = mysql_fetch_array($query_account);
-// var_dump($row_account);
+			$query_account = mysql_query($sql_select_account);
+			$row_account = mysql_fetch_array($query_account);
+			if (!$row_account) {
+				echo "<div class='main'>无可用宽带账号供分配</div>";
+				exit();
+			}
 
 			$sql_update_account = "update accounts set
 used=1,
@@ -159,8 +162,8 @@ function compare_pay_date($last_pay_date) {
 
 function calc_start_end_date($expire_date, $fee) {
 	$current_date = date("Y-m-d");
-	$time_now     = time();
-	$months       = $fee / 30;
+	$time_now = time();
+	$months = $fee / 30;
 
 	if ($months == 10) {
 		$months += 2;
@@ -173,7 +176,7 @@ function calc_start_end_date($expire_date, $fee) {
 	$max_time = strtotime("2015-03-01");//config max time to global
 
 	$start_date = "";
-	$end_date   = "";
+	$end_date = "";
 
 	if ($expire_date) {
 		$time_expire_date = strtotime($expire_date);
@@ -185,7 +188,7 @@ function calc_start_end_date($expire_date, $fee) {
 		return null;
 	}
 	if ($time_now >= $time_expire_date) {
-		$rebalance  = true;
+		$rebalance = true;
 		$start_date = $current_date;
 		if (date('d') > 25) {
 			$start_date = date("Y-m-d", mktime(0, 0, 0,
@@ -209,7 +212,7 @@ function calc_start_end_date($expire_date, $fee) {
 			date('Y', $start_date_time)
 		));
 	} else {
-		$rebalance  = false;
+		$rebalance = false;
 		$start_date = date('Y-m-d', mktime(0, 0, 0,
 			date('m', $time_expire_date) + 1,
 			1,
@@ -235,24 +238,24 @@ function calc_start_end_date($expire_date, $fee) {
 	}
 
 	return array(
-		"rebalance"  => $rebalance,
+		"rebalance" => $rebalance,
 		'start_date' => $start_date,
-		'end_date'   => $end_date,
+		'end_date' => $end_date,
 	);
 }
 
 function add_log($ok, $code, $student_id, $user_name) {
 	$code_array = array(
-		'ok'           => '交费成功',
-		'duplicate'    => '已有缴费记录，请不要重复缴费',
+		'ok' => '交费成功',
+		'duplicate' => '已有缴费记录，请不要重复缴费',
 		'payed_recent' => '近期已缴费，请不要重复缴费',
-		'students'     => '更新学生表失败',
-		'fee'          => '费用出错',
-		'accounts'     => '更新账号表失败',
-		'consume'      => '更新缴费记录表失败',
-		'not_found'    => '未找到该用户',
-		'data_error'   => '未找到该用户',
-		'unknow'       => '未知错误',
+		'students' => '更新学生表失败',
+		'fee' => '费用出错',
+		'accounts' => '更新账号表失败',
+		'consume' => '更新缴费记录表失败',
+		'not_found' => '未找到该用户',
+		'data_error' => '未找到该用户',
+		'unknow' => '未知错误',
 	);
 
 	global $report;
@@ -261,11 +264,11 @@ function add_log($ok, $code, $student_id, $user_name) {
 	$ok_cls = $ok ? "ok" : "fail";
 
 	$report[] = array(
-		'ok'     => $ok_cls,
+		'ok' => $ok_cls,
 		'ok_msg' => $ok_msg,
-		'cause'  => $code_array[$code],
-		'id'     => $student_id,
-		'name'   => $user_name,
+		'cause' => $code_array[$code],
+		'id' => $student_id,
+		'name' => $user_name,
 	);
 }
 
@@ -310,16 +313,16 @@ if (isset($_POST['import'])) {
 				// var_dump($reader);
 				$PHPExcel = $reader->load("upload/" . $filename);// 载入excel文件
 				// var_dump($PHPExcel);
-				$sheet         = $PHPExcel->getSheet(0);// 读取第一個工作表
-				$highestRow    = $sheet->getHighestRow();// 取得总行数
+				$sheet = $PHPExcel->getSheet(0);// 读取第一個工作表
+				$highestRow = $sheet->getHighestRow();// 取得总行数
 				$highestColumm = "B";// 取得总列数
 				// $highestColumm = $sheet->getHighestColumn(); // 取得总列数
 
 /** 循环读取每个单元格的数据 */
 				for ($row = 3; $row <= $highestRow; $row++) {//行数是以第1行开始
 					$student_id = trim($sheet->getCell("A" . $row)->getValue());
-					$user_name  = trim($sheet->getCell("B" . $row)->getValue());
-					$fee        = $sheet->getCell("C" . $row)->getValue();
+					$user_name = trim($sheet->getCell("B" . $row)->getValue());
+					$fee = $sheet->getCell("C" . $row)->getValue();
 
 					if ($student_id == "系部") {
 						break;

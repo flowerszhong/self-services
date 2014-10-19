@@ -21,13 +21,13 @@ if ($_POST['student_id'] && $_POST['pwd']) {
 	}
 
 	$student_id = $data['student_id'];
-	$pass       = $data['pwd'];
+	$pass = $data['pwd'];
 
 	if (isStudentId($student_id)) {
 		$search_cond = "where student_id=$student_id";
 
 		$sql_select = "SELECT `id`,`pwd`,`user_name`,`approved` FROM students $search_cond";
-		$result     = mysql_query($sql_select) or die(mysql_error());
+		$result = mysql_query($sql_select) or die(mysql_error());
 
 		$num = mysql_num_rows($result);
 
@@ -53,14 +53,14 @@ if ($_POST['student_id'] && $_POST['pwd']) {
 						session_regenerate_id(true);//prevent against session fixation attacks.
 
 // this sets variables in the session
-						$_SESSION['user_id']         = $id;
-						$_SESSION['student_id']      = $id;
-						$_SESSION['student_name']    = $user_name;
+						$_SESSION['user_id'] = $id;
+						$_SESSION['student_id'] = $id;
+						$_SESSION['student_name'] = $user_name;
 						$_SESSION['HTTP_USER_AGENT'] = md5($_SERVER['HTTP_USER_AGENT']);
 
 //update the timestamp and key for cookie
 						$stamp = time();
-						$ckey  = GenKey();
+						$ckey = GenKey();
 						mysql_query("update students set `ctime`='$stamp', `ckey` = '$ckey' where id='$id'") or die(mysql_error());
 
 //set a cookie
@@ -97,10 +97,11 @@ include 'includes/errors.php';
 <div class="container">
 <div class="alert alert-success">
 <h3>Welcome!</h3>
-<p>1.请点击<a href="notices.php">使用需知</a>查看上网缴费流程，或下载<a href="download/使用需知.rar">使用需知文件包(1.13MB)</a></p>
-<p>2.<a href="register.php">注册账号</a></p>
-<p>3.下载<a href="download/拨号客户端.rar">电信拨号软件客户端</a></p>
-<p>4.请使用IE7+,Chrome,Firefox,Safari等浏览器</p>
+<p>1.请点击<a href="notices.php">[使用需知]</a>查看上网缴费流程，或下载<a href="download/使用需知.rar">[使用需知文件包(1.13MB)]</a></p>
+<p style="color:red;">2.<b>2014</b>级新生默认已注册，初始密码为<b>“123456”</b>，请及时登录并修改密码</p>
+<p>3.下载<a href="download/拨号客户端.rar">[电信拨号软件客户端]</a></p>
+<p>4.生成并下载<a style="color:red;" href="export-table.php">[班级缴费表]</a></p>
+<p>5.请使用IE7+,Chrome,Firefox,Safari等浏览器</p>
 </div>
 </div>
 
@@ -115,11 +116,11 @@ if ($_SESSION['student_id'] && $_SESSION['student_name']) {
 <form class="form-signin" action="index.php" method="post" id="login-form" name="logForm">
 <label>学号</label>
 <div>
-<input type="text" name="student_id" id="student_id" class="form-control login-input required student_id" placeholder="学号" required="" autofocus="">
+<input type="text" name="student_id" id="student_id" class="form-control login-input required student_id" placeholder="请输入学号" required="" autofocus="">
 </div>
 <label>密码</label>
 <div>
-<input type="password" name="pwd" class="form-control login-input" placeholder="密码" minlength="6" required="">
+<input type="password" name="pwd" class="form-control login-input" placeholder="请输入密码" minlength="6" required="">
 </div>
 
 <div class="login-util">

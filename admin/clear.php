@@ -15,10 +15,9 @@ if (isset($_POST['clear'])) {
 						available=1 and
 						end_date is not null and
 						end_date<='$last_month_end'";
-	echo $sql_update;
-	// $query = mysql_query($sql_update) or die("清理过期上网账号信息失败");
+	$query = mysql_query($sql_update) or die("清理过期上网账号信息失败");
 
-	// $updated = mysql_affected_rows();
+	$updated = mysql_affected_rows();
 }
 
 $page_title = "清理旧数据";
