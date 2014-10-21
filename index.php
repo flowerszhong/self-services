@@ -146,4 +146,40 @@ if ($_SESSION['student_id'] && $_SESSION['student_name']) {
 
 <?php
 include 'includes/footer.php';
+
+?>
+<style type="text/css">
+#float-new{
+	position: absolute;
+	width: 300px;
+	border:1px solid green;
+	background: white;
+	padding: 10px;
+	padding-top: 0;
+}
+
+#close-float-new{
+	cursor: pointer;
+}
+
+</style>
+
+<?php
+$notice = getNewestNotice();
+if ($notice) {
+	?>
+<div class="float-new" id="float-new">
+		<h3 class="title">
+		<a href="<?php echo SITE_ROOT . '/admin/inquery/index.php?r=notice/view&id=' . $notice['id']?>"><?php echo $notice['title'];?></a>
+
+</h3>
+<div class="float-new-content">
+<?php echo $notice['summary'];?>
+</div>
+<br />
+<input id="close-float-new" type="button" value="关闭通知" />
+
+</div>
+
+<?php }
 ?>

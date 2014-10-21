@@ -15,7 +15,6 @@ define("DB_PASS", "root"); // set database password
 define("DB_NAME", "school_db"); // set database name
 
 
-
 declare(encoding = 'UTF-8');
 
 // error_reporting(E_ALL);
@@ -458,6 +457,18 @@ function getUserName() {
 
 	}
 
+}
+
+function getNewestNotice()
+{
+	global $db;
+	$sql = "select * from notices order by update_time desc limit 1";
+	$query = mysql_query($sql);
+	if($query){
+		return mysql_fetch_array($query);
+	}else{
+		return null;
+	}
 }
 
 function sendEmail($subject, $message, $email) {

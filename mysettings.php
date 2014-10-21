@@ -67,6 +67,11 @@ if (sizeof($_POST) > 0) {
 		mysql_query($sql_update) or die(mysql_error());
 	}
 
+	if ($data['dorm']) {
+		$sql_update = "UPDATE students SET `dorm` = '$data[dorm]' WHERE id='$_SESSION[user_id]'";
+		mysql_query($sql_update) or die(mysql_error());
+	}
+
 	$msg[] = "人个资料更新成功";
 }
 
@@ -206,6 +211,66 @@ include 'includes/errors.php';
 </tr>
 
 <tr>
+	<td>宿舍</td>
+	<td>
+
+
+<?php if (isset($row_settings['dorm'])):?>
+<div id="dorm-label">
+		<? echo $row_settings['dorm']; ?>
+		<input type="button" id="change-dorm" value="修改" />
+	</div>
+
+	<div id='build-selects' class="hide-build">
+		<select name="building" id="building">
+			<option value="">请选择公寓</option>
+			<option value="1">1栋</option>
+			<option value="2">2栋</option>
+			<option value="3">3栋</option>
+			<option value="4">4栋</option>
+			<option value="5">5栋</option>
+			<option value="6">6栋</option>
+			<option value="7">7栋</option>
+			<option value="8">8栋</option>
+		</select>
+		-
+		<select name="floor" id="floor">
+			<option>请选择楼层</option>
+		</select>
+		-
+		<select name="room" id="room">
+			<option>请选择宿舍</option>
+		</select>
+	</div>
+
+<?php else:?>
+<div id='build-selects'>
+			<select name="building" id="building">
+				<option value="">请选择公寓</option>
+				<option value="1">1栋</option>
+				<option value="2">2栋</option>
+				<option value="3">3栋</option>
+				<option value="4">4栋</option>
+				<option value="5">5栋</option>
+				<option value="6">6栋</option>
+				<option value="7">7栋</option>
+				<option value="8">8栋</option>
+			</select>
+			-
+			<select name="floor" id="floor">
+				<option>请选择楼层</option>
+			</select>
+			-
+			<select name="room" id="room">
+				<option>请选择宿舍</option>
+			</select>
+		</div>
+<?php endif?>
+<input name="dorm" id="dorm" type="text" value="" class="dorm-behind" />
+</td>
+</tr>
+
+<tr>
 <td></td>
 <td>
 <a class="btn btn-success" id="link-save-setting">保存</a>
@@ -216,8 +281,9 @@ include 'includes/errors.php';
 </div>
 
 <?php
-
-include 'includes/footer.php';?>
+$footer_scripts = array("assets/js/builds.js");
+include 'includes/footer.php';
+?>
 
 
 

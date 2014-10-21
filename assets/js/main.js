@@ -357,6 +357,18 @@ $(function() {
 	});
 
 	$("#link-save-setting").click(function() {
+		var build = $("#building").val();
+		var floor = $("#floor").val();
+		var dorm = $("#room").val();
+		if(build && floor && dorm){
+			floor = floor.replace('F','');
+			var dorm_string = build + '栋-' + floor + '楼-(' + dorm + ')室'; 
+			$("#dorm").val(dorm_string);
+		}else{
+			$("#building").val("");
+			$("#floor").val("");
+			$("#room").val("");
+		}
 		$("#setting-form").submit();
 		return false;
 	});
@@ -553,6 +565,27 @@ $(function() {
 	});
 
 
+
+	var $floatingNews = $("#float-new");
+	var $closeBtn = $("#close-float-new");
+	var randomLeft = 900 * Math.random();
+	var randomTop = 100 + 400 * Math.random();
+
+
+	$floatingNews.css({
+		top: randomTop + "px",
+		left: randomLeft + "px"
+	}).animate({
+		top: "360px",
+		left: ($(document.body).width()-300) + "px"
+
+	}, 18000, function() {
+		// Animation complete.
+	});
+
+	$closeBtn.click(function () {
+		$floatingNews.hide();
+	})
 	
 
 

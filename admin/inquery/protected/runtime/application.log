@@ -356,3 +356,25 @@ Stack trace:
 #5 {main}
 REQUEST_URI=/self-services/admin/inquery/index.php?r=gii
 ---
+2014/10/19 12:31:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The requested page does not exist.' in /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/NoticeController.php:153
+Stack trace:
+#0 /Users/janice/Projects/php/self-services/admin/inquery/protected/controllers/NoticeController.php(51): NoticeController->loadModel('$notice[id]')
+#1 [internal function]: NoticeController->actionView('$notice[id]')
+#2 /Users/janice/Projects/php/yii/yii/framework/web/actions/CAction.php(108): ReflectionMethod->invokeArgs(Object(NoticeController), Array)
+#3 /Users/janice/Projects/php/yii/yii/framework/web/actions/CInlineAction.php(47): CAction->runWithParamsInternal(Object(NoticeController), Object(ReflectionMethod), Array)
+#4 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(308): CInlineAction->runWithParams(Array)
+#5 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilter.php(40): CFilterChain->run()
+#7 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 /Users/janice/Projects/php/yii/yii/framework/web/filters/CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 /Users/janice/Projects/php/yii/yii/framework/web/filters/CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(291): CFilterChain->run()
+#11 /Users/janice/Projects/php/yii/yii/framework/web/CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(282): CController->run('view')
+#13 /Users/janice/Projects/php/yii/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('notice/view')
+#14 /Users/janice/Projects/php/yii/yii/framework/base/CApplication.php(180): CWebApplication->processRequest()
+#15 /Users/janice/Projects/php/self-services/admin/inquery/index.php(15): CApplication->run()
+#16 {main}
+REQUEST_URI=/self-services/admin/inquery/index.php?r=notice/view&id=$notice[id]
+HTTP_REFERER=http://10.1.43.52:1988/self-services/
+---

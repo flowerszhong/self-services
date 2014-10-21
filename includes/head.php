@@ -48,7 +48,9 @@ if (isset($_SESSION['admin_id'])) {?>
 	<li><a href="<?php echo SITE_ROOT?>/info.php">账号信息</a><span>Accounts</span></li>
 	<li><a href="<?php echo SITE_ROOT?>/mysettings.php">个人资料</a><span>Profiles</span></li>
 <?php }?>
-<li><a href="<?php echo SITE_ROOT?>/notices.php">使用需知</a><span>Notices</span></li>
+
+<li><a href="<?php echo SITE_ROOT?>/notices.php">使用需知</a><span>Tips</span></li>
+<li><a href="<?php echo SITE_ROOT?>/admin/inquery/index.php?r=notice/index">通知公告</a><span>Notices</span></li>
 <li><a href="<?php echo SITE_ROOT?>/index.php">首页</a><span>Home</span></li>
 </ul>
 </div>

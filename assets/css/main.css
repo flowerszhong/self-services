@@ -605,5 +605,22 @@ label.error{
 }
 
 
+.dorm-behind{
+	float: right;
+	text-indent: -2000px;
+	width: 1px;
+	background: transparent;
+    border: none;
+}
+
+#dorm-label,#build-selects{
+	float: left;
+	padding-top:10px;
+}
+
+.hide-build{
+	display: none;
+}
+
 
 

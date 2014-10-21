@@ -37,7 +37,8 @@
 
                 <div id="topnav">
                   <ul>
-                    <li><a href="/notices.php">使用需知</a><span>Notices</span></li>
+                     <li><a href="/notices.php">使用需知</a><span>Tips</span></li>
+                    <li><a href="/admin/inquery/index.php?r=notice/index">通知公告</a><span>Notices</span></li>
                     <li><a href="/index.php">首页</a><span>Home</span></li>
                   </ul>
                 </div>
