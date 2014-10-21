@@ -72,6 +72,21 @@ if (sizeof($_POST) > 0) {
 		mysql_query($sql_update) or die(mysql_error());
 	}
 
+	if ($data['building']) {
+		$sql_update = "UPDATE students SET `building` = '$data[building]' WHERE id='$_SESSION[user_id]'";
+		mysql_query($sql_update) or die(mysql_error());
+	}
+
+	if ($data['room']) {
+		$sql_update = "UPDATE students SET `room` = '$data[room]' WHERE id='$_SESSION[user_id]'";
+		mysql_query($sql_update) or die(mysql_error());
+	}
+
+	if ($data['floor']) {
+		$sql_update = "UPDATE students SET `floor` = '$data[floor]' WHERE id='$_SESSION[user_id]'";
+		mysql_query($sql_update) or die(mysql_error());
+	}
+
 	$msg[] = "人个资料更新成功";
 }
 
